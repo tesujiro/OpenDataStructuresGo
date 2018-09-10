@@ -5,8 +5,8 @@ import "fmt"
 // ArrayStack is a slice of interface{}
 type ArrayStack []interface{}
 
-func newArrayStack(c int) ArrayStack {
-	return make(ArrayStack, 0, c)
+func newArrayStack() ArrayStack {
+	return make(ArrayStack, 0)
 }
 
 func (as ArrayStack) Len() int {
@@ -15,6 +15,10 @@ func (as ArrayStack) Len() int {
 
 func (as ArrayStack) Cap() int {
 	return cap(as)
+}
+
+func (as ArrayStack) Print() {
+	fmt.Printf("ArrayStack(len:%v,cap:%v)=%#v\n", as.Len(), as.Cap(), as)
 }
 
 func (as ArrayStack) Get(i int) (interface{}, error) {
@@ -32,40 +36,40 @@ func (as ArrayStack) Set(i int, v interface{}) error {
 	return nil
 }
 
-func (as ArrayStack) Add(i int, v interface{}) error {
+func (as ArrayStack) Add(i int, v interface{}) (ArrayStack, error) {
 	if i < 0 || len(as) < i {
-		return fmt.Errorf("ArrayStack.Add: index out of range (i:%v)", i)
+		return nil, fmt.Errorf("ArrayStack.Add: index out of range (i:%v)", i)
 	}
-	/* TODO: check size and resize */
-	// TODO: NG
-	as = append(as, as[len(as)-1])
-	as = append(as[:i+1], as[i:]...)
-	as[i] = v
-	return nil
+	if i == len(as) {
+		as = append(as, v)
+	} else {
+		as = append(as[:i+1], as[i:]...)
+		as[i] = v
+	}
+	return as, nil
 }
 
 func main() {
 	fmt.Println("ArrayStack")
 
-	as := newArrayStack(1024)
-	fmt.Printf("ArrayStack(len:%v,cap:%v)=%#v\n", as.Len(), as.Cap(), as)
+	as := newArrayStack()
+	as.Print()
 
-	as = append(as, 1)
-	as = append(as, 2)
-	as = append(as, 3)
-	fmt.Printf("ArrayStack(len:%v,cap:%v)=%#v\n", as.Len(), as.Cap(), as)
-
-	as.Add(1, 100)
-	fmt.Printf("ArrayStack(len:%v,cap:%v)=%#v\n", as.Len(), as.Cap(), as)
+	as, _ = as.Add(0, 10)
+	as, _ = as.Add(0, 10)
+	as.Print()
+	as, _ = as.Add(1, 20)
+	as, _ = as.Add(2, 30)
+	as, _ = as.Add(3, 40)
+	as, _ = as.Add(0, 5)
+	as.Print()
 
 	var i int
 	var v interface{}
 	i = 1
 	v, _ = as.Get(i)
-	fmt.Printf("ArrayStack[%v]:%#v\n", i, v)
-
 	i = 2
 	v = 10
 	as.Set(i, v)
-	fmt.Printf("ArrayStack(len:%v,cap:%v)=%#v\n", as.Len(), as.Cap(), as)
+	as.Print()
 }
