@@ -49,6 +49,18 @@ func (as ArrayStack) Add(i int, v interface{}) (ArrayStack, error) {
 	return as, nil
 }
 
+func (as ArrayStack) Remove(i int) (ArrayStack, error) {
+	if i < 0 || len(as) < i {
+		return nil, fmt.Errorf("ArrayStack.Add: index out of range (i:%v)", i)
+	}
+	if i == len(as) {
+		as = as[:i]
+	} else {
+		as = append(as[:i], as[i+1:]...)
+	}
+	return as, nil
+}
+
 func main() {
 	fmt.Println("ArrayStack")
 
@@ -71,5 +83,12 @@ func main() {
 	i = 2
 	v = 10
 	as.Set(i, v)
+	as.Print()
+
+	as, _ = as.Remove(0)
+	as.Print()
+	as, _ = as.Remove(2)
+	as.Print()
+	as, _ = as.Remove(3)
 	as.Print()
 }
