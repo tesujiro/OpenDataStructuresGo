@@ -45,8 +45,19 @@ func (as ArrayStack) Add(i int, v interface{}) (ArrayStack, error) {
 	if i == len(as) {
 		as = append(as, v)
 	} else {
-		as = append(as[:i+1], as[i:]...)
-		as[i] = v
+		/*
+			as = append(as[:i+1], as[i:]...)
+			as[i] = v
+		*/
+		bs := make(ArrayStack, len(as)+1)
+		for j := len(as); i < j; j-- {
+			bs[j] = as[j-1]
+		}
+		bs[i] = v
+		for j := i - 1; 0 <= j; j-- {
+			bs[j] = as[j]
+		}
+		as = bs
 	}
 	return as, nil
 }
