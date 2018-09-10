@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // ArrayStack is a slice of interface{}
 type ArrayStack []interface{}
