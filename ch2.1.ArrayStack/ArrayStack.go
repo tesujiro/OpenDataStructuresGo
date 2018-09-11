@@ -13,9 +13,9 @@ type ArrayStack struct {
 }
 
 func newArrayStack() *ArrayStack {
-	ar := [initSize]interface{}{}
+	ar := make([]interface{}, initSize)
 	return &ArrayStack{
-		array: ar[:],
+		array: ar,
 		slice: ar[0:0],
 	}
 }
@@ -26,6 +26,15 @@ func (as *ArrayStack) Len() int {
 
 func (as *ArrayStack) Cap() int {
 	return cap(as.array)
+}
+
+func (as *ArrayStack) Resize() {
+	ar := make([]interface{}, len(as.array)*2)
+	for i := 0; i < len(as.array); i++ {
+		ar[i] = as.array[i]
+	}
+	as.array = ar
+	as.slice = ar[:len(as.slice)]
 }
 
 func (as *ArrayStack) Print() {
@@ -52,7 +61,7 @@ func (as *ArrayStack) Add(i int, v interface{}) error {
 		return fmt.Errorf("ArrayStack.Add: index out of range (i:%v)", i)
 	}
 	if len(as.slice)+1 > len(as.array) {
-		return fmt.Errorf("ArrayStack.Add: cannot extend array, please resize at first")
+		as.Resize()
 	}
 
 	as.slice = as.array[:len(as.slice)+1]
@@ -84,9 +93,9 @@ func main() {
 	as.Add(0, 10)
 	as.Add(0, 10)
 	as.Print()
-	as.Add(1, 60)
+	as.Add(1, 40)
 	as.Add(2, 50)
-	as.Add(3, 40)
+	as.Add(3, 60)
 	as.Add(0, 3)
 	as.Add(0, 2)
 	as.Add(0, 1)

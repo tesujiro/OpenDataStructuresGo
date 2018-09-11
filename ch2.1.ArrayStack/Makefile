@@ -1,3 +1,6 @@
+test:
+	go test -v .
+
 run:
 	go run ArrayStack.go
 bench:
