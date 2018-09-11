@@ -8,14 +8,14 @@ const initSize = 8
 
 // ArrayStack is a slice of interface{}
 type ArrayStack struct {
-	array [initSize]interface{}
+	array []interface{}
 	slice []interface{}
 }
 
 func newArrayStack() *ArrayStack {
 	ar := [initSize]interface{}{}
 	return &ArrayStack{
-		array: ar,
+		array: ar[:],
 		slice: ar[0:0],
 	}
 }
