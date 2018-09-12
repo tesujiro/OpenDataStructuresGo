@@ -9,7 +9,6 @@ const initSizeDQ = 8
 // ArrayDeque is a slice of interface{}
 type ArrayDeque struct {
 	array []interface{}
-	//slice []interface{}
 	start int
 	len   int
 }
@@ -18,7 +17,6 @@ func newArrayDeque() *ArrayDeque {
 	ar := make([]interface{}, initSizeDQ)
 	return &ArrayDeque{
 		array: ar,
-		//slice: ar[0:0],
 		start: 0,
 		len:   0,
 	}

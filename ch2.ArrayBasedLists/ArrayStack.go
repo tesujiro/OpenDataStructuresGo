@@ -28,6 +28,16 @@ func (as *ArrayStack) Cap() int {
 	return cap(as.array)
 }
 
+func (as *ArrayStack) Get(i int) interface{} {
+	i = i % len(as.slice)
+	return as.slice[i]
+}
+
+func (as *ArrayStack) Set(i int, v interface{}) {
+	i = i % len(as.slice)
+	as.slice[i] = v
+}
+
 func (as *ArrayStack) Resize() {
 	ar := make([]interface{}, len(as.array)*2)
 	for i := 0; i < len(as.array); i++ {
@@ -41,14 +51,8 @@ func (as *ArrayStack) Print() {
 	fmt.Printf("ArrayStack(len:%v,cap:%v)=%#v\n", as.Len(), as.Cap(), as.slice)
 }
 
-func (as *ArrayStack) Get(i int) interface{} {
-	i = i % len(as.slice)
-	return as.slice[i]
-}
-
-func (as *ArrayStack) Set(i int, v interface{}) {
-	i = i % len(as.slice)
-	as.slice[i] = v
+func (as *ArrayStack) Slice() []interface{} {
+	return as.slice
 }
 
 func (as *ArrayStack) Add(i int, v interface{}) {
