@@ -50,11 +50,7 @@ func (as *ArrayDeque) Resize() {
 }
 
 func (as *ArrayDeque) Print() {
-	fmt.Printf("ArrayDeque(len:%v,cap:%v,start:%v)=", as.Len(), as.Cap(), as.start)
-	for i := 0; i < as.len; i++ {
-		fmt.Printf("%v,", as.Get(i))
-	}
-	fmt.Printf("\n")
+	fmt.Printf("ArrayDeque(len:%v,cap:%v,start:%v)=%v\n", as.Len(), as.Cap(), as.start, as.Slice())
 }
 
 func (as *ArrayDeque) Slice() []interface{} {

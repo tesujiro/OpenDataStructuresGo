@@ -48,7 +48,7 @@ func (as *ArrayStack) Resize() {
 }
 
 func (as *ArrayStack) Print() {
-	fmt.Printf("ArrayStack(len:%v,cap:%v)=%#v\n", as.Len(), as.Cap(), as.slice)
+	fmt.Printf("ArrayStack(len:%v,cap:%v)=%v\n", as.Len(), as.Cap(), as.Slice())
 }
 
 func (as *ArrayStack) Slice() []interface{} {
