@@ -79,36 +79,3 @@ func (as *ArrayStack) Remove(i int) {
 	as.slice[len(as.slice)-1] = nil
 	as.slice = as.array[:len(as.slice)-1]
 }
-
-func main() {
-	fmt.Println("ArrayStack")
-
-	as := newArrayStack()
-	as.Print()
-
-	as.Add(0, 10)
-	//as.Add(0, 10)
-	as.Add(1, 40)
-	as.Add(2, 50)
-	as.Add(3, 60)
-	as.Add(0, 3)
-	as.Add(0, 2)
-	as.Add(0, 1)
-	as.Add(0, 0)
-
-	var i int
-	var v interface{}
-	i = 1
-	v = as.Get(i)
-	i = 2
-	v = 10
-	as.Set(i, v)
-	as.Print()
-
-	as.Remove(0)
-	as.Print()
-	as.Remove(2)
-	as.Print()
-	as.Remove(3)
-	as.Print()
-}
