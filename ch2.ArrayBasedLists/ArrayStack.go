@@ -41,24 +41,19 @@ func (as *ArrayStack) Print() {
 	fmt.Printf("ArrayStack(len:%v,cap:%v)=%#v\n", as.Len(), as.Cap(), as.slice)
 }
 
-func (as *ArrayStack) Get(i int) (interface{}, error) {
-	if i < 0 || len(as.slice) <= i {
-		return nil, fmt.Errorf("ArrayStack.Get: index out of range (i:%v)", i)
-	}
-	return as.slice[i], nil
+func (as *ArrayStack) Get(i int) interface{} {
+	i = i % len(as.slice)
+	return as.slice[i]
 }
 
-func (as *ArrayStack) Set(i int, v interface{}) error {
-	if i < 0 || len(as.slice) <= i {
-		return fmt.Errorf("ArrayStack.Set: index out of range (i:%v)", i)
-	}
+func (as *ArrayStack) Set(i int, v interface{}) {
+	i = i % len(as.slice)
 	as.slice[i] = v
-	return nil
 }
 
-func (as *ArrayStack) Add(i int, v interface{}) error {
-	if i < 0 || len(as.slice) < i {
-		return fmt.Errorf("ArrayStack.Add: index out of range (i:%v)", i)
+func (as *ArrayStack) Add(i int, v interface{}) {
+	if len(as.slice) > 0 && i > len(as.slice) {
+		i = i % len(as.slice)
 	}
 	if len(as.slice)+1 > len(as.array) {
 		as.Resize()
@@ -69,19 +64,16 @@ func (as *ArrayStack) Add(i int, v interface{}) error {
 		as.slice[j] = as.slice[j-1]
 	}
 	as.slice[i] = v
-	return nil
+	//as.Print()
 }
 
-func (as *ArrayStack) Remove(i int) error {
-	if i < 0 || len(as.slice) < i {
-		return fmt.Errorf("ArrayStack.Add: index out of range (i:%v)", i)
-	}
+func (as *ArrayStack) Remove(i int) {
+	i = i % len(as.slice)
 	for j := i; j < len(as.slice)-1; j++ {
 		as.slice[j] = as.slice[j+1]
 	}
 	as.slice[len(as.slice)-1] = nil
 	as.slice = as.array[:len(as.slice)-1]
-	return nil
 }
 
 func main() {
@@ -91,8 +83,7 @@ func main() {
 	as.Print()
 
 	as.Add(0, 10)
-	as.Add(0, 10)
-	as.Print()
+	//as.Add(0, 10)
 	as.Add(1, 40)
 	as.Add(2, 50)
 	as.Add(3, 60)
@@ -100,12 +91,11 @@ func main() {
 	as.Add(0, 2)
 	as.Add(0, 1)
 	as.Add(0, 0)
-	as.Print()
 
 	var i int
 	var v interface{}
 	i = 1
-	v, _ = as.Get(i)
+	v = as.Get(i)
 	i = 2
 	v = 10
 	as.Set(i, v)

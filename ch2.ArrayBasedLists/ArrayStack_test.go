@@ -24,7 +24,7 @@ func TestArrayStack(t *testing.T) {
 	as.Add(0, 0)
 	as.Print()
 	if !reflect.DeepEqual(as.slice, []interface{}{0, 1, 2, 3, 40, 50, 60, 70, 80}) {
-		t.Fatalf("failed init %#v", as)
+		t.Fatalf("failed init %#v", as.slice)
 	}
 }
 
@@ -32,10 +32,7 @@ func BenchmarkAddLast(b *testing.B) {
 	as := newArrayStack()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		err := as.Add(i, i)
-		if err != nil {
-			b.Error(err)
-		}
+		as.Add(i, i)
 	}
 }
 
@@ -43,9 +40,6 @@ func BenchmarkAddFirst(b *testing.B) {
 	as := newArrayStack()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		err := as.Add(0, i)
-		if err != nil {
-			b.Error(err)
-		}
+		as.Add(0, i)
 	}
 }
