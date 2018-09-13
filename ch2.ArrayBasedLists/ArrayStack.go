@@ -56,8 +56,8 @@ func (as *ArrayStack) Slice() []interface{} {
 }
 
 func (as *ArrayStack) Add(i int, v interface{}) {
-	if len(as.slice) > 0 && i > len(as.slice) {
-		i = i % len(as.slice)
+	if len(as.slice) > 0 {
+		i = i % (len(as.slice) + 1)
 	}
 	if len(as.slice)+1 > len(as.array) {
 		as.Resize()

@@ -73,9 +73,7 @@ func (as *ArrayDeque) Add(i int, v interface{}) {
 		return
 	}
 
-	if i > as.len {
-		i = i % as.len
-	}
+	i = i % (as.len + 1)
 	as.len += 1
 
 	//fmt.Printf("i=%v as.len/2=%v\n", i, as.len/2)
