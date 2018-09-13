@@ -1,8 +1,10 @@
 package main
 
 import (
+	"math/rand"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func TestArrayStack(t *testing.T) {
@@ -51,6 +53,12 @@ func BenchmarkArrayStack_AddLast(b *testing.B) {
 	benchmarkSlicable_AddLast(s, b)
 }
 
+func BenchmarkArrayStack_AddRandom(b *testing.B) {
+	var s Slicable
+	s = newArrayStack()
+	benchmarkSlicable_AddRandom(s, b)
+}
+
 func BenchmarkArrayDeque_AddFirst(b *testing.B) {
 	var s Slicable
 	s = newArrayDeque()
@@ -61,6 +69,12 @@ func BenchmarkArrayDeque_AddLast(b *testing.B) {
 	var s Slicable
 	s = newArrayDeque()
 	benchmarkSlicable_AddLast(s, b)
+}
+
+func BenchmarkArrayDeque_AddRandom(b *testing.B) {
+	var s Slicable
+	s = newArrayDeque()
+	benchmarkSlicable_AddRandom(s, b)
 }
 
 func benchmarkSlicable_AddFirst(s Slicable, b *testing.B) {
@@ -74,5 +88,14 @@ func benchmarkSlicable_AddLast(s Slicable, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(i, i)
+	}
+}
+
+func benchmarkSlicable_AddRandom(s Slicable, b *testing.B) {
+
+	rand.Seed(time.Now().UnixNano())
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s.Add(rand.Intn(s.Len()+1), i)
 	}
 }
