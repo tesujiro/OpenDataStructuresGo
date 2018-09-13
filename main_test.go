@@ -10,20 +10,20 @@ import (
 )
 
 func TestArrayStack(t *testing.T) {
-	var s Slicable
+	var s Sliceable
 	t.Log("init")
 	s = ch2.NewArrayStack()
-	testSlicable(s, t)
+	testSliceable(s, t)
 }
 
 func TestArrayDeque(t *testing.T) {
-	var s Slicable
+	var s Sliceable
 	t.Log("init")
 	s = ch2.NewArrayDeque()
-	testSlicable(s, t)
+	testSliceable(s, t)
 }
 
-func testSlicable(s Slicable, t *testing.T) {
+func testSliceable(s Sliceable, t *testing.T) {
 	if !reflect.DeepEqual(s.Slice(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s)
 	}
@@ -44,56 +44,56 @@ func testSlicable(s Slicable, t *testing.T) {
 }
 
 func BenchmarkArrayStack_AddFirst(b *testing.B) {
-	var s Slicable
+	var s Sliceable
 	s = ch2.NewArrayStack()
-	benchmarkSlicable_AddFirst(s, b)
+	benchmarkSliceable_AddFirst(s, b)
 }
 
 func BenchmarkArrayStack_AddLast(b *testing.B) {
-	var s Slicable
+	var s Sliceable
 	s = ch2.NewArrayStack()
-	benchmarkSlicable_AddLast(s, b)
+	benchmarkSliceable_AddLast(s, b)
 }
 
 func BenchmarkArrayStack_AddRandom(b *testing.B) {
-	var s Slicable
+	var s Sliceable
 	s = ch2.NewArrayStack()
-	benchmarkSlicable_AddRandom(s, b)
+	benchmarkSliceable_AddRandom(s, b)
 }
 
 func BenchmarkArrayDeque_AddFirst(b *testing.B) {
-	var s Slicable
+	var s Sliceable
 	s = ch2.NewArrayDeque()
-	benchmarkSlicable_AddFirst(s, b)
+	benchmarkSliceable_AddFirst(s, b)
 }
 
 func BenchmarkArrayDeque_AddLast(b *testing.B) {
-	var s Slicable
+	var s Sliceable
 	s = ch2.NewArrayDeque()
-	benchmarkSlicable_AddLast(s, b)
+	benchmarkSliceable_AddLast(s, b)
 }
 
 func BenchmarkArrayDeque_AddRandom(b *testing.B) {
-	var s Slicable
+	var s Sliceable
 	s = ch2.NewArrayDeque()
-	benchmarkSlicable_AddRandom(s, b)
+	benchmarkSliceable_AddRandom(s, b)
 }
 
-func benchmarkSlicable_AddFirst(s Slicable, b *testing.B) {
+func benchmarkSliceable_AddFirst(s Sliceable, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(0, i)
 	}
 }
 
-func benchmarkSlicable_AddLast(s Slicable, b *testing.B) {
+func benchmarkSliceable_AddLast(s Sliceable, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(i, i)
 	}
 }
 
-func benchmarkSlicable_AddRandom(s Slicable, b *testing.B) {
+func benchmarkSliceable_AddRandom(s Sliceable, b *testing.B) {
 
 	rand.Seed(time.Now().UnixNano())
 	b.ResetTimer()

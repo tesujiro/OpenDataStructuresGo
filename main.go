@@ -7,7 +7,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 )
 
-type Slicable interface {
+type Sliceable interface {
 	Len() int
 	Cap() int
 	Get(i int) interface{}
@@ -21,7 +21,7 @@ type Slicable interface {
 
 func main() {
 
-	var s Slicable
+	var s Sliceable
 
 	fmt.Println("ch2/ArrayStack")
 	s = ch2.NewArrayStack()
@@ -35,7 +35,7 @@ func main() {
 	SLList()
 }
 
-func addTest(s Slicable) {
+func addTest(s Sliceable) {
 
 	s.Print()
 
