@@ -1,4 +1,4 @@
-package main
+package ch3
 
 import "fmt"
 
@@ -13,7 +13,7 @@ type SLList struct {
 	len  int
 }
 
-func newSLList() *SLList {
+func NewSLList() *SLList {
 	return &SLList{
 		head: nil,
 		tail: nil,
@@ -57,16 +57,4 @@ func (l *SLList) Pop() interface{} {
 		l.tail = nil
 	}
 	return x
-}
-
-func main() {
-	fmt.Println("SLList")
-	sll := newSLList()
-	sll.Print()
-	sll.Push(1)
-	sll.Push(2)
-	sll.Push(3)
-	sll.Print()
-	fmt.Printf("Pop()=%v\n", sll.Pop())
-	sll.Print()
 }

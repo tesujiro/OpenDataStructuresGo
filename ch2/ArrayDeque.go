@@ -1,4 +1,4 @@
-package main
+package ch2
 
 import (
 	"fmt"
@@ -13,7 +13,7 @@ type ArrayDeque struct {
 	len   int
 }
 
-func newArrayDeque() *ArrayDeque {
+func NewArrayDeque() *ArrayDeque {
 	ar := make([]interface{}, initSizeDQ)
 	return &ArrayDeque{
 		array: ar,

@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/tesujiro/OpenDataStructuresGo/ch2"
+	"github.com/tesujiro/OpenDataStructuresGo/ch3"
+)
 
 type Slicable interface {
 	Len() int
@@ -18,13 +23,16 @@ func main() {
 
 	var s Slicable
 
-	fmt.Println("ArrayStack")
-	s = newArrayStack()
+	fmt.Println("ch2/ArrayStack")
+	s = ch2.NewArrayStack()
 	addTest(s)
 
-	fmt.Println("ArrayDeque")
-	s = newArrayDeque()
+	fmt.Println("ch2/ArrayDeque")
+	s = ch2.NewArrayDeque()
 	addTest(s)
+
+	fmt.Println("ch2/ArrayDeque")
+	SLList()
 }
 
 func addTest(s Slicable) {
@@ -58,37 +66,14 @@ func addTest(s Slicable) {
 	s.Print()
 }
 
-/*
-func ad() {
-	fmt.Println("ArrayDeque")
-
-	as := newArrayDeque()
-	as.Print()
-
-	as.Add(0, 40)
-	as.Add(1, 50)
-	as.Add(2, 60)
-	as.Add(3, 70)
-	as.Add(4, 80)
-	as.Add(0, 3)
-	as.Add(0, 2)
-	as.Add(0, 1)
-	as.Add(0, 0)
-
-	var i int
-	var v interface{}
-	i = 1
-	v = as.Get(i)
-	i = 2
-	v = 10
-	as.Set(i, v)
-	as.Print()
-
-	as.Remove(0)
-	as.Print()
-	as.Remove(2)
-	as.Print()
-	as.Remove(3)
-	as.Print()
+func SLList() {
+	fmt.Println("SLList")
+	sll := ch3.NewSLList()
+	sll.Print()
+	sll.Push(1)
+	sll.Push(2)
+	sll.Push(3)
+	sll.Print()
+	fmt.Printf("Pop()=%v\n", sll.Pop())
+	sll.Print()
 }
-*/

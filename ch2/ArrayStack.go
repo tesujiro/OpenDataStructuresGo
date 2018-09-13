@@ -1,4 +1,4 @@
-package main
+package ch2
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ type ArrayStack struct {
 	slice []interface{}
 }
 
-func newArrayStack() *ArrayStack {
+func NewArrayStack() *ArrayStack {
 	ar := make([]interface{}, initSize)
 	return &ArrayStack{
 		array: ar,

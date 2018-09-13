@@ -5,19 +5,21 @@ import (
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 )
 
 func TestArrayStack(t *testing.T) {
 	var s Slicable
 	t.Log("init")
-	s = newArrayStack()
+	s = ch2.NewArrayStack()
 	testSlicable(s, t)
 }
 
 func TestArrayDeque(t *testing.T) {
 	var s Slicable
 	t.Log("init")
-	s = newArrayDeque()
+	s = ch2.NewArrayDeque()
 	testSlicable(s, t)
 }
 
@@ -43,37 +45,37 @@ func testSlicable(s Slicable, t *testing.T) {
 
 func BenchmarkArrayStack_AddFirst(b *testing.B) {
 	var s Slicable
-	s = newArrayStack()
+	s = ch2.NewArrayStack()
 	benchmarkSlicable_AddFirst(s, b)
 }
 
 func BenchmarkArrayStack_AddLast(b *testing.B) {
 	var s Slicable
-	s = newArrayStack()
+	s = ch2.NewArrayStack()
 	benchmarkSlicable_AddLast(s, b)
 }
 
 func BenchmarkArrayStack_AddRandom(b *testing.B) {
 	var s Slicable
-	s = newArrayStack()
+	s = ch2.NewArrayStack()
 	benchmarkSlicable_AddRandom(s, b)
 }
 
 func BenchmarkArrayDeque_AddFirst(b *testing.B) {
 	var s Slicable
-	s = newArrayDeque()
+	s = ch2.NewArrayDeque()
 	benchmarkSlicable_AddFirst(s, b)
 }
 
 func BenchmarkArrayDeque_AddLast(b *testing.B) {
 	var s Slicable
-	s = newArrayDeque()
+	s = ch2.NewArrayDeque()
 	benchmarkSlicable_AddLast(s, b)
 }
 
 func BenchmarkArrayDeque_AddRandom(b *testing.B) {
 	var s Slicable
-	s = newArrayDeque()
+	s = ch2.NewArrayDeque()
 	benchmarkSlicable_AddRandom(s, b)
 }
 
