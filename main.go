@@ -19,23 +19,32 @@ type Sliceable interface {
 	Remove(i int)
 }
 
-func main() {
-
-	var s Sliceable
-
-	fmt.Println("ch2/ArrayStack")
-	s = ch2.NewArrayStack()
-	addTest(s)
-
-	fmt.Println("ch2/ArrayDeque")
-	s = ch2.NewArrayDeque()
-	addTest(s)
-
-	fmt.Println("ch2/ArrayDeque")
-	SLList()
+type FIFO interface {
+	Add(x interface{})
+	Remove() interface{}
+	Print()
 }
 
-func addTest(s Sliceable) {
+type Stack interface {
+	Push(x interface{})
+	Pop() interface{}
+	Print()
+}
+
+func main() {
+
+	fmt.Println("ch2/ArrayStack")
+	testAdd(ch2.NewArrayStack())
+
+	fmt.Println("ch2/ArrayDeque")
+	testAdd(ch2.NewArrayDeque())
+
+	fmt.Println("ch3/SLList")
+	testStack(ch3.NewSLList())
+	testFIFO(ch3.NewSLList())
+}
+
+func testAdd(s Sliceable) {
 
 	s.Print()
 
@@ -66,14 +75,24 @@ func addTest(s Sliceable) {
 	s.Print()
 }
 
-func SLList() {
-	fmt.Println("SLList")
-	sll := ch3.NewSLList()
-	sll.Print()
-	sll.Push(1)
-	sll.Push(2)
-	sll.Push(3)
-	sll.Print()
-	fmt.Printf("Pop()=%v\n", sll.Pop())
-	sll.Print()
+func testStack(s Stack) {
+	s.Push(1)
+	s.Push(2)
+	s.Push(3)
+	s.Print()
+	fmt.Printf("Pop()=%v\n", s.Pop())
+	fmt.Printf("Pop()=%v\n", s.Pop())
+	fmt.Printf("Pop()=%v\n", s.Pop())
+	s.Print()
+}
+
+func testFIFO(s FIFO) {
+	s.Add(1)
+	s.Add(2)
+	s.Add(3)
+	s.Print()
+	fmt.Printf("Remove()=%v\n", s.Remove())
+	fmt.Printf("Remove()=%v\n", s.Remove())
+	fmt.Printf("Remove()=%v\n", s.Remove())
+	s.Print()
 }

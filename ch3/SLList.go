@@ -58,3 +58,20 @@ func (l *SLList) Pop() interface{} {
 	}
 	return x
 }
+
+func (l *SLList) Remove() interface{} {
+	return l.Pop()
+}
+
+func (l *SLList) Add(x interface{}) {
+	u := SLNode{
+		x: x,
+	}
+	if l.len == 0 {
+		l.head = &u
+	} else {
+		l.tail.next = &u
+	}
+	l.tail = &u
+	l.len += 1
+}
