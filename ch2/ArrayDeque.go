@@ -50,10 +50,10 @@ func (as *ArrayDeque) Resize() {
 }
 
 func (as *ArrayDeque) Print() {
-	fmt.Printf("ArrayDeque(len:%v,cap:%v,start:%v)=%v\n", as.Len(), as.Cap(), as.start, as.Slice())
+	fmt.Printf("ArrayDeque(len:%v,cap:%v,start:%v)=%v\n", as.Len(), as.Cap(), as.start, as.GetAll())
 }
 
-func (as *ArrayDeque) Slice() []interface{} {
+func (as *ArrayDeque) GetAll() []interface{} {
 	slice := []interface{}{}
 	for i := 0; i < as.len; i++ {
 		slice = append(slice, as.Get(i))

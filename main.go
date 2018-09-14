@@ -7,22 +7,26 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 )
 
-type Sliceable interface {
+type Printable interface {
+	Print()
+}
+
+type List interface {
+	Printable
 	Len() int
 	Cap() int
 	Get(i int) interface{}
 	Set(i int, v interface{})
 	Resize()
-	Print()
-	Slice() []interface{}
+	GetAll() []interface{}
 	Add(i int, v interface{})
 	Remove(i int)
 }
 
 type FIFO interface {
+	Printable
 	Add(x interface{})
 	Remove() interface{}
-	Print()
 }
 
 type Stack interface {
@@ -44,7 +48,7 @@ func main() {
 	testFIFO(ch3.NewSLList())
 }
 
-func testAdd(s Sliceable) {
+func testAdd(s List) {
 
 	s.Print()
 

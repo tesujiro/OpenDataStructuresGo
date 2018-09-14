@@ -10,21 +10,21 @@ import (
 )
 
 func TestArrayStack(t *testing.T) {
-	var s Sliceable
+	var s List
 	t.Log("init")
 	s = ch2.NewArrayStack()
-	testSliceable(s, t)
+	testList(s, t)
 }
 
 func TestArrayDeque(t *testing.T) {
-	var s Sliceable
+	var s List
 	t.Log("init")
 	s = ch2.NewArrayDeque()
-	testSliceable(s, t)
+	testList(s, t)
 }
 
-func testSliceable(s Sliceable, t *testing.T) {
-	if !reflect.DeepEqual(s.Slice(), []interface{}{}) {
+func testList(s List, t *testing.T) {
+	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s)
 	}
 	t.Log("add")
@@ -38,62 +38,62 @@ func testSliceable(s Sliceable, t *testing.T) {
 	s.Add(0, 1)
 	s.Add(0, 0)
 	s.Print()
-	if !reflect.DeepEqual(s.Slice(), []interface{}{0, 1, 2, 3, 40, 50, 60, 70, 80}) {
-		t.Fatalf("failed init %#v", s.Slice())
+	if !reflect.DeepEqual(s.GetAll(), []interface{}{0, 1, 2, 3, 40, 50, 60, 70, 80}) {
+		t.Fatalf("failed init %#v", s.GetAll())
 	}
 }
 
 func BenchmarkArrayStack_AddFirst(b *testing.B) {
-	var s Sliceable
+	var s List
 	s = ch2.NewArrayStack()
-	benchmarkSliceable_AddFirst(s, b)
+	benchmarkList_AddFirst(s, b)
 }
 
 func BenchmarkArrayStack_AddLast(b *testing.B) {
-	var s Sliceable
+	var s List
 	s = ch2.NewArrayStack()
-	benchmarkSliceable_AddLast(s, b)
+	benchmarkList_AddLast(s, b)
 }
 
 func BenchmarkArrayStack_AddRandom(b *testing.B) {
-	var s Sliceable
+	var s List
 	s = ch2.NewArrayStack()
-	benchmarkSliceable_AddRandom(s, b)
+	benchmarkList_AddRandom(s, b)
 }
 
 func BenchmarkArrayDeque_AddFirst(b *testing.B) {
-	var s Sliceable
+	var s List
 	s = ch2.NewArrayDeque()
-	benchmarkSliceable_AddFirst(s, b)
+	benchmarkList_AddFirst(s, b)
 }
 
 func BenchmarkArrayDeque_AddLast(b *testing.B) {
-	var s Sliceable
+	var s List
 	s = ch2.NewArrayDeque()
-	benchmarkSliceable_AddLast(s, b)
+	benchmarkList_AddLast(s, b)
 }
 
 func BenchmarkArrayDeque_AddRandom(b *testing.B) {
-	var s Sliceable
+	var s List
 	s = ch2.NewArrayDeque()
-	benchmarkSliceable_AddRandom(s, b)
+	benchmarkList_AddRandom(s, b)
 }
 
-func benchmarkSliceable_AddFirst(s Sliceable, b *testing.B) {
+func benchmarkList_AddFirst(s List, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(0, i)
 	}
 }
 
-func benchmarkSliceable_AddLast(s Sliceable, b *testing.B) {
+func benchmarkList_AddLast(s List, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(i, i)
 	}
 }
 
-func benchmarkSliceable_AddRandom(s Sliceable, b *testing.B) {
+func benchmarkList_AddRandom(s List, b *testing.B) {
 
 	rand.Seed(time.Now().UnixNano())
 	b.ResetTimer()
