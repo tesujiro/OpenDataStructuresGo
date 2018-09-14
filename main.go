@@ -23,7 +23,7 @@ type List interface {
 	Remove(i int)
 }
 
-type FIFO interface {
+type Queue interface {
 	Printable
 	Add(x interface{})
 	Remove() interface{}
@@ -45,7 +45,7 @@ func main() {
 
 	fmt.Println("ch3/SLList")
 	testStack(ch3.NewSLList())
-	testFIFO(ch3.NewSLList())
+	testQueue(ch3.NewSLList())
 }
 
 func testAdd(s List) {
@@ -90,7 +90,7 @@ func testStack(s Stack) {
 	s.Print()
 }
 
-func testFIFO(s FIFO) {
+func testQueue(s Queue) {
 	s.Add(1)
 	s.Add(2)
 	s.Add(3)
