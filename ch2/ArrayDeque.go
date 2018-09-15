@@ -35,9 +35,11 @@ func (as *ArrayDeque) Get(i int) interface{} {
 	return as.array[(as.start+i)%as.Cap()]
 }
 
-func (as *ArrayDeque) Set(i int, v interface{}) {
+func (as *ArrayDeque) Set(i int, v interface{}) interface{} {
 	i = i % as.len
+	y := as.array[(as.start+i)%as.Cap()]
 	as.array[(as.start+i)%as.Cap()] = v
+	return y
 }
 
 func (as *ArrayDeque) Resize() {
@@ -95,11 +97,13 @@ func (as *ArrayDeque) Add(i int, v interface{}) {
 	//as.Print()
 }
 
-func (as *ArrayDeque) Remove(i int) {
+func (as *ArrayDeque) Remove(i int) interface{} {
 	i = i % as.len
+	x := as.Get(i)
 	//TODO if i< as.len/2
 	for j := i; j < as.len-1; j++ {
 		as.Set(j, as.Get(j+1))
 	}
 	as.len -= 1
+	return x
 }

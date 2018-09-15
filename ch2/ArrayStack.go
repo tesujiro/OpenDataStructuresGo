@@ -33,9 +33,11 @@ func (as *ArrayStack) Get(i int) interface{} {
 	return as.slice[i]
 }
 
-func (as *ArrayStack) Set(i int, v interface{}) {
+func (as *ArrayStack) Set(i int, v interface{}) interface{} {
 	i = i % len(as.slice)
+	y := as.slice[i]
 	as.slice[i] = v
+	return y
 }
 
 func (as *ArrayStack) Resize() {
@@ -71,11 +73,14 @@ func (as *ArrayStack) Add(i int, v interface{}) {
 	//as.Print()
 }
 
-func (as *ArrayStack) Remove(i int) {
+func (as *ArrayStack) Remove(i int) interface{} {
 	i = i % len(as.slice)
+	x := as.slice[i]
+	// TODO: NOT SAME AS THE TEXTBOOK
 	for j := i; j < len(as.slice)-1; j++ {
 		as.slice[j] = as.slice[j+1]
 	}
 	as.slice[len(as.slice)-1] = nil
 	as.slice = as.array[:len(as.slice)-1]
+	return x
 }

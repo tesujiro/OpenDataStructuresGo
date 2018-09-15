@@ -14,13 +14,11 @@ type Printable interface {
 type List interface {
 	Printable
 	Len() int
-	Cap() int
 	Get(i int) interface{}
-	Set(i int, v interface{})
-	Resize()
+	Set(i int, v interface{}) interface{}
 	GetAll() []interface{}
 	Add(i int, v interface{})
-	Remove(i int)
+	Remove(i int) interface{}
 }
 
 type Queue interface {
@@ -46,6 +44,10 @@ func main() {
 	fmt.Println("ch3/SLList")
 	testStack(ch3.NewSLList())
 	testQueue(ch3.NewSLList())
+
+	fmt.Println("ch3/DLList")
+	testAdd(ch3.NewDLList())
+
 }
 
 func testAdd(s List) {
@@ -53,11 +55,23 @@ func testAdd(s List) {
 	s.Print()
 
 	s.Add(0, 10)
+	s.Print()
 	//s.Add(0, 10)
-	s.Add(1, 40)
+	s.Add(0, 40)
+	s.Print()
+
+	/*
+		x := s.Remove(0)
+		fmt.Println("Removed:", x)
+		s.Print()
+	*/
+
 	s.Add(2, 50)
+	s.Print()
 	s.Add(3, 60)
+	s.Print()
 	s.Add(0, 3)
+	s.Print()
 	s.Add(0, 2)
 	s.Add(0, 1)
 	s.Add(0, 0)

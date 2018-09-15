@@ -7,25 +7,27 @@ import (
 	"time"
 
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
+	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 )
 
 func TestArrayStack(t *testing.T) {
-	var s List
-	t.Log("init")
-	s = ch2.NewArrayStack()
+	s := ch2.NewArrayStack()
 	testList(s, t)
 }
 
 func TestArrayDeque(t *testing.T) {
-	var s List
-	t.Log("init")
-	s = ch2.NewArrayDeque()
+	s := ch2.NewArrayDeque()
+	testList(s, t)
+}
+
+func TestDLList(t *testing.T) {
+	s := ch3.NewDLList()
 	testList(s, t)
 }
 
 func testList(s List, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
-		t.Fatalf("failed init %#v", s)
+		t.Fatalf("failed init %#v", s.GetAll())
 	}
 	t.Log("add")
 	s.Add(0, 40)
@@ -44,38 +46,47 @@ func testList(s List, t *testing.T) {
 }
 
 func BenchmarkArrayStack_AddFirst(b *testing.B) {
-	var s List
-	s = ch2.NewArrayStack()
+	s := ch2.NewArrayStack()
 	benchmarkList_AddFirst(s, b)
 }
 
 func BenchmarkArrayStack_AddLast(b *testing.B) {
-	var s List
-	s = ch2.NewArrayStack()
+	s := ch2.NewArrayStack()
 	benchmarkList_AddLast(s, b)
 }
 
 func BenchmarkArrayStack_AddRandom(b *testing.B) {
-	var s List
-	s = ch2.NewArrayStack()
+	s := ch2.NewArrayStack()
 	benchmarkList_AddRandom(s, b)
 }
 
 func BenchmarkArrayDeque_AddFirst(b *testing.B) {
-	var s List
-	s = ch2.NewArrayDeque()
+	s := ch2.NewArrayDeque()
 	benchmarkList_AddFirst(s, b)
 }
 
 func BenchmarkArrayDeque_AddLast(b *testing.B) {
-	var s List
-	s = ch2.NewArrayDeque()
+	s := ch2.NewArrayDeque()
 	benchmarkList_AddLast(s, b)
 }
 
 func BenchmarkArrayDeque_AddRandom(b *testing.B) {
-	var s List
-	s = ch2.NewArrayDeque()
+	s := ch2.NewArrayDeque()
+	benchmarkList_AddRandom(s, b)
+}
+
+func BenchmarkDLList_AddFirst(b *testing.B) {
+	s := ch3.NewDLList()
+	benchmarkList_AddFirst(s, b)
+}
+
+func BenchmarkDLList_AddLast(b *testing.B) {
+	s := ch3.NewDLList()
+	benchmarkList_AddLast(s, b)
+}
+
+func BenchmarkDLList_AddRandom(b *testing.B) {
+	s := ch3.NewDLList()
 	benchmarkList_AddRandom(s, b)
 }
 
