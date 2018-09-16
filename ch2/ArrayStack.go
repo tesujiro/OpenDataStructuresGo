@@ -6,17 +6,16 @@ import (
 
 const initSize = 8
 
-// ArrayStack is a slice of interface{}
 type ArrayStack struct {
 	array []interface{}
-	slice []interface{}
+	len   int
 }
 
 func NewArrayStack() *ArrayStack {
 	ar := make([]interface{}, initSize)
 	return &ArrayStack{
 		array: ar,
-		slice: ar[0:0],
+		len:   0,
 	}
 }
 
@@ -25,11 +24,11 @@ func (as *ArrayStack) cap() int {
 }
 
 func (as *ArrayStack) Len() int {
-	return len(as.slice)
+	return as.len
 }
 
 func (as *ArrayStack) GetAll() []interface{} {
-	return as.slice
+	return as.array[:as.len]
 }
 
 func (as *ArrayStack) Print() {
@@ -37,50 +36,53 @@ func (as *ArrayStack) Print() {
 }
 
 func (as *ArrayStack) Get(i int) interface{} {
-	i = i % len(as.slice)
-	return as.slice[i]
+	i = i % as.len
+	return as.array[i]
 }
 
 func (as *ArrayStack) Set(i int, v interface{}) interface{} {
-	i = i % len(as.slice)
-	y := as.slice[i]
-	as.slice[i] = v
+	i = i % as.len
+	y := as.array[i]
+	as.array[i] = v
 	return y
 }
 
 func (as *ArrayStack) resize() {
-	ar := make([]interface{}, len(as.array)*2)
-	for i := 0; i < len(as.array); i++ {
-		ar[i] = as.array[i]
+	var new []interface{}
+	if as.len > 1 {
+		new = make([]interface{}, as.len*2)
+	} else {
+		new = make([]interface{}, 1)
 	}
-	as.array = ar
-	as.slice = ar[:len(as.slice)]
+	for i := 0; i < as.len; i++ {
+		new[i] = as.array[i]
+	}
+	as.array = new
 }
 
 func (as *ArrayStack) Add(i int, v interface{}) {
-	if len(as.slice) > 0 {
-		i = i % (len(as.slice) + 1)
+	if as.len > 0 {
+		i = i % (as.len + 1)
 	}
-	if len(as.slice)+1 > len(as.array) {
+	if as.len+1 > as.cap() {
 		as.resize()
 	}
-
-	as.slice = as.array[:len(as.slice)+1]
-	for j := len(as.slice) - 1; i < j; j-- {
-		as.slice[j] = as.slice[j-1]
+	for j := as.len; j > i; j-- {
+		as.array[j] = as.array[j-1]
 	}
-	as.slice[i] = v
-	//as.Print()
+	as.array[i] = v
+	as.len += 1
 }
 
 func (as *ArrayStack) Remove(i int) interface{} {
-	i = i % len(as.slice)
-	x := as.slice[i]
-	// TODO: NOT SAME AS THE TEXTBOOK
-	for j := i; j < len(as.slice)-1; j++ {
-		as.slice[j] = as.slice[j+1]
+	i = i % as.len
+	x := as.array[i]
+	for j := i; j < as.len-1; j++ {
+		as.array[j] = as.array[j+1]
 	}
-	as.slice[len(as.slice)-1] = nil
-	as.slice = as.array[:len(as.slice)-1]
+	as.len -= 1
+	if as.cap() >= 3*as.len {
+		as.resize()
+	}
 	return x
 }

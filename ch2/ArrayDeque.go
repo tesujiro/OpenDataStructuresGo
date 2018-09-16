@@ -6,7 +6,6 @@ import (
 
 const initSizeDQ = 8
 
-// ArrayDeque is a slice of interface{}
 type ArrayDeque struct {
 	array []interface{}
 	start int
@@ -47,59 +46,74 @@ func (as *ArrayDeque) Get(i int) interface{} {
 	return as.array[(as.start+i)%as.cap()]
 }
 
-func (as *ArrayDeque) Set(i int, v interface{}) interface{} {
+func (as *ArrayDeque) Set(i int, x interface{}) interface{} {
 	i = i % as.len
 	y := as.array[(as.start+i)%as.cap()]
-	as.array[(as.start+i)%as.cap()] = v
+	as.array[(as.start+i)%as.cap()] = x
 	return y
 }
 
 func (as *ArrayDeque) resize() {
-	ar := make([]interface{}, len(as.array)*2)
+	var new []interface{}
+	if as.len > 1 {
+		new = make([]interface{}, as.len*2)
+	} else {
+		new = make([]interface{}, 1)
+	}
 	for i := 0; i < as.len; i++ {
-		ar[i] = as.Get(i)
+		new[i] = as.Get(i)
 	}
 	as.start = 0
-	as.array = ar
+	as.array = new
 }
 
-func (as *ArrayDeque) Add(i int, v interface{}) {
-	if as.len+1 > len(as.array) {
+func (as *ArrayDeque) Add(i int, x interface{}) {
+	i = i % (as.len + 1)
+	if as.len+1 > as.cap() {
 		as.resize()
 	}
-
-	if as.len == 0 {
-		as.start = 0
-		as.len = 1
-		as.Set(0, v)
-		return
-	}
-
-	i = i % (as.len + 1)
-	as.len += 1
-
 	if i < as.len/2 {
-		// shift left
-		as.start = (as.start - 1 + as.cap()) % as.cap()
-		for j := 0; j < i; j++ {
-			as.Set(j, as.Get(j+1))
+		if as.start == 0 {
+			as.start = len(as.array) - 1
+		} else {
+			as.start = as.start - 1
+		}
+		for k := 0; k <= i-1; k++ {
+			as.array[(as.start+k)%as.cap()] = as.array[(as.start+k+1)%as.cap()]
 		}
 	} else {
-		// shift right
-		for j := as.len - 1; i < j; j-- {
-			as.Set(j, as.Get(j-1))
+		for k := as.len; k > i; k-- {
+			as.array[(as.start+k)%as.cap()] = as.array[(as.start+k-1)%as.cap()]
 		}
 	}
-	as.Set(i, v)
+	as.array[(as.start+i)%as.cap()] = x
+	as.len += 1
 }
 
 func (as *ArrayDeque) Remove(i int) interface{} {
 	i = i % as.len
-	x := as.Get(i)
-	//TODO if i< as.len/2
-	for j := i; j < as.len-1; j++ {
-		as.Set(j, as.Get(j+1))
+
+	x := as.array[(as.start+i)%as.cap()]
+	if i < as.len/2 {
+		for k := i; k > 0; k-- {
+			as.array[(as.start+k)%as.cap()] = as.array[(as.start+k-1)%as.cap()]
+		}
+		as.start = (as.start + 1) % as.cap()
+	} else {
+		for k := i; k <= as.len-1; k++ {
+			as.array[(as.start+k)%as.cap()] = as.array[(as.start+k+1)%as.cap()]
+		}
 	}
+	/*
+		x := as.Get(i)
+		//TODO if i< as.len/2
+		for j := i; j < as.len-1; j++ {
+			as.Set(j, as.Get(j+1))
+		}
+	*/
 	as.len -= 1
+	if 3*as.len < as.cap() {
+		as.resize()
+	}
 	return x
 }
