@@ -8,6 +8,7 @@ import (
 )
 
 type Printable interface {
+	GetAll() []interface{}
 	Print()
 }
 
@@ -16,7 +17,6 @@ type List interface {
 	Len() int
 	Get(i int) interface{}
 	Set(i int, v interface{}) interface{}
-	GetAll() []interface{}
 	Add(i int, v interface{})
 	Remove(i int) interface{}
 }
@@ -36,21 +36,24 @@ type Stack interface {
 func main() {
 
 	fmt.Println("ch2/ArrayStack")
-	testAdd(ch2.NewArrayStack())
+	checkList(ch2.NewArrayStack())
+
+	fmt.Println("ch2/ArrayQueue")
+	checkQueue(ch2.NewArrayQueue())
 
 	fmt.Println("ch2/ArrayDeque")
-	testAdd(ch2.NewArrayDeque())
+	checkList(ch2.NewArrayDeque())
 
 	fmt.Println("ch3/SLList")
-	testStack(ch3.NewSLList())
-	testQueue(ch3.NewSLList())
+	checkStack(ch3.NewSLList())
+	checkQueue(ch3.NewSLList())
 
 	fmt.Println("ch3/DLList")
-	testAdd(ch3.NewDLList())
+	checkList(ch3.NewDLList())
 
 }
 
-func testAdd(s List) {
+func checkList(s List) {
 
 	s.Print()
 
@@ -93,7 +96,7 @@ func testAdd(s List) {
 	s.Print()
 }
 
-func testStack(s Stack) {
+func checkStack(s Stack) {
 	s.Push(1)
 	s.Push(2)
 	s.Push(3)
@@ -104,7 +107,7 @@ func testStack(s Stack) {
 	s.Print()
 }
 
-func testQueue(s Queue) {
+func checkQueue(s Queue) {
 	s.Add(1)
 	s.Add(2)
 	s.Add(3)

@@ -15,9 +15,19 @@ func TestArrayStack(t *testing.T) {
 	testList(s, t)
 }
 
+func TestArrayQueue(t *testing.T) {
+	s := ch2.NewArrayQueue()
+	testQueue(s, t)
+}
+
 func TestArrayDeque(t *testing.T) {
 	s := ch2.NewArrayDeque()
 	testList(s, t)
+}
+
+func TestSLList(t *testing.T) {
+	s := ch3.NewSLList()
+	testQueue(s, t)
 }
 
 func TestDLList(t *testing.T) {
@@ -29,7 +39,7 @@ func testList(s List, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s.GetAll())
 	}
-	t.Log("add")
+	t.Log("Add")
 	s.Add(0, 40)
 	s.Add(1, 50)
 	s.Add(2, 60)
@@ -43,6 +53,30 @@ func testList(s List, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{0, 1, 2, 3, 40, 50, 60, 70, 80}) {
 		t.Fatalf("failed init %#v", s.GetAll())
 	}
+	t.Log("Remove")
+	s.Remove(8)
+	s.Remove(0)
+	s.Print()
+	if !reflect.DeepEqual(s.GetAll(), []interface{}{1, 2, 3, 40, 50, 60, 70}) {
+		t.Fatalf("failed init %#v", s.GetAll())
+	}
+}
+
+func testQueue(q Queue, t *testing.T) {
+	if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
+		t.Fatalf("failed init %#v", q.GetAll())
+	}
+	t.Log("Add")
+	q.Add(0)
+	q.Add(1)
+	q.Add(2)
+	q.Add(3)
+	q.Add(4)
+	q.Print()
+	if !reflect.DeepEqual(q.GetAll(), []interface{}{0, 1, 2, 3, 4}) {
+		t.Fatalf("failed init %#v", q.GetAll())
+	}
+	t.Log("Remove")
 }
 
 func BenchmarkArrayStack_AddFirst(b *testing.B) {
