@@ -104,13 +104,6 @@ func (as *ArrayDeque) Remove(i int) interface{} {
 			as.array[(as.start+k)%as.cap()] = as.array[(as.start+k+1)%as.cap()]
 		}
 	}
-	/*
-		x := as.Get(i)
-		//TODO if i< as.len/2
-		for j := i; j < as.len-1; j++ {
-			as.Set(j, as.Get(j+1))
-		}
-	*/
 	as.len -= 1
 	if 3*as.len < as.cap() {
 		as.resize()
