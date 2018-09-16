@@ -22,11 +22,11 @@ func NewSLList() *SLList {
 }
 
 func (l *SLList) GetAll() []interface{} {
-	var slice []interface{}
+	s := []interface{}{}
 	for n := l.head; n != nil; n = n.next {
-		slice = append(slice, n.x)
+		s = append(s, n.x)
 	}
-	return slice
+	return s
 }
 
 func (l *SLList) Print() {
