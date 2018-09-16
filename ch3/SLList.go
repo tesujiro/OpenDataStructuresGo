@@ -21,7 +21,7 @@ func NewSLList() *SLList {
 	}
 }
 
-func (l *SLList) List() []interface{} {
+func (l *SLList) GetAll() []interface{} {
 	var slice []interface{}
 	for n := l.head; n != nil; n = n.next {
 		slice = append(slice, n.x)
@@ -30,7 +30,7 @@ func (l *SLList) List() []interface{} {
 }
 
 func (l *SLList) Print() {
-	fmt.Printf("list=%v\n", l.List())
+	fmt.Printf("list=%v\n", l.GetAll())
 }
 
 func (l *SLList) Push(x interface{}) {
@@ -63,7 +63,7 @@ func (l *SLList) Remove() interface{} {
 	return l.Pop()
 }
 
-func (l *SLList) Add(x interface{}) {
+func (l *SLList) Add(x interface{}) bool {
 	u := SLNode{
 		x: x,
 	}
@@ -74,4 +74,5 @@ func (l *SLList) Add(x interface{}) {
 	}
 	l.tail = &u
 	l.len += 1
+	return true
 }

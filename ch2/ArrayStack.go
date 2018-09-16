@@ -20,12 +20,20 @@ func NewArrayStack() *ArrayStack {
 	}
 }
 
+func (as *ArrayStack) cap() int {
+	return cap(as.array)
+}
+
 func (as *ArrayStack) Len() int {
 	return len(as.slice)
 }
 
-func (as *ArrayStack) Cap() int {
-	return cap(as.array)
+func (as *ArrayStack) GetAll() []interface{} {
+	return as.slice
+}
+
+func (as *ArrayStack) Print() {
+	fmt.Printf("ArrayStack(len:%v,cap:%v)=%v\n", as.Len(), as.cap(), as.GetAll())
 }
 
 func (as *ArrayStack) Get(i int) interface{} {
@@ -40,7 +48,7 @@ func (as *ArrayStack) Set(i int, v interface{}) interface{} {
 	return y
 }
 
-func (as *ArrayStack) Resize() {
+func (as *ArrayStack) resize() {
 	ar := make([]interface{}, len(as.array)*2)
 	for i := 0; i < len(as.array); i++ {
 		ar[i] = as.array[i]
@@ -49,20 +57,12 @@ func (as *ArrayStack) Resize() {
 	as.slice = ar[:len(as.slice)]
 }
 
-func (as *ArrayStack) Print() {
-	fmt.Printf("ArrayStack(len:%v,cap:%v)=%v\n", as.Len(), as.Cap(), as.GetAll())
-}
-
-func (as *ArrayStack) GetAll() []interface{} {
-	return as.slice
-}
-
 func (as *ArrayStack) Add(i int, v interface{}) {
 	if len(as.slice) > 0 {
 		i = i % (len(as.slice) + 1)
 	}
 	if len(as.slice)+1 > len(as.array) {
-		as.Resize()
+		as.resize()
 	}
 
 	as.slice = as.array[:len(as.slice)+1]

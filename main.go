@@ -23,7 +23,7 @@ type List interface {
 
 type Queue interface {
 	Printable
-	Add(x interface{})
+	Add(x interface{}) bool
 	Remove() interface{}
 }
 

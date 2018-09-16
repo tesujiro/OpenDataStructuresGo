@@ -22,37 +22,12 @@ func NewArrayDeque() *ArrayDeque {
 	}
 }
 
-func (as *ArrayDeque) Len() int {
-	return as.len
-}
-
-func (as *ArrayDeque) Cap() int {
+func (as *ArrayDeque) cap() int {
 	return len(as.array)
 }
 
-func (as *ArrayDeque) Get(i int) interface{} {
-	i = i % as.len
-	return as.array[(as.start+i)%as.Cap()]
-}
-
-func (as *ArrayDeque) Set(i int, v interface{}) interface{} {
-	i = i % as.len
-	y := as.array[(as.start+i)%as.Cap()]
-	as.array[(as.start+i)%as.Cap()] = v
-	return y
-}
-
-func (as *ArrayDeque) Resize() {
-	ar := make([]interface{}, len(as.array)*2)
-	for i := 0; i < as.len; i++ {
-		ar[i] = as.Get(i)
-	}
-	as.start = 0
-	as.array = ar
-}
-
-func (as *ArrayDeque) Print() {
-	fmt.Printf("ArrayDeque(len:%v,cap:%v,start:%v)=%v\n", as.Len(), as.Cap(), as.start, as.GetAll())
+func (as *ArrayDeque) Len() int {
+	return as.len
 }
 
 func (as *ArrayDeque) GetAll() []interface{} {
@@ -63,9 +38,34 @@ func (as *ArrayDeque) GetAll() []interface{} {
 	return slice
 }
 
+func (as *ArrayDeque) Print() {
+	fmt.Printf("ArrayDeque(len:%v,cap:%v,start:%v)=%v\n", as.Len(), as.cap(), as.start, as.GetAll())
+}
+
+func (as *ArrayDeque) Get(i int) interface{} {
+	i = i % as.len
+	return as.array[(as.start+i)%as.cap()]
+}
+
+func (as *ArrayDeque) Set(i int, v interface{}) interface{} {
+	i = i % as.len
+	y := as.array[(as.start+i)%as.cap()]
+	as.array[(as.start+i)%as.cap()] = v
+	return y
+}
+
+func (as *ArrayDeque) resize() {
+	ar := make([]interface{}, len(as.array)*2)
+	for i := 0; i < as.len; i++ {
+		ar[i] = as.Get(i)
+	}
+	as.start = 0
+	as.array = ar
+}
+
 func (as *ArrayDeque) Add(i int, v interface{}) {
 	if as.len+1 > len(as.array) {
-		as.Resize()
+		as.resize()
 	}
 
 	if as.len == 0 {
@@ -78,23 +78,19 @@ func (as *ArrayDeque) Add(i int, v interface{}) {
 	i = i % (as.len + 1)
 	as.len += 1
 
-	//fmt.Printf("i=%v as.len/2=%v\n", i, as.len/2)
 	if i < as.len/2 {
 		// shift left
-		//fmt.Println("shift left")
-		as.start = (as.start - 1 + as.Cap()) % as.Cap()
+		as.start = (as.start - 1 + as.cap()) % as.cap()
 		for j := 0; j < i; j++ {
 			as.Set(j, as.Get(j+1))
 		}
 	} else {
 		// shift right
-		//fmt.Println("shift right")
 		for j := as.len - 1; i < j; j-- {
 			as.Set(j, as.Get(j-1))
 		}
 	}
 	as.Set(i, v)
-	//as.Print()
 }
 
 func (as *ArrayDeque) Remove(i int) interface{} {
