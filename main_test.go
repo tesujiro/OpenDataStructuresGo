@@ -35,6 +35,11 @@ func TestDLList(t *testing.T) {
 	testList(s, t)
 }
 
+func TestSEList(t *testing.T) {
+	s := ch3.NewSEList()
+	testList(s, t)
+}
+
 func testList(s List, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s.GetAll())
@@ -121,6 +126,21 @@ func BenchmarkDLList_AddLast(b *testing.B) {
 
 func BenchmarkDLList_AddRandom(b *testing.B) {
 	s := ch3.NewDLList()
+	benchmarkList_AddRandom(s, b)
+}
+
+func BenchmarkSEList_AddFirst(b *testing.B) {
+	s := ch3.NewSEList()
+	benchmarkList_AddFirst(s, b)
+}
+
+func BenchmarkSEList_AddLast(b *testing.B) {
+	s := ch3.NewSEList()
+	benchmarkList_AddLast(s, b)
+}
+
+func BenchmarkSEList_AddRandom(b *testing.B) {
+	s := ch3.NewSEList()
 	benchmarkList_AddRandom(s, b)
 }
 

@@ -20,7 +20,8 @@
   -> Done  
  3.2 DLList: A Doubly-Linked List  
   -> Done  
- 3.3  　
+ 3.3 SEList: A Space-Efficient Linked List
+  -> Done　
 
 4. Skiplists
 5. Hash Tables

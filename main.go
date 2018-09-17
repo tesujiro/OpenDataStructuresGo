@@ -52,12 +52,7 @@ func main() {
 	checkList(ch3.NewDLList())
 
 	fmt.Println("ch3/SEList")
-	b := ch3.NewBDeque(8)
-	b.Print()
-	for i := 0; i < 12; i++ {
-		b.Add(i, i)
-	}
-	b.Print()
+	checkList(ch3.NewSEList())
 }
 
 func checkList(s List) {

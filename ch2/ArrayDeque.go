@@ -11,7 +11,7 @@ type AD_Overridable interface {
 }
 
 type ArrayDeque struct {
-	override AD_Overridable
+	Override AD_Overridable
 	A        []interface{}
 	start    int
 	len      int
@@ -24,7 +24,7 @@ func NewArrayDeque() *ArrayDeque {
 		start: 0,
 		len:   0,
 	}
-	d.override = d
+	d.Override = d
 	return d
 }
 
@@ -77,7 +77,7 @@ func (as *ArrayDeque) Resize() {
 func (as *ArrayDeque) Add(i int, x interface{}) {
 	i = i % (as.len + 1)
 	if as.len+1 > as.cap() {
-		as.override.Resize()
+		as.Override.Resize()
 	}
 	if i < as.len/2 {
 		if as.start == 0 {
@@ -113,7 +113,7 @@ func (as *ArrayDeque) Remove(i int) interface{} {
 	}
 	as.len -= 1
 	if 3*as.len < as.cap() {
-		as.override.Resize()
+		as.Override.Resize()
 	}
 	return x
 }
