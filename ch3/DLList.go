@@ -9,7 +9,7 @@ type DLNode struct {
 
 type DLList struct {
 	dummy *DLNode
-	len   int
+	n     int
 }
 
 func NewDLList() *DLList {
@@ -18,17 +18,17 @@ func NewDLList() *DLList {
 	dummy.next = dummy
 	return &DLList{
 		dummy: dummy,
-		len:   0,
+		n:     0,
 	}
 }
 
-func (l *DLList) Len() int {
-	return l.len
+func (l *DLList) Size() int {
+	return l.n
 }
 
 func (l *DLList) GetAll() []interface{} {
 	slice := []interface{}{}
-	for i := 0; i < l.len; i++ {
+	for i := 0; i < l.n; i++ {
 		slice = append(slice, l.Get(i))
 	}
 	return slice
@@ -40,14 +40,14 @@ func (l *DLList) Print() {
 
 func (l *DLList) getNode(i int) *DLNode {
 	var p *DLNode
-	if i < l.len/2 {
+	if i < l.n/2 {
 		p = l.dummy.next
 		for j := 0; j < i; j++ {
 			p = p.next
 		}
 	} else {
 		p = l.dummy
-		for j := l.len; j > i; j-- {
+		for j := l.n; j > i; j-- {
 			p = p.prev
 		}
 	}
@@ -69,7 +69,7 @@ func (l *DLList) addBefore(w *DLNode, x interface{}) *DLNode {
 	u := &DLNode{prev: w.prev, next: w, x: x}
 	u.next.prev = u
 	u.prev.next = u
-	l.len += 1
+	l.n++
 	return u
 }
 
@@ -80,7 +80,7 @@ func (l *DLList) Add(i int, x interface{}) {
 func (l *DLList) remove(w *DLNode) {
 	w.prev.next = w.next
 	w.next.prev = w.prev
-	l.len -= 1
+	l.n--
 }
 
 func (l *DLList) Remove(i int) interface{} {

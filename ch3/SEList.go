@@ -23,7 +23,7 @@ func NewBDeque(b int) *BDeque {
 }
 
 func (bd *BDeque) AddLast(x interface{}) bool {
-	bd.Add(bd.Len(), x)
+	bd.Add(bd.Size(), x)
 	return true
 }
 
@@ -58,7 +58,7 @@ func NewSEList() *SEList {
 	}
 }
 
-func (l *SEList) Len() int {
+func (l *SEList) Size() int {
 	return l.n
 }
 
@@ -86,8 +86,8 @@ type SELocation struct {
 func (l *SEList) getLocation(i int) *SELocation {
 	if i < l.n/2 {
 		u := l.dummy.next
-		for i >= u.d.Len() {
-			i -= u.d.Len()
+		for i >= u.d.Size() {
+			i -= u.d.Size()
 			u = u.next
 		}
 		return &SELocation{u: u, j: i}
@@ -96,7 +96,7 @@ func (l *SEList) getLocation(i int) *SELocation {
 		idx := l.n
 		for i < idx {
 			u = u.prev
-			idx -= u.d.Len()
+			idx -= u.d.Size()
 		}
 		return &SELocation{u: u, j: i - idx}
 	}
@@ -126,13 +126,13 @@ func (l *SEList) addBefore(w *SENode) *SENode {
 
 func (l *SEList) AddLast(x interface{}) {
 	last := l.dummy.prev
-	if last == l.dummy || last.d.Len() == b+1 {
+	if last == l.dummy || last.d.Size() == b+1 {
 		//fmt.Printf("addBefore\n")
 		last = l.addBefore(l.dummy)
 	}
 	//fmt.Printf("*last.d=%#v\n", *last.d)
 	last.d.AddLast(x)
-	l.n += 1
+	l.n++
 }
 
 func (l *SEList) spread(u *SENode) {
@@ -142,8 +142,8 @@ func (l *SEList) spread(u *SENode) {
 	}
 	w = l.addBefore(w)
 	for w != u {
-		for w.d.Len() < b {
-			w.d.Add(0, w.prev.d.Len()-1)
+		for w.d.Size() < b {
+			w.d.Add(0, w.prev.d.Size()-1)
 		}
 		w = w.prev
 	}
@@ -158,7 +158,7 @@ func (l *SEList) Add(i int, x interface{}) {
 	loc := l.getLocation(i)
 	u := loc.u
 	r := 0
-	for r < b && u != l.dummy && u.d.Len() == b+1 {
+	for r < b && u != l.dummy && u.d.Size() == b+1 {
 		u = u.next
 		r++
 	}
@@ -170,7 +170,7 @@ func (l *SEList) Add(i int, x interface{}) {
 		u = l.addBefore(u)
 	}
 	for u != loc.u {
-		u.d.Add(0, u.prev.d.Remove(u.prev.d.Len()-1))
+		u.d.Add(0, u.prev.d.Remove(u.prev.d.Size()-1))
 		u = u.prev
 	}
 	u.d.Add(loc.j, x)
@@ -185,7 +185,7 @@ func (l *SEList) removeNode(w *SENode) {
 func (l *SEList) gather(u *SENode) {
 	w := u
 	for j := 0; j < b-1; j++ {
-		for w.d.Len() < b {
+		for w.d.Size() < b {
 			w.d.AddLast(w.next.d.Remove(0))
 		}
 		w = w.next
@@ -198,7 +198,7 @@ func (l *SEList) Remove(i int) interface{} {
 	y := loc.u.d.Get(loc.j)
 	u := loc.u
 	r := 0
-	for r < b && u != l.dummy && u.d.Len() == b-1 {
+	for r < b && u != l.dummy && u.d.Size() == b-1 {
 		u = u.next
 		r++
 	}
@@ -207,11 +207,11 @@ func (l *SEList) Remove(i int) interface{} {
 	}
 	u = loc.u
 	u.d.Remove(loc.j)
-	for u.d.Len() < b-1 && u.next != l.dummy {
+	for u.d.Size() < b-1 && u.next != l.dummy {
 		u.d.AddLast(u.next.d.Remove(0))
 		u = u.next
 	}
-	if u.d.Len() == 0 {
+	if u.d.Size() == 0 {
 		l.removeNode(u)
 	}
 	l.n--

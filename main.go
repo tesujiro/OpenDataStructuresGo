@@ -3,35 +3,10 @@ package main
 import (
 	"fmt"
 
+	"github.com/tesujiro/OpenDataStructuresGo/ch1"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 )
-
-type Printable interface {
-	GetAll() []interface{}
-	Print()
-}
-
-type List interface {
-	Printable
-	Len() int
-	Get(i int) interface{}
-	Set(i int, v interface{}) interface{}
-	Add(i int, v interface{})
-	Remove(i int) interface{}
-}
-
-type Queue interface {
-	Printable
-	Add(x interface{}) bool
-	Remove() interface{}
-}
-
-type Stack interface {
-	Push(x interface{})
-	Pop() interface{}
-	Print()
-}
 
 func main() {
 
@@ -55,7 +30,7 @@ func main() {
 	checkList(ch3.NewSEList())
 }
 
-func checkList(s List) {
+func checkList(s ch1.List) {
 
 	s.Print()
 
@@ -98,7 +73,7 @@ func checkList(s List) {
 	s.Print()
 }
 
-func checkStack(s Stack) {
+func checkStack(s ch1.Stack) {
 	s.Push(1)
 	s.Push(2)
 	s.Push(3)
@@ -109,7 +84,7 @@ func checkStack(s Stack) {
 	s.Print()
 }
 
-func checkQueue(s Queue) {
+func checkQueue(s ch1.Queue) {
 	s.Add(1)
 	s.Add(2)
 	s.Add(3)

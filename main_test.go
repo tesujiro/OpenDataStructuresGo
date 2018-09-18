@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/tesujiro/OpenDataStructuresGo/ch1"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 )
@@ -40,7 +41,7 @@ func TestSEList(t *testing.T) {
 	testList(s, t)
 }
 
-func testList(s List, t *testing.T) {
+func testList(s ch1.List, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s.GetAll())
 	}
@@ -67,7 +68,7 @@ func testList(s List, t *testing.T) {
 	}
 }
 
-func testQueue(q Queue, t *testing.T) {
+func testQueue(q ch1.Queue, t *testing.T) {
 	if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", q.GetAll())
 	}
@@ -144,25 +145,25 @@ func BenchmarkSEList_AddRandom(b *testing.B) {
 	benchmarkList_AddRandom(s, b)
 }
 
-func benchmarkList_AddFirst(s List, b *testing.B) {
+func benchmarkList_AddFirst(s ch1.List, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(0, i)
 	}
 }
 
-func benchmarkList_AddLast(s List, b *testing.B) {
+func benchmarkList_AddLast(s ch1.List, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(i, i)
 	}
 }
 
-func benchmarkList_AddRandom(s List, b *testing.B) {
+func benchmarkList_AddRandom(s ch1.List, b *testing.B) {
 
 	rand.Seed(time.Now().UnixNano())
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		s.Add(rand.Intn(s.Len()+1), i)
+		s.Add(rand.Intn(s.Size()+1), i)
 	}
 }

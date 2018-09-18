@@ -3,33 +3,33 @@ package ch2
 import "fmt"
 
 type ArrayQueue struct {
-	array []interface{}
-	start int
-	len   int
+	a []interface{}
+	j int
+	n int
 }
 
 const initArrayQueueSize = 8
 
 func NewArrayQueue() *ArrayQueue {
 	return &ArrayQueue{
-		array: make([]interface{}, initArrayQueueSize),
-		start: 0,
-		len:   0,
+		a: make([]interface{}, initArrayQueueSize),
+		j: 0,
+		n: 0,
 	}
 }
 
 func (l *ArrayQueue) cap() int {
-	return cap(l.array)
+	return cap(l.a)
 }
 
-func (l *ArrayQueue) Len() int {
-	return l.len
+func (l *ArrayQueue) Size() int {
+	return l.n
 }
 
 func (l *ArrayQueue) GetAll() []interface{} {
 	s := []interface{}{}
-	for i := l.start; i < l.start+l.len; i++ {
-		s = append(s, l.array[i%l.len])
+	for i := l.j; i < l.j+l.n; i++ {
+		s = append(s, l.a[i%l.n])
 	}
 	return s
 }
@@ -40,32 +40,32 @@ func (l *ArrayQueue) Print() {
 
 func (l *ArrayQueue) resize() {
 	var new []interface{}
-	if l.len > 1 {
-		new = make([]interface{}, l.len*2)
+	if l.n > 1 {
+		new = make([]interface{}, l.n*2)
 	} else {
 		new = make([]interface{}, 1)
 	}
-	for i := 0; i < l.len; i++ {
-		new[i] = l.array[(l.start+i)%l.cap()]
+	for i := 0; i < l.n; i++ {
+		new[i] = l.a[(l.j+i)%l.cap()]
 	}
-	l.array = new
-	l.start = 0
+	l.a = new
+	l.j = 0
 }
 
 func (l *ArrayQueue) Add(x interface{}) bool {
-	if l.len+1 > l.cap() {
+	if l.n+1 > l.cap() {
 		l.resize()
 	}
-	l.array[(l.start+l.len)%l.cap()] = x
-	l.len += 1
+	l.a[(l.j+l.n)%l.cap()] = x
+	l.n++
 	return true
 }
 
 func (l *ArrayQueue) Remove() interface{} {
-	x := l.array[l.start]
-	l.start = (l.start + 1) % l.cap()
-	l.len -= 1
-	if l.cap() >= l.len*3 {
+	x := l.a[l.j]
+	l.j = (l.j + 1) % l.cap()
+	l.n--
+	if l.cap() >= l.n*3 {
 		l.resize()
 	}
 	return x

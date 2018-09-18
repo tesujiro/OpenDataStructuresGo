@@ -10,14 +10,14 @@ type SLNode struct {
 type SLList struct {
 	head *SLNode
 	tail *SLNode
-	len  int
+	n    int
 }
 
 func NewSLList() *SLList {
 	return &SLList{
 		head: nil,
 		tail: nil,
-		len:  0,
+		n:    0,
 	}
 }
 
@@ -39,21 +39,21 @@ func (l *SLList) Push(x interface{}) {
 		next: l.head,
 	}
 	l.head = &u
-	if l.len == 0 {
+	if l.n == 0 {
 		l.tail = &u
 	}
-	l.len += 1
+	l.n++
 	//fmt.Printf("l.head.x=%v\n", l.head.x)
 }
 
 func (l *SLList) Pop() interface{} {
-	if l.len == 0 {
+	if l.n == 0 {
 		return nil
 	}
 	x := l.head.x
 	l.head = l.head.next
-	l.len -= 1
-	if l.len == 0 {
+	l.n--
+	if l.n == 0 {
 		l.tail = nil
 	}
 	return x
@@ -67,12 +67,12 @@ func (l *SLList) Add(x interface{}) bool {
 	u := SLNode{
 		x: x,
 	}
-	if l.len == 0 {
+	if l.n == 0 {
 		l.head = &u
 	} else {
 		l.tail.next = &u
 	}
 	l.tail = &u
-	l.len += 1
+	l.n++
 	return true
 }
