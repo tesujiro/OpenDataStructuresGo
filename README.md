@@ -4,6 +4,15 @@
 
 ## Contents
 
+1. Introduction
+ 1.2 Interfaces
+  1.2.1 The Queue, Stack, and Deque Interfaces
+     -> Done
+  1.2.2 The List Interface: Linear Sequences
+     -> Done
+  1.2.3 The USet Interface: Unordered Sets
+  1.2.4 The SSet Interface: Sorted Sets
+
 2. Array-Based Lists  
  2.1 ArrayStack: Fast Stack Operations Using an Array  
   -> Done  
