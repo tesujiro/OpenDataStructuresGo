@@ -1,6 +1,9 @@
 package ch4
 
-import "math/rand"
+import (
+	"fmt"
+	"math/rand"
+)
 
 func compare(x1, x2 interface{}) int {
 	return x1.(int) - x2.(int)
@@ -28,6 +31,18 @@ type SkiplistSSet struct {
 
 func NewSkiplistSSet() *SkiplistSSet {
 	return &SkiplistSSet{sentinel: NewSSSNode(0, nil)}
+}
+
+func (l *SkiplistSSet) Size() int {
+	return l.n
+}
+
+func (l *SkiplistSSet) GetAll() []interface{} {
+	return []interface{}{}
+}
+
+func (l *SkiplistSSet) Print() {
+	fmt.Printf("SkiplistSSet(n:%v)=%v\n", l.Size(), l.GetAll())
 }
 
 func (l *SkiplistSSet) findPredNode(x interface{}) *SSSNode {

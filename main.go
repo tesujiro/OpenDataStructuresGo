@@ -6,6 +6,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
+	"github.com/tesujiro/OpenDataStructuresGo/ch4"
 )
 
 func main() {
@@ -28,6 +29,9 @@ func main() {
 
 	fmt.Println("ch3/SEList")
 	checkList(ch3.NewSEList())
+
+	fmt.Println("ch4/SkiplistSSet")
+	checkSSet(ch4.NewSkiplistSSet())
 }
 
 func checkList(s ch1.List) {
@@ -92,5 +96,13 @@ func checkQueue(s ch1.Queue) {
 	fmt.Printf("Remove()=%v\n", s.Remove())
 	fmt.Printf("Remove()=%v\n", s.Remove())
 	fmt.Printf("Remove()=%v\n", s.Remove())
+	s.Print()
+}
+
+func checkSSet(s ch1.SSet) {
+	s.Print()
+	s.Add(1)
+	s.Add(2)
+	s.Add(3)
 	s.Print()
 }

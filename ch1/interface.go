@@ -30,11 +30,11 @@ type USet interface {
 	Printable
 	Size() int
 	Add(x interface{}) bool
-	Remove(x interface{}) interface{}
+	Remove(x interface{}) bool
 	Find(x interface{}) interface{}
 }
 
 type SSet interface {
 	USet
-	Compare(x, y interface{}) int
+	//Compare(x, y interface{}) int
 }
