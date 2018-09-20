@@ -102,7 +102,7 @@ func checkQueue(s ch1.Queue) {
 func checkSSet(s ch1.SSet) {
 	s.Print()
 	s.Add(1)
-	s.Add(2)
-	s.Add(3)
+	//s.Add(2)
+	//s.Add(3)
 	s.Print()
 }

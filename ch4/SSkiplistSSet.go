@@ -19,7 +19,7 @@ func NewSSSNode(h int, x interface{}) *SSSNode {
 	return &SSSNode{
 		x:      x,
 		height: h,
-		next:   make([]*SSSNode, 0), //TODO
+		next:   make([]*SSSNode, h), //TODO
 	}
 }
 
@@ -30,7 +30,7 @@ type SkiplistSSet struct {
 }
 
 func NewSkiplistSSet() *SkiplistSSet {
-	return &SkiplistSSet{sentinel: NewSSSNode(0, nil)}
+	return &SkiplistSSet{sentinel: NewSSSNode(1, nil), h: 0}
 }
 
 func (l *SkiplistSSet) Size() int {
@@ -38,7 +38,17 @@ func (l *SkiplistSSet) Size() int {
 }
 
 func (l *SkiplistSSet) GetAll() []interface{} {
-	return []interface{}{}
+	//return []interface{}{}
+	s := []interface{}{}
+	u := l.sentinel
+	fmt.Printf("l=%#v\n", l)
+	fmt.Printf("len(u.next)=%v\n", len(u.next))
+	for u.next[0] != nil {
+		s = append(s, u.next[0].x)
+		u = u.next[0]
+		fmt.Printf("s=%#v", s)
+	}
+	return s
 }
 
 func (l *SkiplistSSet) Print() {
@@ -74,32 +84,41 @@ func pickHeight() int {
 		k++
 		m <<= 1
 	}
+	fmt.Println("pickHeight()=", k)
 	return k
 }
 
 func (l *SkiplistSSet) Add(x interface{}) bool {
 	u := l.sentinel
 	r := l.h
-	stack := make([]*SSSNode, 0) //TODO
+	stack := make([]*SSSNode, l.h+1) //TODO
 	//comp := 0
 	for r >= 0 {
+		//fmt.Printf("r=%v len(u.next)=%v\n", r, len(u.next))
+		//fmt.Printf("u.next[r]=%v\n", u.next[r])
 		for u.next[r] != nil && compare(u.next[r].x, x) < 0 {
 			u = u.next[r]
 		}
 		if u.next[r] != nil && compare(u.next[r].x, x) == 0 {
 			return false
 		}
+		//fmt.Printf("r=%v len(stack)=%v len(u.next)=%v sentinel.x=%v u=%#v\n", r, len(stack), len(u.next), l.sentinel.x, u)
 		stack[r] = u
 		r--
 	}
 	w := NewSSSNode(pickHeight(), x)
 	for l.h < w.height {
 		l.h++
-		stack[l.h] = l.sentinel
+		//stack[l.h] = l.sentinel
+		stack = append(stack, l.sentinel)
 	}
 	for i := 0; i <= w.height; i++ {
-		w.next[i] = stack[i].next[i] //TODO: append??
-		stack[i].next[i] = w         //TODO: append?
+		//fmt.Println("stack[", i, "]=", stack[i])
+		fmt.Println("stack[", i, "].next[", i, "]=", stack[i].next[i])
+		//w.next[i] = stack[i].next[i] //TODO: append??
+		w.next = append(w.next, stack[i].next[i])
+		//stack[i].next[i] = w //TODO: append?
+		stack[i].next = append(stack[i].next, w)
 	}
 	l.n++
 	return true
