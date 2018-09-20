@@ -25,3 +25,16 @@ type Stack interface {
 	Pop() interface{}
 	Print()
 }
+
+type USet interface {
+	Printable
+	Size() int
+	Add(x interface{}) bool
+	Remove(x interface{}) interface{}
+	Find(x interface{}) interface{}
+}
+
+type SSet interface {
+	USet
+	Compare(x, y interface{}) int
+}
