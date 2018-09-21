@@ -1,4 +1,4 @@
-# OpenDataStructuresGo
+# Open Data Structures in Go
 
  Study notes of Open Data Structures by Pat Morin in Go.
 
@@ -6,12 +6,14 @@
 
 1. Introduction
  1.2 Interfaces
-  1.2.1 The Queue, Stack, and Deque Interfaces
-     -> Done
-  1.2.2 The List Interface: Linear Sequences
-     -> Done
-  1.2.3 The USet Interface: Unordered Sets
-  1.2.4 The SSet Interface: Sorted Sets
+  1.2.1 The Queue, Stack, and Deque Interfaces  
+     -> Done  
+  1.2.2 The List Interface: Linear Sequences  
+     -> Done  
+  1.2.3 The USet Interface: Unordered Sets  
+     -> Done  
+  1.2.4 The SSet Interface: Sorted Sets  
+     -> Done  
 
 2. Array-Based Lists  
  2.1 ArrayStack: Fast Stack Operations Using an Array  
@@ -30,9 +32,13 @@
  3.2 DLList: A Doubly-Linked List  
   -> Done  
  3.3 SEList: A Space-Efficient Linked List
-  -> Done　
+  -> Done  
 
 4. Skiplists
+ 4.2 SkiplistSSet: An Efficient SSet  
+  -> Done  
+ 4.3 SkiplistList: An Efficient Random-Access List  
+
 5. Hash Tables
 6. Binary Trees
 7. Random Binary Search Trees
@@ -44,3 +50,24 @@
 13. Data Structures for Integers
 14. External Memory Searching
 　　　
+## Benchmark
+
+```
+goos: darwin
+goarch: amd64
+pkg: github.com/tesujiro/OpenDataStructuresGo
+BenchmarkList_ArrayStack_AddFirst-4       	  200000	    157613 ns/op	      49 B/op	       1 allocs/op
+BenchmarkList_ArrayStack_AddLast-4        	20000000	       156 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_ArrayStack_AddRandom-4      	  300000	    138063 ns/op	      63 B/op	       1 allocs/op
+BenchmarkList_ArrayDeque_AddFirst-4       	10000000	       157 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_ArrayDeque_AddLast-4        	10000000	       187 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_ArrayDeque_AddRandom-4      	   50000	    140180 ns/op	      49 B/op	       1 allocs/op
+BenchmarkList_DLList_AddFirst-4           	10000000	       127 ns/op	      40 B/op	       1 allocs/op
+BenchmarkList_DLList_AddLast-4            	10000000	       115 ns/op	      40 B/op	       1 allocs/op
+BenchmarkList_DLList_AddRandom-4          	  200000	   1076100 ns/op	      40 B/op	       1 allocs/op
+BenchmarkList_SEList_AddFirst-4           	 2000000	       744 ns/op	     271 B/op	       8 allocs/op
+BenchmarkList_SEList_AddLast-4            	10000000	       135 ns/op	      56 B/op	       1 allocs/op
+BenchmarkList_SEList_AddRandom-4          	 1000000	     79783 ns/op	     269 B/op	       8 allocs/op
+BenchmarkSSet_SkiplistSSet_AddRandom-4    	 1000000	      6061 ns/op	     239 B/op	       4 allocs/op
+BenchmarkSSet_SkiplistSSet_FindFrom1M-4   	 1000000	      2470 ns/op	       8 B/op	       0 allocs/op
+```

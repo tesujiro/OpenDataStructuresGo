@@ -119,72 +119,72 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	}
 }
 
-func BenchmarkArrayStack_AddFirst(b *testing.B) {
+func BenchmarkList_ArrayStack_AddFirst(b *testing.B) {
 	s := ch2.NewArrayStack()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkArrayStack_AddLast(b *testing.B) {
+func BenchmarkList_ArrayStack_AddLast(b *testing.B) {
 	s := ch2.NewArrayStack()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkArrayStack_AddRandom(b *testing.B) {
+func BenchmarkList_ArrayStack_AddRandom(b *testing.B) {
 	s := ch2.NewArrayStack()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkArrayDeque_AddFirst(b *testing.B) {
+func BenchmarkList_ArrayDeque_AddFirst(b *testing.B) {
 	s := ch2.NewArrayDeque()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkArrayDeque_AddLast(b *testing.B) {
+func BenchmarkList_ArrayDeque_AddLast(b *testing.B) {
 	s := ch2.NewArrayDeque()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkArrayDeque_AddRandom(b *testing.B) {
+func BenchmarkList_ArrayDeque_AddRandom(b *testing.B) {
 	s := ch2.NewArrayDeque()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkDLList_AddFirst(b *testing.B) {
+func BenchmarkList_DLList_AddFirst(b *testing.B) {
 	s := ch3.NewDLList()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkDLList_AddLast(b *testing.B) {
+func BenchmarkList_DLList_AddLast(b *testing.B) {
 	s := ch3.NewDLList()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkDLList_AddRandom(b *testing.B) {
+func BenchmarkList_DLList_AddRandom(b *testing.B) {
 	s := ch3.NewDLList()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkSEList_AddFirst(b *testing.B) {
+func BenchmarkList_SEList_AddFirst(b *testing.B) {
 	s := ch3.NewSEList()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkSEList_AddLast(b *testing.B) {
+func BenchmarkList_SEList_AddLast(b *testing.B) {
 	s := ch3.NewSEList()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkSEList_AddRandom(b *testing.B) {
+func BenchmarkList_SEList_AddRandom(b *testing.B) {
 	s := ch3.NewSEList()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkSkiplistSSet_AddRandom(b *testing.B) {
+func BenchmarkSSet_SkiplistSSet_AddRandom(b *testing.B) {
 	s := ch4.NewSkiplistSSet()
 	benchmarkSSet_AddRandom(s, b)
 }
 
-func BenchmarkSkiplistSSet_FindFrom1M(b *testing.B) {
+func BenchmarkSSet_SkiplistSSet_FindFrom1M(b *testing.B) {
 	s := ch4.NewSkiplistSSet()
 	benchmarkSSet_FindFrom1M(s, b)
 }
