@@ -96,23 +96,24 @@ func testSSet(s ch1.SSet, t *testing.T) {
 		t.Fatalf("failed init %#v", s.GetAll())
 	}
 	t.Log("Add")
-	s.Add(10)
-	s.Add(20)
-	s.Add(30)
-	if !reflect.DeepEqual(s.GetAll(), []interface{}{10, 20, 30}) {
+	s.Add(element(10))
+	s.Add(element(20))
+	s.Add(element(30))
+	if !reflect.DeepEqual(s.GetAll(), []interface{}{element(10), element(20), element(30)}) {
 		t.Fatalf("failed Add %#v", s.GetAll())
 	}
 	t.Log("Find")
-	if !(s.Find(20).(int) == 20) {
+	//if !(int(s.Find(element(20)).(element)) == 20) {
+	if !(s.Find(element(20)).Compare(element(20)) == 0) {
 		t.Fatalf("failed Find %#v", s.GetAll())
 	}
-	if !(s.Find(123) == nil) {
+	if !(s.Find(element(123)) == nil) {
 		t.Fatalf("failed Find %#v", s.GetAll())
 	}
 	t.Log("Remove")
-	s.Remove(10)
-	s.Remove(30)
-	s.Remove(20)
+	s.Remove(element(10))
+	s.Remove(element(30))
+	s.Remove(element(20))
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed Remove %#v", s.GetAll())
 	}
@@ -178,6 +179,16 @@ func BenchmarkSEList_AddRandom(b *testing.B) {
 	benchmarkList_AddRandom(s, b)
 }
 
+func BenchmarkSkiplistSSet_AddRandom(b *testing.B) {
+	s := ch4.NewSkiplistSSet()
+	benchmarkSSet_AddRandom(s, b)
+}
+
+func BenchmarkSkiplistSSet_FindFrom1M(b *testing.B) {
+	s := ch4.NewSkiplistSSet()
+	benchmarkSSet_FindFrom1M(s, b)
+}
+
 func benchmarkList_AddFirst(s ch1.List, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -193,10 +204,30 @@ func benchmarkList_AddLast(s ch1.List, b *testing.B) {
 }
 
 func benchmarkList_AddRandom(s ch1.List, b *testing.B) {
-
 	rand.Seed(time.Now().UnixNano())
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(rand.Intn(s.Size()+1), i)
+	}
+}
+
+func benchmarkSSet_AddRandom(s ch1.SSet, b *testing.B) {
+	rand.Seed(time.Now().UnixNano())
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s.Add(element(rand.Int()))
+	}
+}
+
+func benchmarkSSet_FindFrom1M(s ch1.SSet, b *testing.B) {
+	rand.Seed(time.Now().UnixNano())
+	n := 1000000
+	for i := 0; i < n; i++ {
+		s.Add(element(i))
+	}
+	//fmt.Println("Size:", s.Size())
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s.Find(element(rand.Intn(n)))
 	}
 }

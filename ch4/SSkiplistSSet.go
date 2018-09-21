@@ -3,19 +3,17 @@ package ch4
 import (
 	"fmt"
 	"math/rand"
+
+	"github.com/tesujiro/OpenDataStructuresGo/ch1"
 )
 
-func compare(x1, x2 interface{}) int {
-	return x1.(int) - x2.(int)
-}
-
 type SSSNode struct {
-	x      interface{}
+	x      ch1.Comparable
 	height int //height
 	next   []*SSSNode
 }
 
-func NewSSSNode(h int, x interface{}) *SSSNode {
+func NewSSSNode(h int, x ch1.Comparable) *SSSNode {
 	return &SSSNode{
 		x:      x,
 		height: h,
@@ -55,11 +53,11 @@ func (l *SkiplistSSet) Print() {
 	fmt.Printf("SkiplistSSet(n:%v)=%v\n", l.Size(), l.GetAll())
 }
 
-func (l *SkiplistSSet) findPredNode(x interface{}) *SSSNode {
+func (l *SkiplistSSet) findPredNode(x ch1.Comparable) *SSSNode {
 	u := l.sentinel
 	r := l.h
 	for r >= 0 {
-		for u.next[r] != nil && compare(u.next[r].x, x) < 0 {
+		for u.next[r] != nil && u.next[r].x.Compare(x) < 0 {
 			u = u.next[r]
 		}
 		r--
@@ -67,7 +65,7 @@ func (l *SkiplistSSet) findPredNode(x interface{}) *SSSNode {
 	return u
 }
 
-func (l *SkiplistSSet) Find(x interface{}) interface{} {
+func (l *SkiplistSSet) Find(x ch1.Comparable) ch1.Comparable {
 	u := l.findPredNode(x)
 	if u.next[0] == nil {
 		return nil
@@ -88,7 +86,7 @@ func pickHeight() int {
 	return k
 }
 
-func (l *SkiplistSSet) Add(x interface{}) bool {
+func (l *SkiplistSSet) Add(x ch1.Comparable) bool {
 	u := l.sentinel
 	r := l.h
 	stack := make([]*SSSNode, l.h+1) //TODO
@@ -96,10 +94,10 @@ func (l *SkiplistSSet) Add(x interface{}) bool {
 	for r >= 0 {
 		//fmt.Printf("r=%v len(u.next)=%v\n", r, len(u.next))
 		//fmt.Printf("u.next[r]=%v\n", u.next[r])
-		for u.next[r] != nil && compare(u.next[r].x, x) < 0 {
+		for u.next[r] != nil && u.next[r].x.Compare(x) < 0 {
 			u = u.next[r]
 		}
-		if u.next[r] != nil && compare(u.next[r].x, x) == 0 {
+		if u.next[r] != nil && u.next[r].x.Compare(x) == 0 {
 			return false
 		}
 		//fmt.Printf("r=%v len(stack)=%v len(u.next)=%v sentinel.x=%v u=%#v\n", r, len(stack), len(u.next), l.sentinel.x, u)
@@ -124,16 +122,16 @@ func (l *SkiplistSSet) Add(x interface{}) bool {
 	return true
 }
 
-func (l *SkiplistSSet) Remove(x interface{}) bool {
+func (l *SkiplistSSet) Remove(x ch1.Comparable) bool {
 	removed := false
 	u := l.sentinel
 	r := l.h
 	//var del *SSSNode
 	for r >= 0 {
-		for u.next[r] != nil && compare(u.next[r].x, x) < 0 {
+		for u.next[r] != nil && u.next[r].x.Compare(x) < 0 {
 			u = u.next[r]
 		}
-		if u.next[r] != nil && compare(u.next[r].x, x) == 0 {
+		if u.next[r] != nil && u.next[r].x.Compare(x) == 0 {
 			removed = true
 			//del = u.next[r]
 			u.next[r] = u.next[r].next[r]

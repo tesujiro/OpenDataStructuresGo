@@ -9,6 +9,19 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
 )
 
+type element int
+
+func (e1 element) Compare(e2 interface{}) int {
+	switch e2.(type) {
+	case element:
+		return int(e1 - e2.(element))
+	case int:
+		return int(e1) - e2.(int)
+	default:
+		return int(e1)
+	}
+}
+
 func main() {
 
 	fmt.Println("ch2/ArrayStack")
@@ -101,16 +114,17 @@ func checkQueue(s ch1.Queue) {
 
 func checkSSet(s ch1.SSet) {
 	s.Print()
-	s.Add(10)
-	s.Add(20)
-	s.Add(30)
+	s.Add(element(10))
+	s.Add(element(20))
+	s.Add(element(30))
 	s.Print()
-	fmt.Printf("Find(20)=%v\n", s.Find(20))
-	fmt.Printf("Find(123)=%v\n", s.Find(123))
-	s.Remove(10)
+	fmt.Println("Size:", s.Size())
+	fmt.Printf("Find(element(20))=%v\n", s.Find(element(20)))
+	fmt.Printf("Find(element(123))=%v\n", s.Find(element(123)))
+	s.Remove(element(10))
 	s.Print()
-	s.Remove(30)
+	s.Remove(element(30))
 	s.Print()
-	s.Remove(20)
+	s.Remove(element(20))
 	s.Print()
 }

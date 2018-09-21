@@ -1,12 +1,12 @@
 package ch1
 
-type Printable interface {
+type Helper interface {
 	GetAll() []interface{}
 	Print()
 }
 
 type List interface {
-	Printable
+	Helper
 	Size() int
 	Get(i int) interface{}
 	Set(i int, v interface{}) interface{}
@@ -15,7 +15,7 @@ type List interface {
 }
 
 type Queue interface {
-	Printable
+	Helper
 	Add(x interface{}) bool
 	Remove() interface{}
 }
@@ -27,14 +27,21 @@ type Stack interface {
 }
 
 type USet interface {
-	Printable
+	Helper
 	Size() int
 	Add(x interface{}) bool
 	Remove(x interface{}) bool
 	Find(x interface{}) interface{}
 }
 
+type Comparable interface {
+	Compare(interface{}) int
+}
+
 type SSet interface {
-	USet
-	//Compare(x, y interface{}) int
+	Helper
+	Size() int
+	Add(x Comparable) bool
+	Remove(x Comparable) bool
+	Find(x Comparable) Comparable
 }
