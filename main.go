@@ -101,8 +101,16 @@ func checkQueue(s ch1.Queue) {
 
 func checkSSet(s ch1.SSet) {
 	s.Print()
-	s.Add(1)
-	//s.Add(2)
-	//s.Add(3)
+	s.Add(10)
+	s.Add(20)
+	s.Add(30)
+	s.Print()
+	fmt.Printf("Find(20)=%v\n", s.Find(20))
+	fmt.Printf("Find(123)=%v\n", s.Find(123))
+	s.Remove(10)
+	s.Print()
+	s.Remove(30)
+	s.Print()
+	s.Remove(20)
 	s.Print()
 }

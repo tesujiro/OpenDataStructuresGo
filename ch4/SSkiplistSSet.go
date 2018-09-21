@@ -19,7 +19,7 @@ func NewSSSNode(h int, x interface{}) *SSSNode {
 	return &SSSNode{
 		x:      x,
 		height: h,
-		next:   make([]*SSSNode, h), //TODO
+		next:   make([]*SSSNode, h+1),
 	}
 }
 
@@ -30,7 +30,7 @@ type SkiplistSSet struct {
 }
 
 func NewSkiplistSSet() *SkiplistSSet {
-	return &SkiplistSSet{sentinel: NewSSSNode(1, nil), h: 0}
+	return &SkiplistSSet{sentinel: NewSSSNode(0, nil), h: 0}
 }
 
 func (l *SkiplistSSet) Size() int {
@@ -41,12 +41,12 @@ func (l *SkiplistSSet) GetAll() []interface{} {
 	//return []interface{}{}
 	s := []interface{}{}
 	u := l.sentinel
-	fmt.Printf("l=%#v\n", l)
-	fmt.Printf("len(u.next)=%v\n", len(u.next))
+	//fmt.Printf("l=%#v\n", l)
+	//fmt.Printf("len(u.next)=%v\n", len(u.next))
 	for u.next[0] != nil {
 		s = append(s, u.next[0].x)
 		u = u.next[0]
-		fmt.Printf("s=%#v", s)
+		//fmt.Printf("s=%#v", s)
 	}
 	return s
 }
@@ -84,7 +84,7 @@ func pickHeight() int {
 		k++
 		m <<= 1
 	}
-	fmt.Println("pickHeight()=", k)
+	//fmt.Println("pickHeight()=", k)
 	return k
 }
 
@@ -109,16 +109,16 @@ func (l *SkiplistSSet) Add(x interface{}) bool {
 	w := NewSSSNode(pickHeight(), x)
 	for l.h < w.height {
 		l.h++
-		//stack[l.h] = l.sentinel
 		stack = append(stack, l.sentinel)
+		l.sentinel.next = append(l.sentinel.next, nil)
 	}
 	for i := 0; i <= w.height; i++ {
 		//fmt.Println("stack[", i, "]=", stack[i])
-		fmt.Println("stack[", i, "].next[", i, "]=", stack[i].next[i])
-		//w.next[i] = stack[i].next[i] //TODO: append??
-		w.next = append(w.next, stack[i].next[i])
-		//stack[i].next[i] = w //TODO: append?
-		stack[i].next = append(stack[i].next, w)
+		//fmt.Println("stack[", i, "].next[", i, "]=", stack[i].next[i])
+		w.next[i] = stack[i].next[i]
+		//w.next = append(w.next, stack[i].next[i])
+		stack[i].next[i] = w
+		//stack[i].next = append(stack[i].next, w)
 	}
 	l.n++
 	return true

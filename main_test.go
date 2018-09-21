@@ -9,6 +9,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
+	"github.com/tesujiro/OpenDataStructuresGo/ch4"
 )
 
 func TestArrayStack(t *testing.T) {
@@ -39,6 +40,11 @@ func TestDLList(t *testing.T) {
 func TestSEList(t *testing.T) {
 	s := ch3.NewSEList()
 	testList(s, t)
+}
+
+func TestSkiplistSSet(t *testing.T) {
+	s := ch4.NewSkiplistSSet()
+	testSSet(s, t)
 }
 
 func testList(s ch1.List, t *testing.T) {
@@ -83,6 +89,33 @@ func testQueue(q ch1.Queue, t *testing.T) {
 		t.Fatalf("failed init %#v", q.GetAll())
 	}
 	t.Log("Remove")
+}
+
+func testSSet(s ch1.SSet, t *testing.T) {
+	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
+		t.Fatalf("failed init %#v", s.GetAll())
+	}
+	t.Log("Add")
+	s.Add(10)
+	s.Add(20)
+	s.Add(30)
+	if !reflect.DeepEqual(s.GetAll(), []interface{}{10, 20, 30}) {
+		t.Fatalf("failed Add %#v", s.GetAll())
+	}
+	t.Log("Find")
+	if !(s.Find(20).(int) == 20) {
+		t.Fatalf("failed Find %#v", s.GetAll())
+	}
+	if !(s.Find(123) == nil) {
+		t.Fatalf("failed Find %#v", s.GetAll())
+	}
+	t.Log("Remove")
+	s.Remove(10)
+	s.Remove(30)
+	s.Remove(20)
+	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
+		t.Fatalf("failed Remove %#v", s.GetAll())
+	}
 }
 
 func BenchmarkArrayStack_AddFirst(b *testing.B) {
