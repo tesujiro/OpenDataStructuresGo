@@ -75,8 +75,8 @@ BenchmarkList_SEList_AddRandom-4          	 1000000	     79783 ns/op	     269 B/
 BenchmarkList_SkiplistList_AddFirst-4    	 3000000	       370 ns/op	     122 B/op	       4 allocs/op
 BenchmarkList_SkiplistList_AddLast-4     	 5000000	       501 ns/op	     122 B/op	       4 allocs/op
 BenchmarkList_SkiplistList_AddRandom-4   	 1000000	      2294 ns/op	     122 B/op	       4 allocs/op
-BenchmarkSSet_SkiplistSSet_AddRandom-4    	 1000000	      3298 ns/op	     249 B/op	       4 allocs/op
-BenchmarkSSet_SkiplistSSet_FindFrom1M-4   	  500000	      3155 ns/op	       8 B/op	       1 allocs/op
-BenchmarkSSet_BinaryTree_AddRandom-4      	 1000000	      1325 ns/op	      56 B/op	       2 allocs/op
-BenchmarkSSet_BinaryTree_FindFrom1M-4     	 1000000	      1296 ns/op	       8 B/op	       1 allocs/op
+BenchmarkSSet_SkiplistSSet_AddRandom-4    	 1000000	      3448 ns/op	     230 B/op	       4 allocs/op
+BenchmarkSSet_SkiplistSSet_FindFrom1M-4   	  500000	      3102 ns/op	       8 B/op	       0 allocs/op
+BenchmarkSSet_BinaryTree_AddRandom-4      	 1000000	      1312 ns/op	      56 B/op	       2 allocs/op
+BenchmarkSSet_BinaryTree_FindFrom1M-4     	 1000000	      1348 ns/op	       8 B/op	       0 allocs/op
 ```

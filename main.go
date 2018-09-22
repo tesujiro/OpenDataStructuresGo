@@ -12,6 +12,11 @@ import (
 
 type element int
 
+func (e1 element) Compare(e2 ch1.Comparable) int {
+	return int(e1 - e2.(element))
+}
+
+/*
 func (e1 element) Compare(e2 interface{}) int {
 	switch e2.(type) {
 	case element:
@@ -22,6 +27,7 @@ func (e1 element) Compare(e2 interface{}) int {
 		return int(e1)
 	}
 }
+*/
 
 func main() {
 

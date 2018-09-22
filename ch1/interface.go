@@ -35,7 +35,8 @@ type USet interface {
 }
 
 type Comparable interface {
-	Compare(interface{}) int
+	Compare(Comparable) int
+	//Compare(interface{}) int
 }
 
 type SSet interface {

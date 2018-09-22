@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"reflect"
 	"testing"
@@ -56,6 +57,7 @@ func TestSkiplistList(t *testing.T) {
 func TestBinaryTree(t *testing.T) {
 	s := ch6.NewBinaryTree()
 	testSSet(s, t)
+	//testSSet2(s, t)
 }
 
 func testList(s ch1.List, t *testing.T) {
@@ -102,6 +104,14 @@ func testQueue(q ch1.Queue, t *testing.T) {
 	t.Log("Remove")
 }
 
+func testSSet2(s ch1.SSet, t *testing.T) {
+	num := 50000
+	for i := 0; i < num; i++ {
+		s.Add(element(i))
+	}
+	fmt.Println(num, "add finished")
+}
+
 func testSSet(s ch1.SSet, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s.GetAll())
@@ -110,7 +120,8 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	s.Add(element(10))
 	s.Add(element(20))
 	s.Add(element(30))
-	if !reflect.DeepEqual(s.GetAll(), []interface{}{element(10), element(20), element(30)}) {
+	s.Add(element(40))
+	if !reflect.DeepEqual(s.GetAll(), []interface{}{element(10), element(20), element(30), element(40)}) {
 		t.Fatalf("failed Add %#v", s.GetAll())
 	}
 	t.Log("Find")
@@ -124,6 +135,7 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	t.Log("Remove")
 	s.Remove(element(10))
 	s.Remove(element(30))
+	s.Remove(element(40))
 	s.Remove(element(20))
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed Remove %#v", s.GetAll())
@@ -259,12 +271,15 @@ func benchmarkSSet_FindFrom1M(s ch1.SSet, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
 	n := 1000000
 	for i := 0; i < n; i++ {
-		//s.Add(element(i))
 		s.Add(element(rand.Intn(n)))
 	}
 	//fmt.Println("Size:", s.Size())
+	count := 0
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		s.Find(element(rand.Intn(n)))
+		if s.Find(element(rand.Intn(n))) != nil {
+			count++
+		}
 	}
+	//fmt.Printf("Found/All:%3.2f%%\n", float64(count*100)/float64(b.N))
 }
