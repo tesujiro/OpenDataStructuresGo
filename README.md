@@ -38,6 +38,7 @@
  4.2 SkiplistSSet: An Efficient SSet  
   -> Done  
  4.3 SkiplistList: An Efficient Random-Access List  
+  -> Done  
 
 5. Hash Tables  
 6. Binary Trees  
@@ -68,6 +69,9 @@ BenchmarkList_DLList_AddRandom-4          	  200000	   1076100 ns/op	      40 B/
 BenchmarkList_SEList_AddFirst-4           	 2000000	       744 ns/op	     271 B/op	       8 allocs/op
 BenchmarkList_SEList_AddLast-4            	10000000	       135 ns/op	      56 B/op	       1 allocs/op
 BenchmarkList_SEList_AddRandom-4          	 1000000	     79783 ns/op	     269 B/op	       8 allocs/op
+BenchmarkList_SkiplistList_AddFirst-4    	 3000000	       370 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_SkiplistList_AddLast-4     	 5000000	       501 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_SkiplistList_AddRandom-4   	 1000000	      2294 ns/op	     122 B/op	       4 allocs/op
 BenchmarkSSet_SkiplistSSet_AddRandom-4    	 1000000	      6061 ns/op	     239 B/op	       4 allocs/op
 BenchmarkSSet_SkiplistSSet_FindFrom1M-4   	 1000000	      2470 ns/op	       8 B/op	       0 allocs/op
 ```

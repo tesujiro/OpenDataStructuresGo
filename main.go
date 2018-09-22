@@ -45,6 +45,9 @@ func main() {
 
 	fmt.Println("ch4/SkiplistSSet")
 	checkSSet(ch4.NewSkiplistSSet())
+
+	fmt.Println("ch4/SkiplistList")
+	checkList(ch4.NewSkiplistList())
 }
 
 func checkList(s ch1.List) {
@@ -87,6 +90,8 @@ func checkList(s ch1.List) {
 	s.Remove(2)
 	s.Print()
 	s.Remove(3)
+	s.Print()
+	s.Remove(0)
 	s.Print()
 }
 

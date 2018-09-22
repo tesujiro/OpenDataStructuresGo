@@ -47,6 +47,11 @@ func TestSkiplistSSet(t *testing.T) {
 	testSSet(s, t)
 }
 
+func TestSkiplistList(t *testing.T) {
+	s := ch4.NewSkiplistList()
+	testList(s, t)
+}
+
 func testList(s ch1.List, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s.GetAll())
@@ -63,14 +68,14 @@ func testList(s ch1.List, t *testing.T) {
 	s.Add(0, 0)
 	s.Print()
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{0, 1, 2, 3, 40, 50, 60, 70, 80}) {
-		t.Fatalf("failed init %#v", s.GetAll())
+		t.Fatalf("failed Add %#v", s.GetAll())
 	}
 	t.Log("Remove")
 	s.Remove(8)
 	s.Remove(0)
 	s.Print()
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{1, 2, 3, 40, 50, 60, 70}) {
-		t.Fatalf("failed init %#v", s.GetAll())
+		t.Fatalf("failed Remove %#v", s.GetAll())
 	}
 }
 
@@ -176,6 +181,21 @@ func BenchmarkList_SEList_AddLast(b *testing.B) {
 
 func BenchmarkList_SEList_AddRandom(b *testing.B) {
 	s := ch3.NewSEList()
+	benchmarkList_AddRandom(s, b)
+}
+
+func BenchmarkList_SkiplistList_AddFirst(b *testing.B) {
+	s := ch4.NewSkiplistList()
+	benchmarkList_AddFirst(s, b)
+}
+
+func BenchmarkList_SkiplistList_AddLast(b *testing.B) {
+	s := ch4.NewSkiplistList()
+	benchmarkList_AddLast(s, b)
+}
+
+func BenchmarkList_SkiplistList_AddRandom(b *testing.B) {
+	s := ch4.NewSkiplistList()
 	benchmarkList_AddRandom(s, b)
 }
 
