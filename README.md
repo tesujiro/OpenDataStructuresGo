@@ -42,6 +42,9 @@
 
 5. Hash Tables  
 6. Binary Trees  
+ 6.2 BinarySearchTree: An Unbalanced Binary Search Tree  
+  -> Done  
+
 7. Random Binary Search Trees  
 8. Scapegoat Trees  
 9. Red-Black Trees  
