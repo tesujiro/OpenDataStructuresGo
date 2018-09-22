@@ -7,6 +7,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
+	"github.com/tesujiro/OpenDataStructuresGo/ch6"
 )
 
 type element int
@@ -48,6 +49,10 @@ func main() {
 
 	fmt.Println("ch4/SkiplistList")
 	checkList(ch4.NewSkiplistList())
+
+	fmt.Println("ch6/BinaryTree")
+	checkSSet(ch6.NewBinaryTree())
+
 }
 
 func checkList(s ch1.List) {

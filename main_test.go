@@ -10,6 +10,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
+	"github.com/tesujiro/OpenDataStructuresGo/ch6"
 )
 
 func TestArrayStack(t *testing.T) {
@@ -50,6 +51,11 @@ func TestSkiplistSSet(t *testing.T) {
 func TestSkiplistList(t *testing.T) {
 	s := ch4.NewSkiplistList()
 	testList(s, t)
+}
+
+func TestBinaryTree(t *testing.T) {
+	s := ch6.NewBinaryTree()
+	testSSet(s, t)
 }
 
 func testList(s ch1.List, t *testing.T) {
@@ -209,6 +215,16 @@ func BenchmarkSSet_SkiplistSSet_FindFrom1M(b *testing.B) {
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
+func BenchmarkSSet_BinaryTree_AddRandom(b *testing.B) {
+	s := ch6.NewBinaryTree()
+	benchmarkSSet_AddRandom(s, b)
+}
+
+func BenchmarkSSet_BinaryTree_FindFrom1M(b *testing.B) {
+	s := ch6.NewBinaryTree()
+	benchmarkSSet_FindFrom1M(s, b)
+}
+
 func benchmarkList_AddFirst(s ch1.List, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -243,7 +259,8 @@ func benchmarkSSet_FindFrom1M(s ch1.SSet, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
 	n := 1000000
 	for i := 0; i < n; i++ {
-		s.Add(element(i))
+		//s.Add(element(i))
+		s.Add(element(rand.Intn(n)))
 	}
 	//fmt.Println("Size:", s.Size())
 	b.ResetTimer()
