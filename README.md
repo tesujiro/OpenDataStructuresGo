@@ -46,6 +46,9 @@
   -> Done  
 
 7. Random Binary Search Trees  
+ 7.2 Treap: A Randomized Binary Search Tree  
+  -> Done  
+
 8. Scapegoat Trees  
 9. Red-Black Trees  
 10. Heaps  
