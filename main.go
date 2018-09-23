@@ -8,6 +8,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
 	"github.com/tesujiro/OpenDataStructuresGo/ch6"
+	"github.com/tesujiro/OpenDataStructuresGo/ch7"
 )
 
 type element int
@@ -58,6 +59,9 @@ func main() {
 
 	fmt.Println("ch6/BinaryTree")
 	checkSSet(ch6.NewBinaryTree())
+
+	fmt.Println("ch7/Treap")
+	checkSSet(ch7.NewTreap())
 
 }
 

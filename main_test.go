@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"reflect"
+	"sort"
 	"testing"
 	"time"
 
@@ -12,6 +13,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
 	"github.com/tesujiro/OpenDataStructuresGo/ch6"
+	"github.com/tesujiro/OpenDataStructuresGo/ch7"
 )
 
 func TestArrayStack(t *testing.T) {
@@ -56,6 +58,12 @@ func TestSkiplistList(t *testing.T) {
 
 func TestBinaryTree(t *testing.T) {
 	s := ch6.NewBinaryTree()
+	testSSet(s, t)
+	//testSSet2(s, t)
+}
+
+func TestTreap(t *testing.T) {
+	s := ch7.NewTreap()
 	testSSet(s, t)
 	//testSSet2(s, t)
 }
@@ -121,11 +129,12 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	s.Add(element(20))
 	s.Add(element(30))
 	s.Add(element(40))
-	if !reflect.DeepEqual(s.GetAll(), []interface{}{element(10), element(20), element(30), element(40)}) {
-		t.Fatalf("failed Add %#v", s.GetAll())
+	slice := s.GetAll()
+	sort.Slice(slice, func(i, j int) bool { return slice[i].(element) < slice[j].(element) })
+	if !reflect.DeepEqual(slice, []interface{}{element(10), element(20), element(30), element(40)}) {
+		t.Fatalf("failed Add %#v", slice)
 	}
 	t.Log("Find")
-	//if !(int(s.Find(element(20)).(element)) == 20) {
 	if !(s.Find(element(20)).Compare(element(20)) == 0) {
 		t.Fatalf("failed Find %#v", s.GetAll())
 	}
@@ -217,6 +226,11 @@ func BenchmarkList_SkiplistList_AddRandom(b *testing.B) {
 	benchmarkList_AddRandom(s, b)
 }
 
+func BenchmarkSSet_SkiplistSSet_AddFirst(b *testing.B) {
+	s := ch4.NewSkiplistSSet()
+	benchmarkSSet_AddFirst(s, b)
+}
+
 func BenchmarkSSet_SkiplistSSet_AddRandom(b *testing.B) {
 	s := ch4.NewSkiplistSSet()
 	benchmarkSSet_AddRandom(s, b)
@@ -227,6 +241,11 @@ func BenchmarkSSet_SkiplistSSet_FindFrom1M(b *testing.B) {
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
+func BenchmarkSSet_BinaryTree_AddFirst(b *testing.B) {
+	s := ch6.NewBinaryTree()
+	benchmarkSSet_AddFirst(s, b)
+}
+
 func BenchmarkSSet_BinaryTree_AddRandom(b *testing.B) {
 	s := ch6.NewBinaryTree()
 	benchmarkSSet_AddRandom(s, b)
@@ -234,6 +253,21 @@ func BenchmarkSSet_BinaryTree_AddRandom(b *testing.B) {
 
 func BenchmarkSSet_BinaryTree_FindFrom1M(b *testing.B) {
 	s := ch6.NewBinaryTree()
+	benchmarkSSet_FindFrom1M(s, b)
+}
+
+func BenchmarkSSet_Treap_AddFirst(b *testing.B) {
+	s := ch7.NewTreap()
+	benchmarkSSet_AddFirst(s, b)
+}
+
+func BenchmarkSSet_Treap_AddRandom(b *testing.B) {
+	s := ch7.NewTreap()
+	benchmarkSSet_AddRandom(s, b)
+}
+
+func BenchmarkSSet_Treap_FindFrom1M(b *testing.B) {
+	s := ch7.NewTreap()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
@@ -256,6 +290,14 @@ func benchmarkList_AddRandom(s ch1.List, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s.Add(rand.Intn(s.Size()+1), i)
+	}
+}
+
+func benchmarkSSet_AddFirst(s ch1.SSet, b *testing.B) {
+	rand.Seed(time.Now().UnixNano())
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s.Add(element(b.N - i))
 	}
 }
 
