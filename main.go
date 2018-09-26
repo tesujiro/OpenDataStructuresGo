@@ -9,6 +9,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
 	"github.com/tesujiro/OpenDataStructuresGo/ch6"
 	"github.com/tesujiro/OpenDataStructuresGo/ch7"
+	"github.com/tesujiro/OpenDataStructuresGo/ch8"
 )
 
 type element int
@@ -62,6 +63,9 @@ func main() {
 
 	fmt.Println("ch7/Treap")
 	checkSSet(ch7.NewTreap())
+
+	fmt.Println("ch8/ScapegoatTree")
+	checkSSet(ch8.NewScapegoatTree())
 
 }
 
@@ -135,6 +139,7 @@ func checkQueue(s ch1.Queue) {
 func checkSSet(s ch1.SSet) {
 	s.Print()
 	s.Add(element(10))
+	s.Print()
 	s.Add(element(20))
 	s.Add(element(30))
 	s.Print()

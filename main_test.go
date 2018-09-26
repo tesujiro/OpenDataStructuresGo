@@ -14,6 +14,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
 	"github.com/tesujiro/OpenDataStructuresGo/ch6"
 	"github.com/tesujiro/OpenDataStructuresGo/ch7"
+	"github.com/tesujiro/OpenDataStructuresGo/ch8"
 )
 
 func TestArrayStack(t *testing.T) {
@@ -64,6 +65,12 @@ func TestBinaryTree(t *testing.T) {
 
 func TestTreap(t *testing.T) {
 	s := ch7.NewTreap()
+	testSSet(s, t)
+	//testSSet2(s, t)
+}
+
+func TestScapegoatTree(t *testing.T) {
+	s := ch8.NewScapegoatTree()
 	testSSet(s, t)
 	//testSSet2(s, t)
 }
@@ -268,6 +275,21 @@ func BenchmarkSSet_Treap_AddRandom(b *testing.B) {
 
 func BenchmarkSSet_Treap_FindFrom1M(b *testing.B) {
 	s := ch7.NewTreap()
+	benchmarkSSet_FindFrom1M(s, b)
+}
+
+func BenchmarkSSet_ScapegoatTree_AddFirst(b *testing.B) {
+	s := ch8.NewScapegoatTree()
+	benchmarkSSet_AddFirst(s, b)
+}
+
+func BenchmarkSSet_ScapegoatTree_AddRandom(b *testing.B) {
+	s := ch8.NewScapegoatTree()
+	benchmarkSSet_AddRandom(s, b)
+}
+
+func BenchmarkSSet_ScapegoatTree_FindFrom1M(b *testing.B) {
+	s := ch8.NewScapegoatTree()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
