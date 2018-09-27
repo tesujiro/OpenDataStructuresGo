@@ -288,12 +288,10 @@ func BenchmarkSSet_ScapegoatTree_AddRandom(b *testing.B) {
 	benchmarkSSet_AddRandom(s, b)
 }
 
-/*
 func BenchmarkSSet_ScapegoatTree_FindFrom1M(b *testing.B) {
 	s := ch8.NewScapegoatTree()
 	benchmarkSSet_FindFrom1M(s, b)
 }
-*/
 
 func benchmarkList_AddFirst(s ch1.List, b *testing.B) {
 	b.ResetTimer()
@@ -338,6 +336,9 @@ func benchmarkSSet_FindFrom1M(s ch1.SSet, b *testing.B) {
 	n := 1000000
 	for i := 0; i < n; i++ {
 		s.Add(element(rand.Intn(n)))
+		if i%(n/10) == 0 {
+			fmt.Printf("%v/%v Added\n", i, n)
+		}
 	}
 	//fmt.Println("Size:", s.Size())
 	count := 0

@@ -7,6 +7,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
+	"github.com/tesujiro/OpenDataStructuresGo/ch5"
 	"github.com/tesujiro/OpenDataStructuresGo/ch6"
 	"github.com/tesujiro/OpenDataStructuresGo/ch7"
 	"github.com/tesujiro/OpenDataStructuresGo/ch8"
@@ -57,6 +58,9 @@ func main() {
 
 	fmt.Println("ch4/SkiplistList")
 	checkList(ch4.NewSkiplistList())
+
+	fmt.Println("ch5/ChainedHashTable")
+	checkUSet(ch5.NewChainedHashTable())
 
 	fmt.Println("ch6/BinaryTree")
 	checkSSet(ch6.NewBinaryTree())
@@ -136,6 +140,26 @@ func checkQueue(s ch1.Queue) {
 	s.Print()
 }
 
+func checkUSet(s ch1.USet) {
+	s.Print()
+	s.Add(10)
+	s.Print()
+	for i := 20; i < 200; i += 10 {
+		if !s.Add(i) {
+			fmt.Println("Add ERROR! i:", i)
+		}
+	}
+	s.Print()
+	fmt.Println("Size:", s.Size())
+	fmt.Printf("Find(element(20))=%v\n", s.Find(20))
+	fmt.Printf("Find(element(123))=%v\n", s.Find(123))
+	s.Remove(10)
+	s.Print()
+	s.Remove(30)
+	s.Print()
+	s.Remove(20)
+	s.Print()
+}
 func checkSSet(s ch1.SSet) {
 	s.Print()
 	s.Add(element(10))
