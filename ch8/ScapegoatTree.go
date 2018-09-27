@@ -54,7 +54,7 @@ func (bt *ScapegoatTree) GetAll() []interface{} {
 }
 
 func (bt *ScapegoatTree) Print() {
-	fmt.Printf("ScapegoatTree(n:%v)=%v\n", bt.Size(), bt.GetAll())
+	fmt.Printf("ScapegoatTree(n:%v,q:%v)=%v\n", bt.Size(), bt.q, bt.GetAll())
 }
 
 func (bt *ScapegoatTree) findNode(x ch1.Comparable) *Node {
@@ -96,6 +96,9 @@ func (bt *ScapegoatTree) Find(x ch1.Comparable) ch1.Comparable {
 }
 
 func (bt *ScapegoatTree) rebuild(u *Node) {
+	if u == nil {
+		return
+	}
 	ns := bt.SizeNode(u)
 	p := u.parent
 	a := make([]*Node, ns)
@@ -104,6 +107,7 @@ func (bt *ScapegoatTree) rebuild(u *Node) {
 		bt.r = buildBalanced(a, 0, ns)
 		bt.r.parent = nil
 	} else if p.right == u {
+		p.right = buildBalanced(a, 0, ns)
 		p.right.parent = p
 	} else {
 		p.left = buildBalanced(a, 0, ns)
@@ -116,7 +120,7 @@ func buildBalanced(a []*Node, i, ns int) *Node {
 		return nil
 	}
 	m := ns / 2
-	a[i+m] = buildBalanced(a, i, m)
+	a[i+m].left = buildBalanced(a, i, m)
 	if a[i+m].left != nil {
 		a[i+m].left.parent = a[i+m]
 	}
@@ -137,9 +141,8 @@ func (bt *ScapegoatTree) addWithDepth(u *Node) int {
 func (bt *ScapegoatTree) findLast(x ch1.Comparable) (*Node, int) {
 	w := bt.r
 	d := 0
-	q := 1
+	//q := 1
 	var prev *Node
-	//TODO:??
 	if w == nil {
 		d = 1
 	}
@@ -155,12 +158,6 @@ func (bt *ScapegoatTree) findLast(x ch1.Comparable) (*Node, int) {
 			return w, d
 		}
 		d++
-		//bt.q++
-		q += q * 2
-		//fmt.Println("bt.q add! :", bt.q)
-	}
-	if q > bt.q {
-		bt.q = q
 	}
 	return prev, d
 }
@@ -197,35 +194,22 @@ func packIntoArray(u *Node, a []*Node, i int) int {
 func (bt *ScapegoatTree) Add(x ch1.Comparable) bool {
 	u := NewNode()
 	u.x = x
-	/*
-		u.parent = nil
-		u.left = nil
-		u.right = nil
-	*/
-	//u.parent = u
 	d := bt.addWithDepth(u)
-	//fmt.Println("d=", d)
-	//fmt.Println("bt.q=", bt.q)
-	//fmt.Println("bt.r.x=", bt.r.x)
 	//if float64(d) > math.Log(float64(bt.q)) {
 	if u.parent != nil && float64(d) > math.Log(float64(bt.q)) {
-		fmt.Println("d > math.Log(bt.q)=", math.Log(float64(bt.q)))
 		w := u.parent
 		a := bt.SizeNode(w)
 		b := bt.SizeNode(w.parent)
-		//fmt.Println("a=", a, "  b=", b)
-		//fmt.Println("w.x=", w.x)
-		//for w != bt.r && 3*a <= 2*b {
 		for 3*a <= 2*b {
 			w = w.parent
 			a = bt.SizeNode(w)
 			b = bt.SizeNode(w.parent)
-			fmt.Println("a=", a, "  b=", b)
 		}
 		bt.rebuild(w.parent)
 	} else if d < 0 {
 		return false
 	}
+	bt.q = int(math.Logb(float64(bt.n))) + 1
 	return true
 }
 
@@ -255,7 +239,6 @@ func (bt *ScapegoatTree) splice(u *Node) {
 
 func (bt *ScapegoatTree) removeNode(u *Node) {
 	if u.left == nil || u.right == nil {
-		//fmt.Println("u.x=", u.x)
 		bt.splice(u)
 	} else {
 		w := u.right
@@ -273,6 +256,11 @@ func (bt *ScapegoatTree) Remove(x ch1.Comparable) bool {
 		return false
 	} else {
 		bt.removeNode(u)
+		if 2*bt.n < bt.q {
+			bt.rebuild(bt.r)
+			bt.q = bt.n
+		}
+		//bt.q = int(math.Logb(float64(bt.n))) + 1
 		return true
 	}
 }

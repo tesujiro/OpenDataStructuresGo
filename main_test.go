@@ -288,10 +288,12 @@ func BenchmarkSSet_ScapegoatTree_AddRandom(b *testing.B) {
 	benchmarkSSet_AddRandom(s, b)
 }
 
+/*
 func BenchmarkSSet_ScapegoatTree_FindFrom1M(b *testing.B) {
 	s := ch8.NewScapegoatTree()
 	benchmarkSSet_FindFrom1M(s, b)
 }
+*/
 
 func benchmarkList_AddFirst(s ch1.List, b *testing.B) {
 	b.ResetTimer()

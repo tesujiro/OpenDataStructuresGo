@@ -142,6 +142,8 @@ func checkSSet(s ch1.SSet) {
 	s.Print()
 	s.Add(element(20))
 	s.Add(element(30))
+	s.Add(element(40))
+	s.Add(element(50))
 	s.Print()
 	fmt.Println("Size:", s.Size())
 	fmt.Printf("Find(element(20))=%v\n", s.Find(element(20)))
