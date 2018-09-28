@@ -169,167 +169,167 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	}
 }
 
-func BenchmarkList_ArrayStack_AddFirst(b *testing.B) {
+func BenchmarkList_Ch02_ArrayStack_AddFirst(b *testing.B) {
 	s := ch2.NewArrayStack()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkList_ArrayStack_AddLast(b *testing.B) {
+func BenchmarkList_Ch02_ArrayStack_AddLast(b *testing.B) {
 	s := ch2.NewArrayStack()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkList_ArrayStack_AddRandom(b *testing.B) {
+func BenchmarkList_Ch02_ArrayStack_AddRandom(b *testing.B) {
 	s := ch2.NewArrayStack()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkList_ArrayDeque_AddFirst(b *testing.B) {
+func BenchmarkList_Ch02_ArrayDeque_AddFirst(b *testing.B) {
 	s := ch2.NewArrayDeque()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkList_ArrayDeque_AddLast(b *testing.B) {
+func BenchmarkList_Ch02_ArrayDeque_AddLast(b *testing.B) {
 	s := ch2.NewArrayDeque()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkList_ArrayDeque_AddRandom(b *testing.B) {
+func BenchmarkList_Ch02_ArrayDeque_AddRandom(b *testing.B) {
 	s := ch2.NewArrayDeque()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkList_DLList_AddFirst(b *testing.B) {
+func BenchmarkList_Ch03_DLList_AddFirst(b *testing.B) {
 	s := ch3.NewDLList()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkList_DLList_AddLast(b *testing.B) {
+func BenchmarkList_Ch03_DLList_AddLast(b *testing.B) {
 	s := ch3.NewDLList()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkList_DLList_AddRandom(b *testing.B) {
+func BenchmarkList_Ch03_DLList_AddRandom(b *testing.B) {
 	s := ch3.NewDLList()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkList_SEList_AddFirst(b *testing.B) {
+func BenchmarkList_Ch03_SEList_AddFirst(b *testing.B) {
 	s := ch3.NewSEList()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkList_SEList_AddLast(b *testing.B) {
+func BenchmarkList_Ch03_SEList_AddLast(b *testing.B) {
 	s := ch3.NewSEList()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkList_SEList_AddRandom(b *testing.B) {
+func BenchmarkList_Ch03_SEList_AddRandom(b *testing.B) {
 	s := ch3.NewSEList()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkList_SkiplistList_AddFirst(b *testing.B) {
+func BenchmarkList_Ch04_SkiplistList_AddFirst(b *testing.B) {
 	s := ch4.NewSkiplistList()
 	benchmarkList_AddFirst(s, b)
 }
 
-func BenchmarkList_SkiplistList_AddLast(b *testing.B) {
+func BenchmarkList_Ch04_SkiplistList_AddLast(b *testing.B) {
 	s := ch4.NewSkiplistList()
 	benchmarkList_AddLast(s, b)
 }
 
-func BenchmarkList_SkiplistList_AddRandom(b *testing.B) {
+func BenchmarkList_Ch04_SkiplistList_AddRandom(b *testing.B) {
 	s := ch4.NewSkiplistList()
 	benchmarkList_AddRandom(s, b)
 }
 
-func BenchmarkSSet_SkiplistSSet_AddFirst(b *testing.B) {
+func BenchmarkSSet_Ch04_SkiplistSSet_AddFirst(b *testing.B) {
 	s := ch4.NewSkiplistSSet()
 	benchmarkSSet_AddFirst(s, b)
 }
 
-func BenchmarkSSet_SkiplistSSet_AddRandom(b *testing.B) {
+func BenchmarkSSet_Ch04_SkiplistSSet_AddRandom(b *testing.B) {
 	s := ch4.NewSkiplistSSet()
 	benchmarkSSet_AddRandom(s, b)
 }
 
-func BenchmarkSSet_SkiplistSSet_FindFrom1M(b *testing.B) {
+func BenchmarkSSet_Ch04_SkiplistSSet_FindFrom1M(b *testing.B) {
 	s := ch4.NewSkiplistSSet()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
-func BenchmarkSSet_ChainedHashTable_AddFirst(b *testing.B) {
+func BenchmarkSSet_Ch05_ChainedHashTable_AddFirst(b *testing.B) {
 	s := ch5.NewChainedHashTable()
 	benchmarkSSet_AddFirst(s, b)
 }
 
-func BenchmarkSSet_ChainedHashTable_AddRandom(b *testing.B) {
+func BenchmarkSSet_Ch05_ChainedHashTable_AddRandom(b *testing.B) {
 	s := ch5.NewChainedHashTable()
 	benchmarkSSet_AddRandom(s, b)
 }
 
-func BenchmarkSSet_ChainedHashTable_FindFrom1M(b *testing.B) {
+func BenchmarkSSet_Ch05_ChainedHashTable_FindFrom1M(b *testing.B) {
 	s := ch5.NewChainedHashTable()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
-func BenchmarkSSet_LinearHashTable_AddFirst(b *testing.B) {
+func BenchmarkSSet_Ch05_LinearHashTable_AddFirst(b *testing.B) {
 	s := ch5.NewLinearHashTable()
 	benchmarkSSet_AddFirst(s, b)
 }
 
-func BenchmarkSSet_LinearHashTable_AddRandom(b *testing.B) {
+func BenchmarkSSet_Ch05_LinearHashTable_AddRandom(b *testing.B) {
 	s := ch5.NewLinearHashTable()
 	benchmarkSSet_AddRandom(s, b)
 }
 
-func BenchmarkSSet_LinearHashTable_FindFrom1M(b *testing.B) {
+func BenchmarkSSet_Ch05_LinearHashTable_FindFrom1M(b *testing.B) {
 	s := ch5.NewLinearHashTable()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
-func BenchmarkSSet_BinaryTree_AddFirst(b *testing.B) {
+func BenchmarkSSet_Ch06_BinaryTree_AddFirst(b *testing.B) {
 	s := ch6.NewBinaryTree()
 	benchmarkSSet_AddFirst(s, b)
 }
 
-func BenchmarkSSet_BinaryTree_AddRandom(b *testing.B) {
+func BenchmarkSSet_Ch06_BinaryTree_AddRandom(b *testing.B) {
 	s := ch6.NewBinaryTree()
 	benchmarkSSet_AddRandom(s, b)
 }
 
-func BenchmarkSSet_BinaryTree_FindFrom1M(b *testing.B) {
+func BenchmarkSSet_Ch06_BinaryTree_FindFrom1M(b *testing.B) {
 	s := ch6.NewBinaryTree()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
-func BenchmarkSSet_Treap_AddFirst(b *testing.B) {
+func BenchmarkSSet_Ch07_Treap_AddFirst(b *testing.B) {
 	s := ch7.NewTreap()
 	benchmarkSSet_AddFirst(s, b)
 }
 
-func BenchmarkSSet_Treap_AddRandom(b *testing.B) {
+func BenchmarkSSet_Ch07_Treap_AddRandom(b *testing.B) {
 	s := ch7.NewTreap()
 	benchmarkSSet_AddRandom(s, b)
 }
 
-func BenchmarkSSet_Treap_FindFrom1M(b *testing.B) {
+func BenchmarkSSet_Ch07_Treap_FindFrom1M(b *testing.B) {
 	s := ch7.NewTreap()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
-func BenchmarkSSet_ScapegoatTree_AddFirst(b *testing.B) {
+func BenchmarkSSet_Ch08_ScapegoatTree_AddFirst(b *testing.B) {
 	s := ch8.NewScapegoatTree()
 	benchmarkSSet_AddFirst(s, b)
 }
 
-func BenchmarkSSet_ScapegoatTree_AddRandom(b *testing.B) {
+func BenchmarkSSet_Ch08_ScapegoatTree_AddRandom(b *testing.B) {
 	s := ch8.NewScapegoatTree()
 	benchmarkSSet_AddRandom(s, b)
 }
 
-func BenchmarkSSet_ScapegoatTree_FindFrom1M(b *testing.B) {
+func BenchmarkSSet_Ch08_ScapegoatTree_FindFrom1M(b *testing.B) {
 	s := ch8.NewScapegoatTree()
 	benchmarkSSet_FindFrom1M(s, b)
 }

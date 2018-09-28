@@ -68,36 +68,36 @@
 goos: darwin
 goarch: amd64
 pkg: github.com/tesujiro/OpenDataStructuresGo
-BenchmarkList_ArrayStack_AddFirst-4       	  200000	    157613 ns/op	      49 B/op	       1 allocs/op
-BenchmarkList_ArrayStack_AddLast-4        	20000000	       156 ns/op	      61 B/op	       1 allocs/op
-BenchmarkList_ArrayStack_AddRandom-4      	  300000	    138063 ns/op	      63 B/op	       1 allocs/op
-BenchmarkList_ArrayDeque_AddFirst-4       	10000000	       157 ns/op	      61 B/op	       1 allocs/op
-BenchmarkList_ArrayDeque_AddLast-4        	10000000	       187 ns/op	      61 B/op	       1 allocs/op
-BenchmarkList_ArrayDeque_AddRandom-4      	   50000	    140180 ns/op	      49 B/op	       1 allocs/op
-BenchmarkList_DLList_AddFirst-4           	10000000	       127 ns/op	      40 B/op	       1 allocs/op
-BenchmarkList_DLList_AddLast-4            	10000000	       115 ns/op	      40 B/op	       1 allocs/op
-BenchmarkList_DLList_AddRandom-4          	  200000	   1076100 ns/op	      40 B/op	       1 allocs/op
-BenchmarkList_SEList_AddFirst-4           	 2000000	       744 ns/op	     271 B/op	       8 allocs/op
-BenchmarkList_SEList_AddLast-4            	10000000	       135 ns/op	      56 B/op	       1 allocs/op
-BenchmarkList_SEList_AddRandom-4          	 1000000	     79783 ns/op	     269 B/op	       8 allocs/op
-BenchmarkList_SkiplistList_AddFirst-4    	 3000000	       370 ns/op	     122 B/op	       4 allocs/op
-BenchmarkList_SkiplistList_AddLast-4     	 5000000	       501 ns/op	     122 B/op	       4 allocs/op
-BenchmarkList_SkiplistList_AddRandom-4   	 1000000	      2294 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_Ch02_ArrayStack_AddFirst-4       	  200000	    157613 ns/op	      49 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayStack_AddLast-4        	20000000	       156 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayStack_AddRandom-4      	  300000	    138063 ns/op	      63 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayDeque_AddFirst-4       	10000000	       157 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayDeque_AddLast-4        	10000000	       187 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayDeque_AddRandom-4      	   50000	    140180 ns/op	      49 B/op	       1 allocs/op
+BenchmarkList_Ch03_DLList_AddFirst-4           	10000000	       127 ns/op	      40 B/op	       1 allocs/op
+BenchmarkList_Ch03_DLList_AddLast-4            	10000000	       115 ns/op	      40 B/op	       1 allocs/op
+BenchmarkList_Ch03_DLList_AddRandom-4          	  200000	   1076100 ns/op	      40 B/op	       1 allocs/op
+BenchmarkList_Ch03_SEList_AddFirst-4           	 2000000	       744 ns/op	     271 B/op	       8 allocs/op
+BenchmarkList_Ch03_SEList_AddLast-4            	10000000	       135 ns/op	      56 B/op	       1 allocs/op
+BenchmarkList_Ch03_SEList_AddRandom-4          	 1000000	     79783 ns/op	     269 B/op	       8 allocs/op
+BenchmarkList_Ch04_SkiplistList_AddFirst-4    	 3000000	       370 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_Ch04_SkiplistList_AddLast-4     	 5000000	       501 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_Ch04_SkiplistList_AddRandom-4   	 1000000	      2294 ns/op	     122 B/op	       4 allocs/op
 
-BenchmarkSSet_SkiplistSSet_AddFirst-4     	 2000000	       768 ns/op	     250 B/op	       4 allocs/op
-BenchmarkSSet_SkiplistSSet_AddRandom-4    	 1000000	      3455 ns/op	     227 B/op	       4 allocs/op
-BenchmarkSSet_SkiplistSSet_FindFrom1M-4   	  500000	      3100 ns/op	       7 B/op	       0 allocs/op
-BenchmarkSSet_ChainedHashTable_AddFirst-4     	  500000	      2761 ns/op	     624 B/op	      18 allocs/op
-BenchmarkSSet_ChainedHashTable_AddRandom-4    	  500000	      2496 ns/op	     617 B/op	      18 allocs/op
-BenchmarkSSet_ChainedHashTable_FindFrom1M-4   	 2000000	       790 ns/op	       8 B/op	       1 allocs/op
-BenchmarkSSet_LinearHashTable_AddFirst-4     	 5000000	       460 ns/op	     122 B/op	       1 allocs/op
-BenchmarkSSet_LinearHashTable_AddRandom-4    	 5000000	       558 ns/op	     122 B/op	       1 allocs/op
-BenchmarkSSet_LinearHashTable_FindFrom1M-4   	 5000000	       332 ns/op	       7 B/op	       0 allocs/op
-BenchmarkSSet_BinaryTree_AddFirst-4       	  100000	    231349 ns/op	      56 B/op	       2 allocs/op
-BenchmarkSSet_BinaryTree_AddRandom-4      	 1000000	      1298 ns/op	      56 B/op	       2 allocs/op
-BenchmarkSSet_BinaryTree_FindFrom1M-4     	 1000000	      1325 ns/op	       7 B/op	       0 allocs/op
-BenchmarkSSet_Treap_AddFirst-4            	 5000000	       246 ns/op	      56 B/op	       2 allocs/op
-BenchmarkSSet_Treap_AddRandom-4           	 1000000	      1839 ns/op	      56 B/op	       2 allocs/op
-BenchmarkSSet_Treap_FindFrom1M-4          	 1000000	      1912 ns/op	       7 B/op	       0 allocs/op
+BenchmarkSSet_Ch04_SkiplistSSet_AddFirst-4     	 2000000	       768 ns/op	     250 B/op	       4 allocs/op
+BenchmarkSSet_Ch04_SkiplistSSet_AddRandom-4    	 1000000	      3455 ns/op	     227 B/op	       4 allocs/op
+BenchmarkSSet_Ch04_SkiplistSSet_FindFrom1M-4   	  500000	      3100 ns/op	       7 B/op	       0 allocs/op
+BenchmarkSSet_Ch05_ChainedHashTable_AddFirst-4    500000	      2761 ns/op	     624 B/op	      18 allocs/op
+BenchmarkSSet_Ch05_ChainedHashTable_AddRandom-4   500000	      2496 ns/op	     617 B/op	      18 allocs/op
+BenchmarkSSet_Ch05_ChainedHashTable_FindFrom1M-4 2000000	       790 ns/op	       8 B/op	       1 allocs/op
+BenchmarkSSet_Ch05_LinearHashTable_AddFirst-4    5000000	       460 ns/op	     122 B/op	       1 allocs/op
+BenchmarkSSet_Ch05_LinearHashTable_AddRandom-4   5000000	       558 ns/op	     122 B/op	       1 allocs/op
+BenchmarkSSet_Ch05_LinearHashTable_FindFrom1M-4  5000000	       332 ns/op	       7 B/op	       0 allocs/op
+BenchmarkSSet_Ch06_BinaryTree_AddFirst-4       	  100000	    231349 ns/op	      56 B/op	       2 allocs/op
+BenchmarkSSet_Ch06_BinaryTree_AddRandom-4      	 1000000	      1298 ns/op	      56 B/op	       2 allocs/op
+BenchmarkSSet_Ch06_BinaryTree_FindFrom1M-4     	 1000000	      1325 ns/op	       7 B/op	       0 allocs/op
+BenchmarkSSet_Ch07_Treap_AddFirst-4            	 5000000	       246 ns/op	      56 B/op	       2 allocs/op
+BenchmarkSSet_Ch07_Treap_AddRandom-4           	 1000000	      1839 ns/op	      56 B/op	       2 allocs/op
+BenchmarkSSet_Ch07_Treap_FindFrom1M-4          	 1000000	      1912 ns/op	       7 B/op	       0 allocs/op
 
 ```
