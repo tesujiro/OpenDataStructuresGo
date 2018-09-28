@@ -63,6 +63,11 @@ func TestChainedHashTable(t *testing.T) {
 	testSSet(s, t)
 }
 
+func TestLinearHashTable(t *testing.T) {
+	s := ch5.NewLinearHashTable()
+	testSSet(s, t)
+}
+
 func TestBinaryTree(t *testing.T) {
 	s := ch6.NewBinaryTree()
 	testSSet(s, t)
@@ -266,6 +271,21 @@ func BenchmarkSSet_ChainedHashTable_AddRandom(b *testing.B) {
 
 func BenchmarkSSet_ChainedHashTable_FindFrom1M(b *testing.B) {
 	s := ch5.NewChainedHashTable()
+	benchmarkSSet_FindFrom1M(s, b)
+}
+
+func BenchmarkSSet_LinearHashTable_AddFirst(b *testing.B) {
+	s := ch5.NewLinearHashTable()
+	benchmarkSSet_AddFirst(s, b)
+}
+
+func BenchmarkSSet_LinearHashTable_AddRandom(b *testing.B) {
+	s := ch5.NewLinearHashTable()
+	benchmarkSSet_AddRandom(s, b)
+}
+
+func BenchmarkSSet_LinearHashTable_FindFrom1M(b *testing.B) {
+	s := ch5.NewLinearHashTable()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 

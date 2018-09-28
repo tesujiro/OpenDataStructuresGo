@@ -38,41 +38,44 @@ func (e1 element) Compare(e2 interface{}) int {
 
 func main() {
 
-	fmt.Println("ch2/ArrayStack")
+	fmt.Println("\nch2/ArrayStack")
 	checkList(ch2.NewArrayStack())
 
-	fmt.Println("ch2/ArrayQueue")
+	fmt.Println("\nch2/ArrayQueue")
 	checkQueue(ch2.NewArrayQueue())
 
-	fmt.Println("ch2/ArrayDeque")
+	fmt.Println("\nch2/ArrayDeque")
 	checkList(ch2.NewArrayDeque())
 
-	fmt.Println("ch3/SLList")
+	fmt.Println("\nch3/SLList")
 	checkStack(ch3.NewSLList())
 	checkQueue(ch3.NewSLList())
 
-	fmt.Println("ch3/DLList")
+	fmt.Println("\nch3/DLList")
 	checkList(ch3.NewDLList())
 
-	fmt.Println("ch3/SEList")
+	fmt.Println("\nch3/SEList")
 	checkList(ch3.NewSEList())
 
-	fmt.Println("ch4/SkiplistSSet")
+	fmt.Println("\nch4/SkiplistSSet")
 	checkSSet(ch4.NewSkiplistSSet())
 
-	fmt.Println("ch4/SkiplistList")
+	fmt.Println("\nch4/SkiplistList")
 	checkList(ch4.NewSkiplistList())
 
-	fmt.Println("ch5/ChainedHashTable")
+	fmt.Println("\nch5/ChainedHashTable")
 	checkSSet(ch5.NewChainedHashTable())
 
-	fmt.Println("ch6/BinaryTree")
+	fmt.Println("\nch5/LinearHashTable")
+	checkSSet(ch5.NewLinearHashTable())
+
+	fmt.Println("\nch6/BinaryTree")
 	checkSSet(ch6.NewBinaryTree())
 
-	fmt.Println("ch7/Treap")
+	fmt.Println("\nch7/Treap")
 	checkSSet(ch7.NewTreap())
 
-	fmt.Println("ch8/ScapegoatTree")
+	fmt.Println("\nch8/ScapegoatTree")
 	checkSSet(ch8.NewScapegoatTree())
 
 }

@@ -44,6 +44,7 @@
  5.1 ChainedHashTable: Hashing with Chaining  
   -> Done  
  5.2 LinearHashTable: Linear Probing  
+  -> Done  
 
 6. Binary Trees  
  6.2 BinarySearchTree: An Unbalanced Binary Search Tree  
@@ -89,6 +90,9 @@ BenchmarkSSet_SkiplistSSet_FindFrom1M-4   	  500000	      3100 ns/op	       7 B/
 BenchmarkSSet_ChainedHashTable_AddFirst-4     	  500000	      2761 ns/op	     624 B/op	      18 allocs/op
 BenchmarkSSet_ChainedHashTable_AddRandom-4    	  500000	      2496 ns/op	     617 B/op	      18 allocs/op
 BenchmarkSSet_ChainedHashTable_FindFrom1M-4   	 2000000	       790 ns/op	       8 B/op	       1 allocs/op
+BenchmarkSSet_LinearHashTable_AddFirst-4     	 5000000	       460 ns/op	     122 B/op	       1 allocs/op
+BenchmarkSSet_LinearHashTable_AddRandom-4    	 5000000	       558 ns/op	     122 B/op	       1 allocs/op
+BenchmarkSSet_LinearHashTable_FindFrom1M-4   	 5000000	       332 ns/op	       7 B/op	       0 allocs/op
 BenchmarkSSet_BinaryTree_AddFirst-4       	  100000	    231349 ns/op	      56 B/op	       2 allocs/op
 BenchmarkSSet_BinaryTree_AddRandom-4      	 1000000	      1298 ns/op	      56 B/op	       2 allocs/op
 BenchmarkSSet_BinaryTree_FindFrom1M-4     	 1000000	      1325 ns/op	       7 B/op	       0 allocs/op

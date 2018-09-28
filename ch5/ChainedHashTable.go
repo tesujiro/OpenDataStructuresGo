@@ -14,7 +14,7 @@ type ChainedHashTable struct {
 	n int    // number of element
 	d uint32 // bit size of Hashtable
 	w uint32 // bit size of int
-	z uint   //random number
+	z uint   // random number
 }
 
 const initSize = 8
