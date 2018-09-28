@@ -19,6 +19,10 @@ func (e1 element) Compare(e2 ch1.Comparable) int {
 	return int(e1 - e2.(element))
 }
 
+func (e1 element) HashCode() uint {
+	return uint(e1)
+}
+
 /*
 func (e1 element) Compare(e2 interface{}) int {
 	switch e2.(type) {
@@ -60,7 +64,7 @@ func main() {
 	checkList(ch4.NewSkiplistList())
 
 	fmt.Println("ch5/ChainedHashTable")
-	checkUSet(ch5.NewChainedHashTable())
+	checkSSet(ch5.NewChainedHashTable())
 
 	fmt.Println("ch6/BinaryTree")
 	checkSSet(ch6.NewBinaryTree())
@@ -144,7 +148,7 @@ func checkUSet(s ch1.USet) {
 	s.Print()
 	s.Add(10)
 	s.Print()
-	for i := 20; i < 200; i += 10 {
+	for i := 200; i < 2000; i += 100 {
 		if !s.Add(i) {
 			fmt.Println("Add ERROR! i:", i)
 		}
@@ -164,10 +168,9 @@ func checkSSet(s ch1.SSet) {
 	s.Print()
 	s.Add(element(10))
 	s.Print()
-	s.Add(element(20))
-	s.Add(element(30))
-	s.Add(element(40))
-	s.Add(element(50))
+	for i := 20; i <= 200; i += 10 {
+		s.Add(element(i))
+	}
 	s.Print()
 	fmt.Println("Size:", s.Size())
 	fmt.Printf("Find(element(20))=%v\n", s.Find(element(20)))

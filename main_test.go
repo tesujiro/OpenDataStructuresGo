@@ -12,6 +12,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
+	"github.com/tesujiro/OpenDataStructuresGo/ch5"
 	"github.com/tesujiro/OpenDataStructuresGo/ch6"
 	"github.com/tesujiro/OpenDataStructuresGo/ch7"
 	"github.com/tesujiro/OpenDataStructuresGo/ch8"
@@ -55,6 +56,11 @@ func TestSkiplistSSet(t *testing.T) {
 func TestSkiplistList(t *testing.T) {
 	s := ch4.NewSkiplistList()
 	testList(s, t)
+}
+
+func TestChainedHashTable(t *testing.T) {
+	s := ch5.NewChainedHashTable()
+	testSSet(s, t)
 }
 
 func TestBinaryTree(t *testing.T) {
@@ -248,6 +254,21 @@ func BenchmarkSSet_SkiplistSSet_FindFrom1M(b *testing.B) {
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
+func BenchmarkSSet_ChainedHashTable_AddFirst(b *testing.B) {
+	s := ch5.NewChainedHashTable()
+	benchmarkSSet_AddFirst(s, b)
+}
+
+func BenchmarkSSet_ChainedHashTable_AddRandom(b *testing.B) {
+	s := ch5.NewChainedHashTable()
+	benchmarkSSet_AddRandom(s, b)
+}
+
+func BenchmarkSSet_ChainedHashTable_FindFrom1M(b *testing.B) {
+	s := ch5.NewChainedHashTable()
+	benchmarkSSet_FindFrom1M(s, b)
+}
+
 func BenchmarkSSet_BinaryTree_AddFirst(b *testing.B) {
 	s := ch6.NewBinaryTree()
 	benchmarkSSet_AddFirst(s, b)
@@ -337,7 +358,7 @@ func benchmarkSSet_FindFrom1M(s ch1.SSet, b *testing.B) {
 	for i := 0; i < n; i++ {
 		s.Add(element(rand.Intn(n)))
 		if i%(n/10) == 0 {
-			fmt.Printf("%v/%v Added\n", i, n)
+			//fmt.Printf("%v/%v Added\n", i, n)
 		}
 	}
 	//fmt.Println("Size:", s.Size())

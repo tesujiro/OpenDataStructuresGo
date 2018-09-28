@@ -2,6 +2,8 @@ package ch5
 
 import (
 	"fmt"
+	"math/rand"
+	"strconv"
 
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
@@ -9,8 +11,10 @@ import (
 
 type ChainedHashTable struct {
 	t []ch1.List
-	n int
-	d uint32 //widht bit
+	n int    // number of element
+	d uint32 // bit size of Hashtable
+	w uint32 // bit size of int
+	z uint   //random number
 }
 
 const initSize = 8
@@ -29,6 +33,8 @@ func NewChainedHashTable() *ChainedHashTable {
 		t: t,
 		n: 0,
 		d: initWidth,
+		w: strconv.IntSize,
+		z: uint(rand.Int()) * 98767,
 	}
 }
 
@@ -37,12 +43,12 @@ func (ht *ChainedHashTable) cap() int {
 }
 
 func (ht *ChainedHashTable) Size() int {
-	return ht.n //TODO: sum
+	return ht.n // number of element
 }
 
 func (ht *ChainedHashTable) GetAll() []interface{} {
 	slice := []interface{}{}
-	for i := 0; i < ht.n; i++ {
+	for i := 0; i < ht.cap(); i++ {
 		for j := 0; j < ht.t[i].Size(); j++ {
 			slice = append(slice, ht.t[i].Get(j))
 		}
@@ -55,7 +61,6 @@ func (ht *ChainedHashTable) Print() {
 }
 
 func (ht *ChainedHashTable) resize() {
-	//fmt.Println("resize ht.n=", ht.n)
 	var new []ch1.List
 	if ht.n > 1 {
 		new = make([]ch1.List, ht.n*2)
@@ -64,17 +69,19 @@ func (ht *ChainedHashTable) resize() {
 		new = make([]ch1.List, 1)
 		ht.d = 1
 	}
-	for i := 0; i < ht.n; i++ {
-		new[i] = ht.t[i]
-	}
-	for i := ht.n; i < len(new); i++ {
-		//fmt.Println("add NewList() i:", i)
+	for i := 0; i < len(new); i++ {
 		new[i] = newList()
+	}
+	for i := 0; i < ht.n; i++ {
+		for j := 0; j < ht.t[i].Size(); j++ {
+			x := ht.t[i].Get(j).(ch1.Comparable)
+			new[ht.hash(x)].Add(0, x)
+		}
 	}
 	ht.t = new
 }
 
-func (ht *ChainedHashTable) Add(x interface{}) bool {
+func (ht *ChainedHashTable) Add(x ch1.Comparable) bool {
 	if ht.Find(x) != nil {
 		return false
 	}
@@ -86,8 +93,7 @@ func (ht *ChainedHashTable) Add(x interface{}) bool {
 	return true
 }
 
-//func (ht *ChainedHashTable) Remove(x interface{}) interface{} {
-func (ht *ChainedHashTable) Remove(x interface{}) bool {
+func (ht *ChainedHashTable) Remove(x ch1.Comparable) bool {
 	j := ht.hash(x)
 	for i := 0; i < ht.t[j].Size(); i++ {
 		y := ht.t[j].Get(i)
@@ -100,26 +106,17 @@ func (ht *ChainedHashTable) Remove(x interface{}) bool {
 	return false
 }
 
-func (ht *ChainedHashTable) Find(x interface{}) interface{} {
+func (ht *ChainedHashTable) Find(x ch1.Comparable) ch1.Comparable {
 	j := ht.hash(x)
 	for i := 0; i < ht.t[j].Size(); i++ {
 		if x == ht.t[j].Get(i) {
-			return ht.t[j].Get(i)
+			return ht.t[j].Get(i).(ch1.Comparable)
 		}
 	}
 	return nil
 }
 
-const w = 64
-const z = 41025416850000000
-
-func hashCode(x interface{}) int {
-	return x.(int)
-}
-
-func (ht *ChainedHashTable) hash(x interface{}) int {
-	h := (z * hashCode(x)) >> (w - ht.d)
-	fmt.Println("z*hashCode(x)=", z*hashCode(x))
-	fmt.Printf("ht.d=%v hash=%v\n", ht.d, h)
+func (ht *ChainedHashTable) hash(x ch1.Comparable) uint {
+	h := (ht.z * x.HashCode()) >> (ht.w - ht.d)
 	return h
 }

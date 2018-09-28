@@ -37,6 +37,7 @@ type USet interface {
 type Comparable interface {
 	Compare(Comparable) int
 	//Compare(interface{}) int
+	HashCode() uint
 }
 
 type SSet interface {
