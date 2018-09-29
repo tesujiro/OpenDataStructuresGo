@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch13"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
@@ -71,19 +72,21 @@ func TestLinearHashTable(t *testing.T) {
 func TestBinaryTree(t *testing.T) {
 	s := ch6.NewBinaryTree()
 	testSSet(s, t)
-	//testSSet2(s, t)
 }
 
 func TestTreap(t *testing.T) {
 	s := ch7.NewTreap()
 	testSSet(s, t)
-	//testSSet2(s, t)
 }
 
 func TestScapegoatTree(t *testing.T) {
 	s := ch8.NewScapegoatTree()
 	testSSet(s, t)
-	//testSSet2(s, t)
+}
+
+func TestBinaryTrie(t *testing.T) {
+	s := ch13.NewBinaryTrie()
+	testSSet(s, t)
 }
 
 func testList(s ch1.List, t *testing.T) {
@@ -100,14 +103,12 @@ func testList(s ch1.List, t *testing.T) {
 	s.Add(0, 2)
 	s.Add(0, 1)
 	s.Add(0, 0)
-	s.Print()
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{0, 1, 2, 3, 40, 50, 60, 70, 80}) {
 		t.Fatalf("failed Add %#v", s.GetAll())
 	}
 	t.Log("Remove")
 	s.Remove(8)
 	s.Remove(0)
-	s.Print()
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{1, 2, 3, 40, 50, 60, 70}) {
 		t.Fatalf("failed Remove %#v", s.GetAll())
 	}
@@ -123,7 +124,6 @@ func testQueue(q ch1.Queue, t *testing.T) {
 	q.Add(2)
 	q.Add(3)
 	q.Add(4)
-	q.Print()
 	if !reflect.DeepEqual(q.GetAll(), []interface{}{0, 1, 2, 3, 4}) {
 		t.Fatalf("failed init %#v", q.GetAll())
 	}
@@ -334,6 +334,21 @@ func BenchmarkSSet_Ch08_ScapegoatTree_FindFrom1M(b *testing.B) {
 	benchmarkSSet_FindFrom1M(s, b)
 }
 
+func BenchmarkSSet_Ch13_BinaryTrie_AddFirst(b *testing.B) {
+	s := ch13.NewBinaryTrie()
+	benchmarkSSet_AddFirst(s, b)
+}
+
+func BenchmarkSSet_Ch13_BinaryTrie_AddRandom(b *testing.B) {
+	s := ch13.NewBinaryTrie()
+	benchmarkSSet_AddRandom(s, b)
+}
+
+func BenchmarkSSet_Ch13_BinaryTrie_FindFrom1M(b *testing.B) {
+	s := ch13.NewBinaryTrie()
+	benchmarkSSet_FindFrom1M(s, b)
+}
+
 func benchmarkList_AddFirst(s ch1.List, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -375,11 +390,8 @@ func benchmarkSSet_AddRandom(s ch1.SSet, b *testing.B) {
 func benchmarkSSet_FindFrom1M(s ch1.SSet, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
 	n := 1000000
-	for i := 0; i < n; i++ {
+	for s.Size() < n {
 		s.Add(element(rand.Intn(n)))
-		if i%(n/10) == 0 {
-			//fmt.Printf("%v/%v Added\n", i, n)
-		}
 	}
 	//fmt.Println("Size:", s.Size())
 	count := 0

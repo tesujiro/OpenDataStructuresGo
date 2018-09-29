@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch13"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
@@ -77,6 +78,9 @@ func main() {
 
 	fmt.Println("\nch8/ScapegoatTree")
 	checkSSet(ch8.NewScapegoatTree())
+
+	fmt.Println("\nch13/BinaryTrie")
+	checkSSet(ch13.NewBinaryTrie())
 
 }
 
@@ -176,8 +180,11 @@ func checkSSet(s ch1.SSet) {
 	}
 	s.Print()
 	fmt.Println("Size:", s.Size())
-	fmt.Printf("Find(element(20))=%v\n", s.Find(element(20)))
+	fmt.Printf("Find(element(5))=%v\n", s.Find(element(5)))
+	fmt.Printf("Find(element(10))=%v\n", s.Find(element(10)))
+	fmt.Printf("Find(element(120))=%v\n", s.Find(element(120)))
 	fmt.Printf("Find(element(123))=%v\n", s.Find(element(123)))
+	fmt.Printf("Find(element(205))=%v\n", s.Find(element(205)))
 	s.Remove(element(10))
 	s.Print()
 	s.Remove(element(30))
