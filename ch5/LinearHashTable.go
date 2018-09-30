@@ -63,9 +63,10 @@ func (ht *LinearHashTable) hash(x ch1.Comparable) int {
 
 func (ht *LinearHashTable) Find(x ch1.Comparable) ch1.Comparable {
 	i := ht.hash(x)
+	//ht.Print()
 	//fmt.Printf("x=%v hash(x)=%v cap=%v ht.d=%v\n", x, i, ht.cap(), ht.d)
 	for ht.t[i] != nil {
-		if !ht.del[i] && ht.t[i] == x {
+		if !ht.del[i] && ht.t[i].HashCode() == x.HashCode() {
 			//fmt.Printf("Found %v\n", x)
 			return ht.t[i]
 		}
