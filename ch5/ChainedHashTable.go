@@ -17,14 +17,14 @@ type ChainedHashTable struct {
 	z uint   // random number
 }
 
-const initSize = 8
-const initWidth = 3
+const initWidth = 20
 
 func newList() ch1.List {
 	return ch4.NewSkiplistList()
 }
 
 func NewChainedHashTable() *ChainedHashTable {
+	initSize := 2 << (initWidth - 1)
 	t := make([]ch1.List, initSize)
 	for i := 0; i < initSize; i++ {
 		t[i] = newList()
