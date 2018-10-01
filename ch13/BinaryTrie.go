@@ -59,6 +59,7 @@ func (bt *BinaryTrie) GetAll() []interface{} {
 	w := bt.dummy.child[1]
 	// get x till end
 	for w != nil && w != bt.dummy {
+		//s = append(s, w.x.HashCode())
 		s = append(s, w.x)
 		w = w.right()
 	}

@@ -47,6 +47,7 @@ func (ht *LinearHashTable) GetAll() []interface{} {
 		if !ht.del[i] && ht.t[i] != nil {
 			//fmt.Printf("i=%v ht.t[i]=%v\n", i, ht.t[i])
 			slice = append(slice, ht.t[i])
+			//slice = append(slice, ht.t[i].HashCode())
 		}
 	}
 	return slice

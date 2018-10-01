@@ -108,5 +108,8 @@ BenchmarkSSet_Ch07_Treap_FindFrom1M-4   		  500000	      2470 ns/op	       7 B/o
 BenchmarkSSet_Ch13_BinaryTrie_AddFirst-4     	 	 2000000	       753 ns/op	     104 B/op	       3 allocs/op
 BenchmarkSSet_Ch13_BinaryTrie_AddRandom-4    	 	  300000	      7447 ns/op	    2212 B/op	      46 allocs/op
 BenchmarkSSet_Ch13_BinaryTrie_FindFrom1M-4   	 	 2000000	       804 ns/op	       8 B/op	       0 allocs/op
+BenchmarkSSet_Ch13_XFastTrie_AddFirst-4    	 	 1000000	      1815 ns/op	     294 B/op	       6 allocs/op
+BenchmarkSSet_Ch13_XFastTrie_AddRandom-4    		   50000	     47182 ns/op	    7495 B/op	      99 allocs/op
+BenchmarkSSet_Ch13_XFastTrie_FindFrom1M-4   		 1000000	      1880 ns/op	     119 B/op	       7 allocs/op
 
 ```

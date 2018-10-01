@@ -89,6 +89,11 @@ func TestBinaryTrie(t *testing.T) {
 	testSSet(s, t)
 }
 
+func TestXFastTrie(t *testing.T) {
+	s := ch13.NewXFastTrie()
+	testSSet(s, t)
+}
+
 func testList(s ch1.List, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s.GetAll())
@@ -149,7 +154,9 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	s.Add(element(40))
 	slice := s.GetAll()
 	sort.Slice(slice, func(i, j int) bool { return slice[i].(element) < slice[j].(element) })
+	//sort.Slice(slice, func(i, j int) bool { return slice[i].(uint) < slice[j].(uint) })
 	if !reflect.DeepEqual(slice, []interface{}{element(10), element(20), element(30), element(40)}) {
+		//if !reflect.DeepEqual(slice, []interface{}{10, 20, 30, 40}) {
 		t.Fatalf("failed Add %#v", slice)
 	}
 	t.Log("Find")
@@ -346,6 +353,21 @@ func BenchmarkSSet_Ch13_BinaryTrie_AddRandom(b *testing.B) {
 
 func BenchmarkSSet_Ch13_BinaryTrie_FindFrom1M(b *testing.B) {
 	s := ch13.NewBinaryTrie()
+	benchmarkSSet_FindFrom1M(s, b)
+}
+
+func BenchmarkSSet_Ch13_XFastTrie_AddFirst(b *testing.B) {
+	s := ch13.NewXFastTrie()
+	benchmarkSSet_AddFirst(s, b)
+}
+
+func BenchmarkSSet_Ch13_XFastTrie_AddRandom(b *testing.B) {
+	s := ch13.NewXFastTrie()
+	benchmarkSSet_AddRandom(s, b)
+}
+
+func BenchmarkSSet_Ch13_XFastTrie_FindFrom1M(b *testing.B) {
+	s := ch13.NewXFastTrie()
 	benchmarkSSet_FindFrom1M(s, b)
 }
 

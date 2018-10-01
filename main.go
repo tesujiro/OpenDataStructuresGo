@@ -82,6 +82,9 @@ func main() {
 	fmt.Println("\nch13/BinaryTrie")
 	checkSSet(ch13.NewBinaryTrie())
 
+	fmt.Println("\nch13/XFastTrie")
+	checkSSet(ch13.NewXFastTrie())
+
 }
 
 func checkList(s ch1.List) {
