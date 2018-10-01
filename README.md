@@ -58,6 +58,14 @@
 9. Red-Black Trees  
 10. Heaps  
 11. Sorting Algorithms  
+ 11.1 Comparison-Based Sorting  
+  11.1.1 Merge-Sort  
+   -> Done  
+  11.1.2 Quicksort  
+  11.1.3 Heap-sort  
+
+ 11.2 Counting Sort and Radix Sort  
+
 12. Graphs  
 
 13. Data Structures for Integers  

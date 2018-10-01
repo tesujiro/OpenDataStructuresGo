@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch11"
 	"github.com/tesujiro/OpenDataStructuresGo/ch13"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
@@ -82,6 +83,10 @@ func TestTreap(t *testing.T) {
 func TestScapegoatTree(t *testing.T) {
 	s := ch8.NewScapegoatTree()
 	testSSet(s, t)
+}
+
+func TestMergeSort(t *testing.T) {
+	testSort(ch11.MergeSort, t)
 }
 
 func TestBinaryTrie(t *testing.T) {
@@ -173,6 +178,20 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	s.Remove(element(20))
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed Remove %#v", s.GetAll())
+	}
+}
+
+func testSort(f sortfunc, t *testing.T) {
+	s := []ch1.Comparable{}
+	for i := 40; i > 0; i -= 10 {
+		s = append(s, element(i))
+	}
+	//fmt.Printf("s=%v\n", s)
+	f(s)
+	//fmt.Printf("s=%v\n", s)
+	if !reflect.DeepEqual(s, []ch1.Comparable{element(10), element(20), element(30), element(40)}) {
+		//if !reflect.DeepEqual(slice, []interface{}{10, 20, 30, 40}) {
+		t.Fatalf("failed Sort %#v", s)
 	}
 }
 

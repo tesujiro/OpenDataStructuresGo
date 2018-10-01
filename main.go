@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch11"
 	"github.com/tesujiro/OpenDataStructuresGo/ch13"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
 	"github.com/tesujiro/OpenDataStructuresGo/ch3"
@@ -23,6 +24,8 @@ func (e1 element) Compare(e2 ch1.Comparable) int {
 func (e1 element) HashCode() uint {
 	return uint(e1)
 }
+
+type sortfunc func([]ch1.Comparable)
 
 /*
 func (e1 element) Compare(e2 interface{}) int {
@@ -85,6 +88,8 @@ func main() {
 	fmt.Println("\nch13/XFastTrie")
 	checkSSet(ch13.NewXFastTrie())
 
+	fmt.Println("\nch11/MergeSort")
+	checkSort(ch11.MergeSort)
 }
 
 func checkList(s ch1.List) {
@@ -174,6 +179,7 @@ func checkUSet(s ch1.USet) {
 	s.Remove(20)
 	s.Print()
 }
+
 func checkSSet(s ch1.SSet) {
 	s.Print()
 	s.Add(element(10))
@@ -194,4 +200,14 @@ func checkSSet(s ch1.SSet) {
 	s.Print()
 	s.Remove(element(20))
 	s.Print()
+}
+
+func checkSort(f sortfunc) {
+	s := []ch1.Comparable{}
+	for i := 300; i > 0; i -= 10 {
+		s = append(s, element(i))
+	}
+	fmt.Printf("s=%v\n", s)
+	f(s)
+	fmt.Printf("s=%v\n", s)
 }
