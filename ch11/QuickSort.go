@@ -18,6 +18,8 @@ func quickSort(a []ch1.Comparable, i, n int) {
 	p := i - 1
 	j := i
 	q := i + n
+	// a[i..p]<x,  a[p+1..q-1]==x, a[q..i+n-1]>x
+
 	for j < q {
 		comp := a[j].Compare(x)
 		switch {
