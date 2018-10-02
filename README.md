@@ -62,6 +62,7 @@
   11.1.1 Merge-Sort  
    -> Done  
   11.1.2 Quicksort  
+   -> Done  
   11.1.3 Heap-sort  
 
  11.2 Counting Sort and Radix Sort  
@@ -120,8 +121,11 @@ BenchmarkSSet_Ch13_XFastTrie_AddFirst-4    	 	 1000000	      1815 ns/op	     294
 BenchmarkSSet_Ch13_XFastTrie_AddRandom-4    		   50000	     47182 ns/op	    7495 B/op	      99 allocs/op
 BenchmarkSSet_Ch13_XFastTrie_FindFrom1M-4   		 1000000	      1880 ns/op	     119 B/op	       7 allocs/op
 
-BenchmarkSort_Ch11_MergeSort_NoSort-4    	 3000000	       535 ns/op	     352 B/op	       1 allocs/op
-BenchmarkSort_Ch11_MergeSort_Reverse-4   	 3000000	       520 ns/op	     352 B/op	       1 allocs/op
-BenchmarkSort_Ch11_MergeSort_Random-4    	 2000000	       859 ns/op	     342 B/op	       1 allocs/op
+BenchmarkSort_Ch11_MergeSort_NoSort-4    	 3000000	       558 ns/op	     352 B/op	       1 allocs/op
+BenchmarkSort_Ch11_MergeSort_Reverse-4   	 3000000	       530 ns/op	     352 B/op	       1 allocs/op
+BenchmarkSort_Ch11_MergeSort_Random-4    	 2000000	       844 ns/op	     342 B/op	       1 allocs/op
+BenchmarkSort_Ch11_QuickSort_NoSort-4    	 5000000	       340 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSort_Ch11_QuickSort_Reverse-4   	 5000000	       328 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSort_Ch11_QuickSort_Random-4    	 3000000	       662 ns/op	       0 B/op	       0 allocs/op
 
 ```

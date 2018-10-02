@@ -21,10 +21,21 @@ func BenchmarkSort_Ch11_MergeSort_Random(b *testing.B) {
 	benchmarkSort_Random(ch11.MergeSort, b)
 }
 
+func BenchmarkSort_Ch11_QuickSort_NoSort(b *testing.B) {
+	benchmarkSort_NoSort(ch11.QuickSort, b)
+}
+
+func BenchmarkSort_Ch11_QuickSort_Reverse(b *testing.B) {
+	benchmarkSort_Reverse(ch11.QuickSort, b)
+}
+
+func BenchmarkSort_Ch11_QuickSort_Random(b *testing.B) {
+	benchmarkSort_Random(ch11.QuickSort, b)
+}
+
 func benchmarkSort_NoSort(f sortFunc, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
 	s := []ch1.Comparable{}
-	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s = append(s, element(i))
 	}

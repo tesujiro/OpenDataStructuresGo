@@ -87,6 +87,10 @@ func TestMergeSort(t *testing.T) {
 	testSort(ch11.MergeSort, t)
 }
 
+func TestQuickSort(t *testing.T) {
+	testSort(ch11.QuickSort, t)
+}
+
 func TestBinaryTrie(t *testing.T) {
 	s := ch13.NewBinaryTrie()
 	testSSet(s, t)

@@ -90,6 +90,9 @@ func main() {
 
 	fmt.Println("\nch11/MergeSort")
 	checkSort(ch11.MergeSort)
+
+	fmt.Println("\nch11/QuickSort")
+	checkSort(ch11.QuickSort)
 }
 
 func checkList(s ch1.List) {
