@@ -13,7 +13,7 @@ func BenchmarkSort(b *testing.B) {
 	benchmarkSort_Reverse(ch11.MergeSort, b)
 }
 
-func benchmarkSort_Reverse(f sortfunc, b *testing.B) {
+func benchmarkSort_Reverse(f sortFunc, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
 	s := []ch1.Comparable{}
 	b.ResetTimer()
