@@ -120,4 +120,8 @@ BenchmarkSSet_Ch13_XFastTrie_AddFirst-4    	 	 1000000	      1815 ns/op	     294
 BenchmarkSSet_Ch13_XFastTrie_AddRandom-4    		   50000	     47182 ns/op	    7495 B/op	      99 allocs/op
 BenchmarkSSet_Ch13_XFastTrie_FindFrom1M-4   		 1000000	      1880 ns/op	     119 B/op	       7 allocs/op
 
+BenchmarkSort_Ch11_MergeSort_NoSort-4    	 3000000	       535 ns/op	     352 B/op	       1 allocs/op
+BenchmarkSort_Ch11_MergeSort_Reverse-4   	 3000000	       520 ns/op	     352 B/op	       1 allocs/op
+BenchmarkSort_Ch11_MergeSort_Random-4    	 2000000	       859 ns/op	     342 B/op	       1 allocs/op
+
 ```
