@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
 	"github.com/tesujiro/OpenDataStructuresGo/ch11"
@@ -93,6 +94,16 @@ func main() {
 
 	fmt.Println("\nch11/QuickSort")
 	checkSort(ch11.QuickSort)
+
+	fmt.Println("\nch11/CountingSort")
+	k := 10
+	s := []int{}
+	for i := 0; i < 100; i++ {
+		s = append(s, rand.Intn(k))
+	}
+	fmt.Printf("s=%v\n", s)
+	ch11.CountingSort(&s, k)
+	fmt.Printf("s=%v\n", s)
 }
 
 func checkList(s ch1.List) {
