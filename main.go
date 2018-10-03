@@ -27,6 +27,7 @@ func (e1 element) HashCode() uint {
 }
 
 type sortFunc func([]ch1.Comparable)
+type csortFunc func(*[]int, int)
 
 /*
 func (e1 element) Compare(e2 interface{}) int {
@@ -96,14 +97,10 @@ func main() {
 	checkSort(ch11.QuickSort)
 
 	fmt.Println("\nch11/CountingSort")
-	k := 10
-	s := []int{}
-	for i := 0; i < 100; i++ {
-		s = append(s, rand.Intn(k))
-	}
-	fmt.Printf("s=%v\n", s)
-	ch11.CountingSort(&s, k)
-	fmt.Printf("s=%v\n", s)
+	checkCSort(ch11.CountingSort)
+
+	fmt.Println("\nch11/RadixSort")
+	checkCSort(ch11.RadixSort)
 }
 
 func checkList(s ch1.List) {
@@ -223,5 +220,16 @@ func checkSort(f sortFunc) {
 	}
 	fmt.Printf("s=%v\n", s)
 	f(s)
+	fmt.Printf("s=%v\n", s)
+}
+
+func checkCSort(f csortFunc) {
+	k := 10
+	s := []int{}
+	for i := 0; i < 100; i++ {
+		s = append(s, rand.Intn(k))
+	}
+	fmt.Printf("s=%v\n", s)
+	f(&s, k)
 	fmt.Printf("s=%v\n", s)
 }
