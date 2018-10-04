@@ -64,13 +64,11 @@
   11.1.2 Quicksort  
    -> Done  
   11.1.3 Heap-sort  
-
  11.2 Counting Sort and Radix Sort  
   11.2.1 Counting Sort  
    -> Done  
   11.2.2 Radix-Sort  
    -> Done  
-
 12. Graphs  
 
 13. Data Structures for Integers  
