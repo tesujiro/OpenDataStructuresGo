@@ -66,6 +66,10 @@
   11.1.3 Heap-sort  
 
  11.2 Counting Sort and Radix Sort  
+  11.2.1 Counting Sort  
+   -> Done  
+  11.2.2 Radix-Sort  
+   -> Done  
 
 12. Graphs  
 
@@ -127,5 +131,11 @@ BenchmarkSort_Ch11_MergeSort_Random-4    	 2000000	       844 ns/op	     342 B/o
 BenchmarkSort_Ch11_QuickSort_NoSort-4    	 5000000	       340 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSort_Ch11_QuickSort_Reverse-4   	 5000000	       328 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSort_Ch11_QuickSort_Random-4    	 3000000	       662 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_CountingSort_NoSort-4    	50000000	        20.4 ns/op	      29 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_CountingSort_Reverse-4   	100000000	        11.2 ns/op	      18 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_CountingSort_Random-4    	10000000	       181 ns/op	     115 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_RadixSort_NoSort-4       	30000000	        47.3 ns/op	      32 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_RadixSort_Reverse-4      	30000000	        46.4 ns/op	      32 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_RadixSort_Random-4       	50000000	        27.1 ns/op	      32 B/op	       0 allocs/op
 
 ```

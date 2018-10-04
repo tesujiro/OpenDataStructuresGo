@@ -26,9 +26,6 @@ func (e1 element) HashCode() uint {
 	return uint(e1)
 }
 
-type sortFunc func([]ch1.Comparable)
-type csortFunc func(*[]int, int)
-
 /*
 func (e1 element) Compare(e2 interface{}) int {
 	switch e2.(type) {
@@ -213,7 +210,7 @@ func checkSSet(s ch1.SSet) {
 	s.Print()
 }
 
-func checkSort(f sortFunc) {
+func checkSort(f ch1.SortFunc) {
 	s := []ch1.Comparable{}
 	for i := 300; i > 0; i -= 10 {
 		s = append(s, element(i))
@@ -223,8 +220,8 @@ func checkSort(f sortFunc) {
 	fmt.Printf("s=%v\n", s)
 }
 
-func checkCSort(f csortFunc) {
-	k := 10
+func checkCSort(f ch1.CountingSortFunc) {
+	k := 256 * 256
 	s := []int{}
 	for i := 0; i < 100; i++ {
 		s = append(s, rand.Intn(k))

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"reflect"
 	"sort"
 	"testing"
@@ -89,6 +90,14 @@ func TestMergeSort(t *testing.T) {
 
 func TestQuickSort(t *testing.T) {
 	testSort(ch11.QuickSort, t)
+}
+
+func TestCountingSort(t *testing.T) {
+	testCSort(ch11.CountingSort, t)
+}
+
+func TestRadixSort(t *testing.T) {
+	testCSort(ch11.RadixSort, t)
 }
 
 func TestBinaryTrie(t *testing.T) {
@@ -183,7 +192,7 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	}
 }
 
-func testSort(f sortFunc, t *testing.T) {
+func testSort(f ch1.SortFunc, t *testing.T) {
 	s := []ch1.Comparable{}
 	for i := 40; i > 0; i -= 10 {
 		s = append(s, element(i))
@@ -194,5 +203,20 @@ func testSort(f sortFunc, t *testing.T) {
 	if !reflect.DeepEqual(s, []ch1.Comparable{element(10), element(20), element(30), element(40)}) {
 		//if !reflect.DeepEqual(slice, []interface{}{10, 20, 30, 40}) {
 		t.Fatalf("failed Sort %#v", s)
+	}
+}
+
+func testCSort(f ch1.CountingSortFunc, t *testing.T) {
+	k := 256 * 256
+	s := []int{}
+	rand.Seed(0)
+	for i := 0; i < 10; i++ {
+		s = append(s, rand.Intn(k))
+	}
+	//fmt.Printf("s=%v\n", s)
+	f(&s, k)
+	//fmt.Printf("s=%v\n", s)
+	if !reflect.DeepEqual(s, []int{1042, 6395, 12282, 24569, 29960, 45536, 48426, 54287, 57040, 60549}) {
+		t.Fatalf("failed CountingSort %#v", s)
 	}
 }

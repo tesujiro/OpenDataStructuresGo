@@ -47,3 +47,6 @@ type SSet interface {
 	Remove(x Comparable) bool
 	Find(x Comparable) Comparable
 }
+
+type SortFunc func([]Comparable)
+type CountingSortFunc func(*[]int, int)
