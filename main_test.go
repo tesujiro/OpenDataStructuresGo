@@ -34,6 +34,11 @@ func TestArrayDeque(t *testing.T) {
 	testList(s, t)
 }
 
+func TestDualArrayDeque(t *testing.T) {
+	s := ch2.NewDualArrayDeque()
+	testList(s, t)
+}
+
 func TestSLList(t *testing.T) {
 	s := ch3.NewSLList()
 	testQueue(s, t)

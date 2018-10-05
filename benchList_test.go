@@ -41,6 +41,21 @@ func BenchmarkList_Ch02_ArrayDeque_AddRandom(b *testing.B) {
 	benchmarkList_AddRandom(s, b)
 }
 
+func BenchmarkList_Ch02_DualArrayDeque_AddFirst(b *testing.B) {
+	s := ch2.NewDualArrayDeque()
+	benchmarkList_AddFirst(s, b)
+}
+
+func BenchmarkList_Ch02_DualArrayDeque_AddLast(b *testing.B) {
+	s := ch2.NewDualArrayDeque()
+	benchmarkList_AddLast(s, b)
+}
+
+func BenchmarkList_Ch02_DualArrayDeque_AddRandom(b *testing.B) {
+	s := ch2.NewDualArrayDeque()
+	benchmarkList_AddRandom(s, b)
+}
+
 func BenchmarkList_Ch03_DLList_AddFirst(b *testing.B) {
 	s := ch3.NewDLList()
 	benchmarkList_AddFirst(s, b)

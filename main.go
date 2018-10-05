@@ -55,6 +55,9 @@ func main() {
 	fmt.Println("\nch2/ArrayDeque")
 	checkList(ch2.NewArrayDeque())
 
+	fmt.Println("\nch2/DualArrayDeque")
+	checkList(ch2.NewDualArrayDeque())
+
 	fmt.Println("\nch3/DLList")
 	checkList(ch3.NewDLList())
 
