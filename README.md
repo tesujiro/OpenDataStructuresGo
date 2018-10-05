@@ -23,8 +23,8 @@
   -> Done  
  2.4 ArrayDeque: Fast Deque Operations Using an Array  
   -> Done  
- 2.5  　
- 2.6  　
+ 2.5 DualArrayDeque: Building a Deque from Two Stacks
+ 2.6 RootishArrayStack: A Space-Efficient Array Stack
 
 3. Linked Lists  
  3.1 SLList: A Singly-Linked List  
@@ -55,8 +55,12 @@
   -> Done  
 
 8. Scapegoat Trees  
+  -> Not Complete  
+
 9. Red-Black Trees  
+
 10. Heaps  
+
 11. Sorting Algorithms  
  11.1 Comparison-Based Sorting  
   11.1.1 Merge-Sort  
@@ -69,6 +73,7 @@
    -> Done  
   11.2.2 Radix-Sort  
    -> Done  
+
 12. Graphs  
 
 13. Data Structures for Integers  

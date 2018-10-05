@@ -41,18 +41,19 @@ func (e1 element) Compare(e2 interface{}) int {
 
 func main() {
 
-	fmt.Println("\nch2/ArrayStack")
-	checkList(ch2.NewArrayStack())
-
 	fmt.Println("\nch2/ArrayQueue")
 	checkQueue(ch2.NewArrayQueue())
-
-	fmt.Println("\nch2/ArrayDeque")
-	checkList(ch2.NewArrayDeque())
 
 	fmt.Println("\nch3/SLList")
 	checkStack(ch3.NewSLList())
 	checkQueue(ch3.NewSLList())
+
+	//List
+	fmt.Println("\nch2/ArrayStack")
+	checkList(ch2.NewArrayStack())
+
+	fmt.Println("\nch2/ArrayDeque")
+	checkList(ch2.NewArrayDeque())
 
 	fmt.Println("\nch3/DLList")
 	checkList(ch3.NewDLList())
@@ -60,11 +61,12 @@ func main() {
 	fmt.Println("\nch3/SEList")
 	checkList(ch3.NewSEList())
 
-	fmt.Println("\nch4/SkiplistSSet")
-	checkSSet(ch4.NewSkiplistSSet())
-
 	fmt.Println("\nch4/SkiplistList")
 	checkList(ch4.NewSkiplistList())
+
+	//SSet
+	fmt.Println("\nch4/SkiplistSSet")
+	checkSSet(ch4.NewSkiplistSSet())
 
 	fmt.Println("\nch5/ChainedHashTable")
 	checkSSet(ch5.NewChainedHashTable())
@@ -87,6 +89,7 @@ func main() {
 	fmt.Println("\nch13/XFastTrie")
 	checkSSet(ch13.NewXFastTrie())
 
+	// Sort
 	fmt.Println("\nch11/MergeSort")
 	checkSort(ch11.MergeSort)
 
@@ -109,12 +112,6 @@ func checkList(s ch1.List) {
 	//s.Add(0, 10)
 	s.Add(0, 40)
 	s.Print()
-
-	/*
-		x := s.Remove(0)
-		fmt.Println("Removed:", x)
-		s.Print()
-	*/
 
 	s.Add(2, 50)
 	s.Print()
