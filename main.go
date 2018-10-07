@@ -58,6 +58,9 @@ func main() {
 	fmt.Println("\nch2/DualArrayDeque")
 	checkList(ch2.NewDualArrayDeque())
 
+	fmt.Println("\nch2/RootishArrayStack")
+	checkList(ch2.NewRootishArrayStack())
+
 	fmt.Println("\nch3/DLList")
 	checkList(ch3.NewDLList())
 
@@ -104,6 +107,7 @@ func main() {
 
 	fmt.Println("\nch11/RadixSort")
 	checkCSort(ch11.RadixSort)
+
 }
 
 func checkList(s ch1.List) {

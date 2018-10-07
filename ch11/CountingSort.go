@@ -1,6 +1,5 @@
 package ch11
 
-//func CountingSort(a []ch1.Comparable,k int) {
 func CountingSort(a *[]int, k int) {
 	c := make([]int, k)
 	for i := 0; i < len(*a); i++ {

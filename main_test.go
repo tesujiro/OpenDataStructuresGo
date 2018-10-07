@@ -39,6 +39,11 @@ func TestDualArrayDeque(t *testing.T) {
 	testList(s, t)
 }
 
+func TestRootishArrayStack(t *testing.T) {
+	s := ch2.NewRootishArrayStack()
+	testList(s, t)
+}
+
 func TestSLList(t *testing.T) {
 	s := ch3.NewSLList()
 	testQueue(s, t)

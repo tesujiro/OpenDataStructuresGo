@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-const initSize = 8
+const initSize = 1
 
 type ArrayStack struct {
 	a []interface{}
@@ -36,12 +36,12 @@ func (as *ArrayStack) Print() {
 }
 
 func (as *ArrayStack) Get(i int) interface{} {
-	i = i % as.n
+	//i = i % as.n
 	return as.a[i]
 }
 
 func (as *ArrayStack) Set(i int, v interface{}) interface{} {
-	i = i % as.n
+	//i = i % as.n
 	y := as.a[i]
 	as.a[i] = v
 	return y
@@ -49,7 +49,7 @@ func (as *ArrayStack) Set(i int, v interface{}) interface{} {
 
 func (as *ArrayStack) resize() {
 	var new []interface{}
-	if as.n > 1 {
+	if as.n > 0 {
 		new = make([]interface{}, as.n*2)
 	} else {
 		new = make([]interface{}, 1)
@@ -65,7 +65,9 @@ func (as *ArrayStack) Add(i int, v interface{}) {
 		i = i % (as.n + 1)
 	}
 	if as.n+1 > as.cap() {
+		//fmt.Println("before ArrayStack#resize() as.n=", as.n, " as.cap()=", as.cap())
 		as.resize()
+		//fmt.Println("after  ArrayStack#resize() as.n=", as.n, " as.cap()=", as.cap())
 	}
 	for j := as.n; j > i; j-- {
 		as.a[j] = as.a[j-1]
