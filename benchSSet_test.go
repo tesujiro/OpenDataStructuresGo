@@ -14,124 +14,132 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch8"
 )
 
-func BenchmarkSSet_Ch04_SkiplistSSet_AddFirst(b *testing.B) {
-	s := ch4.NewSkiplistSSet()
-	benchmarkSSet_AddFirst(s, b)
+func Benchmark_Ch04_SkiplistSSet(b *testing.B) {
+	constructor := ch4.NewSkiplistSSet
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddFirst(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddRandom(s, b)
+	})
+	b.Run("FindFrom1M", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_FindFrom1M(s, b)
+	})
 }
 
-func BenchmarkSSet_Ch04_SkiplistSSet_AddRandom(b *testing.B) {
-	s := ch4.NewSkiplistSSet()
-	benchmarkSSet_AddRandom(s, b)
+func BenchmarkSSet_Ch05_ChainedHashTable(b *testing.B) {
+	constructor := ch5.NewChainedHashTable
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddFirst(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddRandom(s, b)
+	})
+	b.Run("FindFrom1M", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_FindFrom1M(s, b)
+	})
 }
 
-func BenchmarkSSet_Ch04_SkiplistSSet_FindFrom1M(b *testing.B) {
-	s := ch4.NewSkiplistSSet()
-	benchmarkSSet_FindFrom1M(s, b)
+func BenchmarkSSet_Ch05_LinearHashTable(b *testing.B) {
+	constructor := ch5.NewLinearHashTable
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddFirst(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddRandom(s, b)
+	})
+	b.Run("FindFrom1M", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_FindFrom1M(s, b)
+	})
 }
 
-func BenchmarkSSet_Ch05_ChainedHashTable_AddFirst(b *testing.B) {
-	s := ch5.NewChainedHashTable()
-	benchmarkSSet_AddFirst(s, b)
-}
-
-func BenchmarkSSet_Ch05_ChainedHashTable_AddRandom(b *testing.B) {
-	s := ch5.NewChainedHashTable()
-	benchmarkSSet_AddRandom(s, b)
-}
-
-func BenchmarkSSet_Ch05_ChainedHashTable_FindFrom1M(b *testing.B) {
-	s := ch5.NewChainedHashTable()
-	benchmarkSSet_FindFrom1M(s, b)
-}
-
-func BenchmarkSSet_Ch05_LinearHashTable_AddFirst(b *testing.B) {
-	s := ch5.NewLinearHashTable()
-	benchmarkSSet_AddFirst(s, b)
-}
-
-func BenchmarkSSet_Ch05_LinearHashTable_AddRandom(b *testing.B) {
-	s := ch5.NewLinearHashTable()
-	benchmarkSSet_AddRandom(s, b)
-}
-
-func BenchmarkSSet_Ch05_LinearHashTable_FindFrom1M(b *testing.B) {
-	s := ch5.NewLinearHashTable()
-	benchmarkSSet_FindFrom1M(s, b)
-}
-
-func BenchmarkSSet_Ch06_BinaryTree_AddFirst(b *testing.B) {
-	s := ch6.NewBinaryTree()
-	benchmarkSSet_AddFirst(s, b)
-}
-
-func BenchmarkSSet_Ch06_BinaryTree_AddRandom(b *testing.B) {
-	s := ch6.NewBinaryTree()
-	benchmarkSSet_AddRandom(s, b)
-}
-
-func BenchmarkSSet_Ch06_BinaryTree_FindFrom1M(b *testing.B) {
-	s := ch6.NewBinaryTree()
-	benchmarkSSet_FindFrom1M(s, b)
+func BenchmarkSSet_Ch06_BinaryTree(b *testing.B) {
+	constructor := ch6.NewBinaryTree
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddFirst(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddRandom(s, b)
+	})
+	b.Run("FindFrom1M", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_FindFrom1M(s, b)
+	})
 }
 
 func BenchmarkSSet_Ch07_Treap_AddFirst(b *testing.B) {
-	s := ch7.NewTreap()
-	benchmarkSSet_AddFirst(s, b)
+	constructor := ch7.NewTreap
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddFirst(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddRandom(s, b)
+	})
+	b.Run("FindFrom1M", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_FindFrom1M(s, b)
+	})
 }
 
-func BenchmarkSSet_Ch07_Treap_AddRandom(b *testing.B) {
-	s := ch7.NewTreap()
-	benchmarkSSet_AddRandom(s, b)
+func BenchmarkSSet_Ch08_ScapegoatTree(b *testing.B) {
+	constructor := ch8.NewScapegoatTree
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddFirst(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddRandom(s, b)
+	})
+	b.Run("FindFrom1M", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_FindFrom1M(s, b)
+	})
 }
 
-func BenchmarkSSet_Ch07_Treap_FindFrom1M(b *testing.B) {
-	s := ch7.NewTreap()
-	benchmarkSSet_FindFrom1M(s, b)
+func BenchmarkSSet_Ch13_BinaryTrie(b *testing.B) {
+	constructor := ch13.NewBinaryTrie
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddFirst(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddRandom(s, b)
+	})
+	b.Run("FindFrom1M", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_FindFrom1M(s, b)
+	})
 }
 
-func BenchmarkSSet_Ch08_ScapegoatTree_AddFirst(b *testing.B) {
-	s := ch8.NewScapegoatTree()
-	benchmarkSSet_AddFirst(s, b)
-}
-
-func BenchmarkSSet_Ch08_ScapegoatTree_AddRandom(b *testing.B) {
-	s := ch8.NewScapegoatTree()
-	benchmarkSSet_AddRandom(s, b)
-}
-
-func BenchmarkSSet_Ch08_ScapegoatTree_FindFrom1M(b *testing.B) {
-	s := ch8.NewScapegoatTree()
-	benchmarkSSet_FindFrom1M(s, b)
-}
-
-func BenchmarkSSet_Ch13_BinaryTrie_AddFirst(b *testing.B) {
-	s := ch13.NewBinaryTrie()
-	benchmarkSSet_AddFirst(s, b)
-}
-
-func BenchmarkSSet_Ch13_BinaryTrie_AddRandom(b *testing.B) {
-	s := ch13.NewBinaryTrie()
-	benchmarkSSet_AddRandom(s, b)
-}
-
-func BenchmarkSSet_Ch13_BinaryTrie_FindFrom1M(b *testing.B) {
-	s := ch13.NewBinaryTrie()
-	benchmarkSSet_FindFrom1M(s, b)
-}
-
-func BenchmarkSSet_Ch13_XFastTrie_AddFirst(b *testing.B) {
-	s := ch13.NewXFastTrie()
-	benchmarkSSet_AddFirst(s, b)
-}
-
-func BenchmarkSSet_Ch13_XFastTrie_AddRandom(b *testing.B) {
-	s := ch13.NewXFastTrie()
-	benchmarkSSet_AddRandom(s, b)
-}
-
-func BenchmarkSSet_Ch13_XFastTrie_FindFrom1M(b *testing.B) {
-	s := ch13.NewXFastTrie()
-	benchmarkSSet_FindFrom1M(s, b)
+func BenchmarkSSet_Ch13_XFastTrie(b *testing.B) {
+	constructor := ch13.NewXFastTrie
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddFirst(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_AddRandom(s, b)
+	})
+	b.Run("FindFrom1M", func(b *testing.B) {
+		s := constructor()
+		benchmarkSSet_FindFrom1M(s, b)
+	})
 }
 
 func benchmarkSSet_AddFirst(s ch1.SSet, b *testing.B) {

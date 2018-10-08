@@ -174,14 +174,22 @@ func testSSet(s ch1.SSet, t *testing.T) {
 		t.Fatalf("failed init %#v", s.GetAll())
 	}
 	t.Log("Add")
-	s.Add(element(10))
-	s.Add(element(20))
-	s.Add(element(30))
-	s.Add(element(40))
+	result := []interface{}{}
+	for i := 10; i < 50; i += 10 {
+		s.Add(element(i))
+		result = append(result, element(i))
+	}
+	/*
+		s.Add(element(10))
+		s.Add(element(20))
+		s.Add(element(30))
+		s.Add(element(40))
+	*/
 	slice := s.GetAll()
 	sort.Slice(slice, func(i, j int) bool { return slice[i].(element) < slice[j].(element) })
 	//sort.Slice(slice, func(i, j int) bool { return slice[i].(uint) < slice[j].(uint) })
-	if !reflect.DeepEqual(slice, []interface{}{element(10), element(20), element(30), element(40)}) {
+	if !reflect.DeepEqual(slice, result) {
+		//if !reflect.DeepEqual(slice, []interface{}{element(10), element(20), element(30), element(40)}) {
 		//if !reflect.DeepEqual(slice, []interface{}{10, 20, 30, 40}) {
 		t.Fatalf("failed Add %#v", slice)
 	}

@@ -118,6 +118,7 @@ func (ht *LinearHashTable) Remove(x ch1.Comparable) bool {
 }
 
 func (ht *LinearHashTable) resize() {
+	//fmt.Printf("resize before\tht.d=%v\tht.n=%v\n", ht.d, ht.n)
 	d := uint32(1)
 	for 1<<d < 3*ht.n {
 		d++
@@ -136,4 +137,5 @@ func (ht *LinearHashTable) resize() {
 	}
 	ht.del = make([]bool, 1<<d)
 	ht.t = tnew
+	//fmt.Printf("resize after\tht.d=%v\tht.n=%v\n", ht.d, ht.n)
 }
