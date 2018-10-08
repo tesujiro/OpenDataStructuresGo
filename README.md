@@ -90,27 +90,27 @@
 goos: darwin
 goarch: amd64
 pkg: github.com/tesujiro/OpenDataStructuresGo
-BenchmarkList_Ch02_ArrayStack_AddFirst-4       	  200000	    157613 ns/op	      49 B/op	       1 allocs/op
-BenchmarkList_Ch02_ArrayStack_AddLast-4        	20000000	       156 ns/op	      61 B/op	       1 allocs/op
-BenchmarkList_Ch02_ArrayStack_AddRandom-4      	  300000	    138063 ns/op	      63 B/op	       1 allocs/op
-BenchmarkList_Ch02_ArrayDeque_AddFirst-4       	10000000	       157 ns/op	      61 B/op	       1 allocs/op
-BenchmarkList_Ch02_ArrayDeque_AddLast-4        	10000000	       187 ns/op	      61 B/op	       1 allocs/op
-BenchmarkList_Ch02_ArrayDeque_AddRandom-4      	   50000	    140180 ns/op	      49 B/op	       1 allocs/op
-BenchmarkList_Ch02_DualArrayDeque_AddFirst-4       10000	    170519 ns/op	  166968 B/op	       2 allocs/op
-BenchmarkList_Ch02_DualArrayDeque_AddLast-4        10000	    168593 ns/op	  166969 B/op	       3 allocs/op
-BenchmarkList_Ch02_DualArrayDeque_AddRandom-4      10000	    177267 ns/op	  166968 B/op	       2 allocs/op
-BenchmarkList_Ch02_RootishArrayStack_AddFirst-4    20000	    164851 ns/op	      57 B/op	       2 allocs/op
-BenchmarkList_Ch02_RootishArrayStack_AddLast-4  10000000	       112 ns/op	      57 B/op	       2 allocs/op
-BenchmarkList_Ch02_RootishArrayStack_AddRandom-4   30000	    117145 ns/op	      57 B/op	       2 allocs/op
-BenchmarkList_Ch03_DLList_AddFirst-4           	10000000	       127 ns/op	      40 B/op	       1 allocs/op
-BenchmarkList_Ch03_DLList_AddLast-4            	10000000	       115 ns/op	      40 B/op	       1 allocs/op
-BenchmarkList_Ch03_DLList_AddRandom-4          	  200000	   1076100 ns/op	      40 B/op	       1 allocs/op
-BenchmarkList_Ch03_SEList_AddFirst-4           	 2000000	       744 ns/op	     271 B/op	       8 allocs/op
-BenchmarkList_Ch03_SEList_AddLast-4            	10000000	       135 ns/op	      56 B/op	       1 allocs/op
-BenchmarkList_Ch03_SEList_AddRandom-4          	 1000000	     79783 ns/op	     269 B/op	       8 allocs/op
-BenchmarkList_Ch04_SkiplistList_AddFirst-4    	 3000000	       370 ns/op	     122 B/op	       4 allocs/op
-BenchmarkList_Ch04_SkiplistList_AddLast-4     	 5000000	       501 ns/op	     122 B/op	       4 allocs/op
-BenchmarkList_Ch04_SkiplistList_AddRandom-4   	 1000000	      2294 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_Ch02_ArrayStack/AddFirst-4 		  200000	    173495 ns/op	      49 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayStack/AddLast-4 	 	20000000	       150 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayStack/AddRandom-4         	  300000	    127008 ns/op	      63 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayDeque/AddFirst-4          	10000000	       173 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayDeque/AddLast-4           	10000000	       153 ns/op	      61 B/op	       1 allocs/op
+BenchmarkList_Ch02_ArrayDeque/AddRandom-4         	  100000	    255583 ns/op	      49 B/op	       1 allocs/op
+BenchmarkList_Ch02_DualArrayDeque/AddFirst-4      	   10000	    118224 ns/op	  166969 B/op	       3 allocs/op
+BenchmarkList_Ch02_DualArrayDeque/AddLast-4       	   10000	    110730 ns/op	  166968 B/op	       2 allocs/op
+BenchmarkList_Ch02_DualArrayDeque/AddRandom-4     	   10000	    117014 ns/op	  166968 B/op	       3 allocs/op
+BenchmarkList_Ch02_RootishArrayStack/AddFirst-4   	   20000	    174129 ns/op	      57 B/op	       2 allocs/op
+BenchmarkList_Ch02_RootishArrayStack/AddLast-4    	10000000	       109 ns/op	      57 B/op	       2 allocs/op
+BenchmarkList_Ch02_RootishArrayStack/AddRandom-4  	   30000	    133225 ns/op	      57 B/op	       2 allocs/op
+BenchmarkList_Ch03_DLList/AddFirst-4        	 	10000000	       131 ns/op	      40 B/op	       2 allocs/op
+BenchmarkList_Ch03_DLList/AddLast-4         	 	20000000	       132 ns/op	      40 B/op	       1 allocs/op
+BenchmarkList_Ch03_DLList/AddRandom-4       	 	  200000	    978381 ns/op	      40 B/op	       1 allocs/op
+BenchmarkList_Ch03_SEList/AddFirst-4        	 	 2000000	       645 ns/op	     271 B/op	       8 allocs/op
+BenchmarkList_Ch03_SEList/AddLast-4         	 	20000000	       112 ns/op	      56 B/op	       1 allocs/op
+BenchmarkList_Ch03_SEList/AddRandom-4       	 	 1000000	     71403 ns/op	     269 B/op	       8 allocs/op
+enchmarkList_Ch04_SkiplistList/AddFirst-4         	 5000000	       411 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_Ch04_SkiplistList/AddLast-4          	 3000000	       482 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_Ch04_SkiplistList/AddRandom-4        	 1000000	      2032 ns/op	     122 B/op	       4 allocs/op
 
 BenchmarkSSet_Ch04_SkiplistSSet_AddFirst-4         	 2000000	       783 ns/op	     241 B/op	       4 allocs/op
 BenchmarkSSet_Ch04_SkiplistSSet_AddRandom-4        	 1000000	      3498 ns/op	     219 B/op	       4 allocs/op
