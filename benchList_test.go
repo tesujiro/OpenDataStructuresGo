@@ -11,109 +11,116 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch4"
 )
 
-func BenchmarkList_Ch02_ArrayStack_AddFirst(b *testing.B) {
-	s := ch2.NewArrayStack()
-	benchmarkList_AddFirst(s, b)
+func BenchmarkList_Ch02_ArrayStack(b *testing.B) {
+	constructor := ch2.NewArrayStack
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddFirst(s, b)
+	})
+	b.Run("AddLast", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddLast(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddRandom(s, b)
+	})
 }
 
-func BenchmarkList_Ch02_ArrayStack_AddLast(b *testing.B) {
-	s := ch2.NewArrayStack()
-	benchmarkList_AddLast(s, b)
+func BenchmarkList_Ch02_ArrayDeque(b *testing.B) {
+	constructor := ch2.NewArrayDeque
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddFirst(s, b)
+	})
+	b.Run("AddLast", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddLast(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddRandom(s, b)
+	})
 }
 
-func BenchmarkList_Ch02_ArrayStack_AddRandom(b *testing.B) {
-	s := ch2.NewArrayStack()
-	benchmarkList_AddRandom(s, b)
+func BenchmarkList_Ch02_DualArrayDeque(b *testing.B) {
+	constructor := ch2.NewDualArrayDeque
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddFirst(s, b)
+	})
+	b.Run("AddLast", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddLast(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddRandom(s, b)
+	})
 }
 
-func BenchmarkList_Ch02_ArrayDeque_AddFirst(b *testing.B) {
-	s := ch2.NewArrayDeque()
-	benchmarkList_AddFirst(s, b)
+func BenchmarkList_Ch02_RootishArrayStack(b *testing.B) {
+	constructor := ch2.NewRootishArrayStack
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddFirst(s, b)
+	})
+	b.Run("AddLast", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddLast(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddRandom(s, b)
+	})
 }
 
-func BenchmarkList_Ch02_ArrayDeque_AddLast(b *testing.B) {
-	s := ch2.NewArrayDeque()
-	benchmarkList_AddLast(s, b)
+func BenchmarkList_Ch03_DLList(b *testing.B) {
+	constructor := ch3.NewDLList
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddFirst(s, b)
+	})
+	b.Run("AddLast", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddLast(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddRandom(s, b)
+	})
 }
 
-func BenchmarkList_Ch02_ArrayDeque_AddRandom(b *testing.B) {
-	s := ch2.NewArrayDeque()
-	benchmarkList_AddRandom(s, b)
+func BenchmarkList_Ch03_SEList(b *testing.B) {
+	constructor := ch3.NewSEList
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddFirst(s, b)
+	})
+	b.Run("AddLast", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddLast(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddRandom(s, b)
+	})
 }
 
-func BenchmarkList_Ch02_DualArrayDeque_AddFirst(b *testing.B) {
-	s := ch2.NewDualArrayDeque()
-	benchmarkList_AddFirst(s, b)
-}
-
-func BenchmarkList_Ch02_DualArrayDeque_AddLast(b *testing.B) {
-	s := ch2.NewDualArrayDeque()
-	benchmarkList_AddLast(s, b)
-}
-
-func BenchmarkList_Ch02_DualArrayDeque_AddRandom(b *testing.B) {
-	s := ch2.NewDualArrayDeque()
-	benchmarkList_AddRandom(s, b)
-}
-
-func BenchmarkList_Ch02_RootishArrayStack_AddFirst(b *testing.B) {
-	s := ch2.NewRootishArrayStack()
-	benchmarkList_AddFirst(s, b)
-}
-
-func BenchmarkList_Ch02_RootishArrayStack_AddLast(b *testing.B) {
-	s := ch2.NewRootishArrayStack()
-	benchmarkList_AddLast(s, b)
-}
-
-func BenchmarkList_Ch02_RootishArrayStack_AddRandom(b *testing.B) {
-	s := ch2.NewRootishArrayStack()
-	benchmarkList_AddRandom(s, b)
-}
-
-func BenchmarkList_Ch03_DLList_AddFirst(b *testing.B) {
-	s := ch3.NewDLList()
-	benchmarkList_AddFirst(s, b)
-}
-
-func BenchmarkList_Ch03_DLList_AddLast(b *testing.B) {
-	s := ch3.NewDLList()
-	benchmarkList_AddLast(s, b)
-}
-
-func BenchmarkList_Ch03_DLList_AddRandom(b *testing.B) {
-	s := ch3.NewDLList()
-	benchmarkList_AddRandom(s, b)
-}
-
-func BenchmarkList_Ch03_SEList_AddFirst(b *testing.B) {
-	s := ch3.NewSEList()
-	benchmarkList_AddFirst(s, b)
-}
-
-func BenchmarkList_Ch03_SEList_AddLast(b *testing.B) {
-	s := ch3.NewSEList()
-	benchmarkList_AddLast(s, b)
-}
-
-func BenchmarkList_Ch03_SEList_AddRandom(b *testing.B) {
-	s := ch3.NewSEList()
-	benchmarkList_AddRandom(s, b)
-}
-
-func BenchmarkList_Ch04_SkiplistList_AddFirst(b *testing.B) {
-	s := ch4.NewSkiplistList()
-	benchmarkList_AddFirst(s, b)
-}
-
-func BenchmarkList_Ch04_SkiplistList_AddLast(b *testing.B) {
-	s := ch4.NewSkiplistList()
-	benchmarkList_AddLast(s, b)
-}
-
-func BenchmarkList_Ch04_SkiplistList_AddRandom(b *testing.B) {
-	s := ch4.NewSkiplistList()
-	benchmarkList_AddRandom(s, b)
+func BenchmarkList_Ch04_SkiplistList(b *testing.B) {
+	constructor := ch4.NewSkiplistList
+	b.Run("AddFirst", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddFirst(s, b)
+	})
+	b.Run("AddLast", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddLast(s, b)
+	})
+	b.Run("AddRandom", func(b *testing.B) {
+		s := constructor()
+		benchmarkList_AddRandom(s, b)
+	})
 }
 
 func benchmarkList_AddFirst(s ch1.List, b *testing.B) {
