@@ -14,7 +14,7 @@ import (
 	"github.com/tesujiro/OpenDataStructuresGo/ch8"
 )
 
-func Benchmark_Ch04_SkiplistSSet(b *testing.B) {
+func BenchmarkSSet_Ch04_SkiplistSSet(b *testing.B) {
 	constructor := ch4.NewSkiplistSSet
 	b.Run("AddFirst", func(b *testing.B) {
 		s := constructor()
@@ -78,7 +78,7 @@ func BenchmarkSSet_Ch06_BinaryTree(b *testing.B) {
 	})
 }
 
-func BenchmarkSSet_Ch07_Treap_AddFirst(b *testing.B) {
+func BenchmarkSSet_Ch07_Treap(b *testing.B) {
 	constructor := ch7.NewTreap
 	b.Run("AddFirst", func(b *testing.B) {
 		s := constructor()
