@@ -66,22 +66,22 @@ func (as *DualArrayDeque) balance() {
 	}
 	if 3*as.front.Size() < as.back.Size() ||
 		3*as.back.Size() < as.front.Size() {
+		n := as.Size()
+		nf := n / 2
+		af := make([]interface{}, max(2*nf, 1))
+		for i := 0; i < nf; i++ {
+			af[nf-i-1] = as.Get(i)
+		}
+		nb := n - nf
+		ab := make([]interface{}, max(2*nb, 1))
+		for i := 0; i < nb; i++ {
+			ab[i] = as.Get(nf + i)
+		}
+		as.front.a = af
+		as.front.n = nf
+		as.back.a = ab
+		as.back.n = nb
 	}
-	n := as.Size()
-	nf := n / 2
-	af := make([]interface{}, max(2*nf, 1))
-	for i := 0; i < nf; i++ {
-		af[nf-i-1] = as.Get(i)
-	}
-	nb := n - nf
-	ab := make([]interface{}, max(2*nb, 1))
-	for i := 0; i < nb; i++ {
-		ab[i] = as.Get(nf + i)
-	}
-	as.front.a = af
-	as.front.n = nf
-	as.back.a = ab
-	as.back.n = nb
 }
 
 func (as *DualArrayDeque) Add(i int, x interface{}) {
