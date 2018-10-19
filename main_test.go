@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch10"
 	"github.com/tesujiro/OpenDataStructuresGo/ch11"
 	"github.com/tesujiro/OpenDataStructuresGo/ch13"
 	"github.com/tesujiro/OpenDataStructuresGo/ch2"
@@ -94,6 +95,11 @@ func TestScapegoatTree(t *testing.T) {
 	testSSet(s, t)
 }
 
+func TestBinaryHeap(t *testing.T) {
+	q := ch10.NewBinaryHeap()
+	testComparableElementQueue(q, t)
+}
+
 func TestMergeSort(t *testing.T) {
 	testSort(ch11.MergeSort, t)
 }
@@ -159,6 +165,29 @@ func testQueue(q ch1.Queue, t *testing.T) {
 		t.Fatalf("failed init %#v", q.GetAll())
 	}
 	t.Log("Remove")
+}
+
+func testComparableElementQueue(q ch1.ComparableElementQueue, t *testing.T) {
+	MAX := 100
+	if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
+		t.Fatalf("failed init %#v", q.GetAll())
+	}
+	t.Log("Add")
+	result := []interface{}{}
+	for i := 0; i < MAX; i += 10 {
+		q.Add(element(i))
+		result = append(result, element(i))
+	}
+	if !reflect.DeepEqual(q.GetAll(), result) {
+		t.Fatalf("failed init %#v", q.GetAll())
+	}
+	t.Log("Remove")
+	for i := 0; i < MAX; i += 10 {
+		q.Remove()
+	}
+	if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
+		t.Fatalf("failed Remove %#v", q.GetAll())
+	}
 }
 
 func testSSet2(s ch1.SSet, t *testing.T) {

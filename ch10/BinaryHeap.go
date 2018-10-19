@@ -40,8 +40,12 @@ func (h *BinaryHeap) Size() int {
 	return h.n
 }
 
-func (h *BinaryHeap) GetAll() []ch1.Comparable {
-	return h.a[:h.n]
+func (h *BinaryHeap) GetAll() []interface{} {
+	is := make([]interface{}, h.n)
+	for i := 0; i < h.n; i++ {
+		is[i] = h.a[i]
+	}
+	return is
 }
 
 func (h *BinaryHeap) Print() {
@@ -61,7 +65,7 @@ func (h *BinaryHeap) Set(i int, v ch1.Comparable) ch1.Comparable {
 }
 
 func (h *BinaryHeap) Add(x ch1.Comparable) bool {
-	if h.n+1 > h.cap() {
+	if h.n+1 > cap(h.a) {
 		h.resize()
 	}
 	h.a[h.n] = x
@@ -116,11 +120,7 @@ func (h *BinaryHeap) trickleDown(i int) {
 
 func (h *BinaryHeap) resize() {
 	var new []ch1.Comparable
-	if h.n > 1 {
-		new = make([]ch1.Comparable, h.n*2)
-	} else {
-		new = make([]ch1.Comparable, 1)
-	}
+	new = make([]ch1.Comparable, h.n*2)
 	for i := 0; i < h.n; i++ {
 		new[i] = h.a[i]
 	}

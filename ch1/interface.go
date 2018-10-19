@@ -20,6 +20,12 @@ type Queue interface {
 	Remove() interface{}
 }
 
+type ComparableElementQueue interface {
+	Helper
+	Add(x Comparable) bool
+	Remove() Comparable
+}
+
 type Stack interface {
 	Push(x interface{})
 	Pop() interface{}
