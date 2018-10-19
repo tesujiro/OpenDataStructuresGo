@@ -97,7 +97,7 @@ func TestScapegoatTree(t *testing.T) {
 
 func TestBinaryHeap(t *testing.T) {
 	q := ch10.NewBinaryHeap()
-	testComparableElementQueue(q, t)
+	testPriorityQueue(q, t)
 }
 
 func TestMergeSort(t *testing.T) {
@@ -185,7 +185,7 @@ func testQueue(q ch1.Queue, t *testing.T) {
 	*/
 }
 
-func testComparableElementQueue(q ch1.ComparableElementQueue, t *testing.T) {
+func testPriorityQueue(q ch1.PriorityQueue, t *testing.T) {
 	MAX := 100
 	if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", q.GetAll())

@@ -16,19 +16,19 @@ type List interface {
 
 type Queue interface {
 	Helper
-	Add(x interface{}) bool
-	Remove() interface{}
+	Add(x interface{}) bool // Enqueue()
+	Remove() interface{}    // Dequeue()
 }
 
-type ComparableElementQueue interface {
+type PriorityQueue interface {
 	Helper
 	Add(x Comparable) bool
-	Remove() Comparable
+	Remove() Comparable // DeleteMin()
 }
 
 type Stack interface {
-	Push(x interface{})
-	Pop() interface{}
+	Push(x interface{}) // Add(x)
+	Pop() interface{}   // Remove()
 	Print()
 }
 
