@@ -152,19 +152,37 @@ func testList(s ch1.List, t *testing.T) {
 }
 
 func testQueue(q ch1.Queue, t *testing.T) {
-	if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
-		t.Fatalf("failed init %#v", q.GetAll())
+	MAX := 100
+	result := []interface{}{}
+	for i := 0; i < MAX; i += 10 {
+		q.Add(i)
+		result = append(result, i)
 	}
-	t.Log("Add")
-	q.Add(0)
-	q.Add(1)
-	q.Add(2)
-	q.Add(3)
-	q.Add(4)
-	if !reflect.DeepEqual(q.GetAll(), []interface{}{0, 1, 2, 3, 4}) {
+	if !reflect.DeepEqual(q.GetAll(), result) {
 		t.Fatalf("failed init %#v", q.GetAll())
 	}
 	t.Log("Remove")
+	for i := 0; i < MAX; i += 10 {
+		q.Remove()
+	}
+	if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
+		t.Fatalf("failed Remove %#v", q.GetAll())
+	}
+	/*
+		if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
+			t.Fatalf("failed init %#v", q.GetAll())
+		}
+		t.Log("Add")
+		q.Add(0)
+		q.Add(1)
+		q.Add(2)
+		q.Add(3)
+		q.Add(4)
+		if !reflect.DeepEqual(q.GetAll(), []interface{}{0, 1, 2, 3, 4}) {
+			t.Fatalf("failed init %#v", q.GetAll())
+		}
+		t.Log("Remove")
+	*/
 }
 
 func testComparableElementQueue(q ch1.ComparableElementQueue, t *testing.T) {
@@ -208,18 +226,9 @@ func testSSet(s ch1.SSet, t *testing.T) {
 		s.Add(element(i))
 		result = append(result, element(i))
 	}
-	/*
-		s.Add(element(10))
-		s.Add(element(20))
-		s.Add(element(30))
-		s.Add(element(40))
-	*/
 	slice := s.GetAll()
 	sort.Slice(slice, func(i, j int) bool { return slice[i].(element) < slice[j].(element) })
-	//sort.Slice(slice, func(i, j int) bool { return slice[i].(uint) < slice[j].(uint) })
 	if !reflect.DeepEqual(slice, result) {
-		//if !reflect.DeepEqual(slice, []interface{}{element(10), element(20), element(30), element(40)}) {
-		//if !reflect.DeepEqual(slice, []interface{}{10, 20, 30, 40}) {
 		t.Fatalf("failed Add %#v", slice)
 	}
 	t.Log("Find")
