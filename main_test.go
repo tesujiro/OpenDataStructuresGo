@@ -100,6 +100,11 @@ func TestBinaryHeap(t *testing.T) {
 	testPriorityQueue(q, t)
 }
 
+func TestMeldableHeap(t *testing.T) {
+	q := ch10.NewMeldableHeap()
+	testPriorityQueue(q, t)
+}
+
 func TestMergeSort(t *testing.T) {
 	testSort(ch11.MergeSort, t)
 }
@@ -196,7 +201,9 @@ func testPriorityQueue(q ch1.PriorityQueue, t *testing.T) {
 		q.Add(element(i))
 		result = append(result, element(i))
 	}
-	if !reflect.DeepEqual(q.GetAll(), result) {
+	slice := q.GetAll()
+	sort.Slice(slice, func(i, j int) bool { return slice[i].(element) < slice[j].(element) })
+	if !reflect.DeepEqual(slice, result) {
 		t.Fatalf("failed init %#v", q.GetAll())
 	}
 	t.Log("Remove")
