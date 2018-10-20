@@ -52,18 +52,6 @@ func (h *BinaryHeap) Print() {
 	fmt.Printf("BinaryHeap(n:%v,cap:%v)=%v\n", h.Size(), h.cap(), h.GetAll())
 }
 
-func (h *BinaryHeap) Get(i int) ch1.Comparable {
-	//i = i % h.n
-	return h.a[i]
-}
-
-func (h *BinaryHeap) Set(i int, v ch1.Comparable) ch1.Comparable {
-	//i = i % h.n
-	y := h.a[i]
-	h.a[i] = v
-	return y
-}
-
 func (h *BinaryHeap) Add(x ch1.Comparable) bool {
 	if h.n+1 > cap(h.a) {
 		h.resize()
