@@ -147,6 +147,11 @@ BenchmarkCSort_Ch11_RadixSort/NoSort-4		       30000000		        40.8 ns/op	    
 BenchmarkCSort_Ch11_RadixSort/Reverse-4		       30000000		        48.2 ns/op	      32 B/op	       0 allocs/op
 BenchmarkCSort_Ch11_RadixSort/Random-4		       50000000		        27.0 ns/op	      32 B/op	       0 allocs/op
 
+BenchmarkQueue_Ch2_ArrayQueue/Add-4         	10000000	       170 ns/op	      61 B/op	       1 allocs/op
+BenchmarkQueue_Ch2_ArrayQueue/Remove-4      	20000000	        99.8 ns/op	      53 B/op	       0 allocs/op
+BenchmarkQueue_Ch3_SLList/Add-4             	10000000	       143 ns/op	      40 B/op	       1 allocs/op
+BenchmarkQueue_Ch3_SLList/Remove-4          	300000000	        77.6 ns/op	       0 B/op	       0 allocs/op
+
 BenchmarkPriorityQueue_Ch10_BinaryHeap/Add-4 		20000000	       147 ns/op	      61 B/op	       1 allocs/op
 BenchmarkPriorityQueue_Ch10_BinaryHeap/Remove-4        	 3000000	       470 ns/op	      44 B/op	       0 allocs/op
 BenchmarkPriorityQueue_Ch10_MeldableHeap/Add-4         	 1000000	      1733 ns/op	      56 B/op	       1 allocs/op
