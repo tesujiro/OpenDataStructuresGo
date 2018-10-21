@@ -55,11 +55,16 @@
   -> Done  
 
 8. Scapegoat Trees  
-  -> Not Complete  
+  8.1 ScapegoatTree: A Binary Search Tree with Partial Rebuilding  
+    -> Not Complete  
 
 9. Red-Black Trees  
 
 10. Heaps  
+  10.1 BinaryHeap: An Implicit Binary Tree  
+  -> Done  
+  10.2 MeldableHeap: A Randomized Meldable Heap  
+  -> Done  
 
 11. Sorting Algorithms  
  11.1 Comparison-Based Sorting  
