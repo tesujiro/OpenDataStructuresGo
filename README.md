@@ -140,10 +140,16 @@ BenchmarkSort_Ch11_MergeSort/Random-4         	 	2000000		       896 ns/op	     
 BenchmarkSort_Ch11_QuickSort/NoSort-4         	 	5000000		       320 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSort_Ch11_QuickSort/Reverse-4        	 	5000000		       323 ns/op	       0 B/op	       0 allocs/op
 BenchmarkSort_Ch11_QuickSort/Random-4         	 	3000000		       702 ns/op	       0 B/op	       0 allocs/op
-BenchmarkCSort_Ch11_CountingSort/NoSort-4         	200000000	        21.3 ns/op	       8 B/op	       0 allocs/op
-BenchmarkCSort_Ch11_CountingSort/Reverse-4        	200000000	         9.27 ns/op	      13 B/op	       0 allocs/op
-BenchmarkCSort_Ch11_CountingSort/Random-4         	10000000	       178 ns/op	     115 B/op	       0 allocs/op
-BenchmarkCSort_Ch11_RadixSort/NoSort-4            	30000000	        40.8 ns/op	      24 B/op	       0 allocs/op
-BenchmarkCSort_Ch11_RadixSort/Reverse-4           	30000000	        48.2 ns/op	      32 B/op	       0 allocs/op
-BenchmarkCSort_Ch11_RadixSort/Random-4            	50000000	        27.0 ns/op	      32 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_CountingSort/NoSort-4	      200000000		        21.3 ns/op	       8 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_CountingSort/Reverse-4	      200000000		         9.27 ns/op	      13 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_CountingSort/Random-4	       10000000		       178 ns/op	     115 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_RadixSort/NoSort-4		       30000000		        40.8 ns/op	      24 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_RadixSort/Reverse-4		       30000000		        48.2 ns/op	      32 B/op	       0 allocs/op
+BenchmarkCSort_Ch11_RadixSort/Random-4		       50000000		        27.0 ns/op	      32 B/op	       0 allocs/op
+
+BenchmarkPriorityQueue_Ch10_BinaryHeap/Add-4 		20000000	       147 ns/op	      61 B/op	       1 allocs/op
+BenchmarkPriorityQueue_Ch10_BinaryHeap/Remove-4        	 3000000	       470 ns/op	      44 B/op	       0 allocs/op
+BenchmarkPriorityQueue_Ch10_MeldableHeap/Add-4         	 1000000	      1733 ns/op	      56 B/op	       1 allocs/op
+BenchmarkPriorityQueue_Ch10_MeldableHeap/Remove-4      	 1000000	      2409 ns/op	       0 B/op	       0 allocs/op
+
 ```
