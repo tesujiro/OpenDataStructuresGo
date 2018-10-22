@@ -80,6 +80,9 @@
    -> Done  
 
 12. Graphs  
+  12.1 AdjacencyMatrix: Representing a Graph by a Matrix  
+   -> Done  
+  12.2 AdjacencyLists: A Graph as a Collection of Lists  
 
 13. Data Structures for Integers  
  13.1 BinaryTrie: A digital search tree  
