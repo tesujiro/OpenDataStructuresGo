@@ -116,7 +116,7 @@ BenchmarkList_Ch03_DLList/AddRandom-4       	 	  200000	    978381 ns/op	      4
 BenchmarkList_Ch03_SEList/AddFirst-4        	 	 2000000	       645 ns/op	     271 B/op	       8 allocs/op
 BenchmarkList_Ch03_SEList/AddLast-4         	 	20000000	       112 ns/op	      56 B/op	       1 allocs/op
 BenchmarkList_Ch03_SEList/AddRandom-4       	 	 1000000	     71403 ns/op	     269 B/op	       8 allocs/op
-enchmarkList_Ch04_SkiplistList/AddFirst-4         	 5000000	       411 ns/op	     122 B/op	       4 allocs/op
+BenchmarkList_Ch04_SkiplistList/AddFirst-4         	 5000000	       411 ns/op	     122 B/op	       4 allocs/op
 BenchmarkList_Ch04_SkiplistList/AddLast-4          	 3000000	       482 ns/op	     122 B/op	       4 allocs/op
 BenchmarkList_Ch04_SkiplistList/AddRandom-4        	 1000000	      2032 ns/op	     122 B/op	       4 allocs/op
 
