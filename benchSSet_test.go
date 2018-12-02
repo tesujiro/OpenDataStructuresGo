@@ -5,17 +5,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
+	"github.com/tesujiro/OpenDataStructuresGo/ch04"
+	"github.com/tesujiro/OpenDataStructuresGo/ch05"
+	"github.com/tesujiro/OpenDataStructuresGo/ch06"
+	"github.com/tesujiro/OpenDataStructuresGo/ch07"
+	"github.com/tesujiro/OpenDataStructuresGo/ch08"
 	"github.com/tesujiro/OpenDataStructuresGo/ch13"
-	"github.com/tesujiro/OpenDataStructuresGo/ch4"
-	"github.com/tesujiro/OpenDataStructuresGo/ch5"
-	"github.com/tesujiro/OpenDataStructuresGo/ch6"
-	"github.com/tesujiro/OpenDataStructuresGo/ch7"
-	"github.com/tesujiro/OpenDataStructuresGo/ch8"
 )
 
 func BenchmarkSSet_Ch04_SkiplistSSet(b *testing.B) {
-	constructor := ch4.NewSkiplistSSet
+	constructor := ch04.NewSkiplistSSet
 	b.Run("AddFirst", func(b *testing.B) {
 		s := constructor()
 		benchmarkSSet_AddFirst(s, b)
@@ -31,7 +31,7 @@ func BenchmarkSSet_Ch04_SkiplistSSet(b *testing.B) {
 }
 
 func BenchmarkSSet_Ch05_ChainedHashTable(b *testing.B) {
-	constructor := ch5.NewChainedHashTable
+	constructor := ch05.NewChainedHashTable
 	b.Run("AddFirst", func(b *testing.B) {
 		s := constructor()
 		benchmarkSSet_AddFirst(s, b)
@@ -47,7 +47,7 @@ func BenchmarkSSet_Ch05_ChainedHashTable(b *testing.B) {
 }
 
 func BenchmarkSSet_Ch05_LinearHashTable(b *testing.B) {
-	constructor := ch5.NewLinearHashTable
+	constructor := ch05.NewLinearHashTable
 	b.Run("AddFirst", func(b *testing.B) {
 		s := constructor()
 		benchmarkSSet_AddFirst(s, b)
@@ -63,7 +63,7 @@ func BenchmarkSSet_Ch05_LinearHashTable(b *testing.B) {
 }
 
 func BenchmarkSSet_Ch06_BinaryTree(b *testing.B) {
-	constructor := ch6.NewBinaryTree
+	constructor := ch06.NewBinaryTree
 	b.Run("AddFirst", func(b *testing.B) {
 		s := constructor()
 		benchmarkSSet_AddFirst(s, b)
@@ -79,7 +79,7 @@ func BenchmarkSSet_Ch06_BinaryTree(b *testing.B) {
 }
 
 func BenchmarkSSet_Ch07_Treap(b *testing.B) {
-	constructor := ch7.NewTreap
+	constructor := ch07.NewTreap
 	b.Run("AddFirst", func(b *testing.B) {
 		s := constructor()
 		benchmarkSSet_AddFirst(s, b)
@@ -95,7 +95,7 @@ func BenchmarkSSet_Ch07_Treap(b *testing.B) {
 }
 
 func BenchmarkSSet_Ch08_ScapegoatTree(b *testing.B) {
-	constructor := ch8.NewScapegoatTree
+	constructor := ch08.NewScapegoatTree
 	b.Run("AddFirst", func(b *testing.B) {
 		s := constructor()
 		benchmarkSSet_AddFirst(s, b)
@@ -142,7 +142,7 @@ func BenchmarkSSet_Ch13_XFastTrie(b *testing.B) {
 	})
 }
 
-func benchmarkSSet_AddFirst(s ch1.SSet, b *testing.B) {
+func benchmarkSSet_AddFirst(s ch01.SSet, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -150,7 +150,7 @@ func benchmarkSSet_AddFirst(s ch1.SSet, b *testing.B) {
 	}
 }
 
-func benchmarkSSet_AddRandom(s ch1.SSet, b *testing.B) {
+func benchmarkSSet_AddRandom(s ch01.SSet, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -158,7 +158,7 @@ func benchmarkSSet_AddRandom(s ch1.SSet, b *testing.B) {
 	}
 }
 
-func benchmarkSSet_FindFrom1M(s ch1.SSet, b *testing.B) {
+func benchmarkSSet_FindFrom1M(s ch01.SSet, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
 	n := 1000000
 	for s.Size() < n {

@@ -4,21 +4,21 @@ import (
 	"fmt"
 	"math/rand"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
+	"github.com/tesujiro/OpenDataStructuresGo/ch02"
+	"github.com/tesujiro/OpenDataStructuresGo/ch03"
+	"github.com/tesujiro/OpenDataStructuresGo/ch04"
+	"github.com/tesujiro/OpenDataStructuresGo/ch05"
+	"github.com/tesujiro/OpenDataStructuresGo/ch06"
+	"github.com/tesujiro/OpenDataStructuresGo/ch07"
+	"github.com/tesujiro/OpenDataStructuresGo/ch08"
 	"github.com/tesujiro/OpenDataStructuresGo/ch11"
 	"github.com/tesujiro/OpenDataStructuresGo/ch13"
-	"github.com/tesujiro/OpenDataStructuresGo/ch2"
-	"github.com/tesujiro/OpenDataStructuresGo/ch3"
-	"github.com/tesujiro/OpenDataStructuresGo/ch4"
-	"github.com/tesujiro/OpenDataStructuresGo/ch5"
-	"github.com/tesujiro/OpenDataStructuresGo/ch6"
-	"github.com/tesujiro/OpenDataStructuresGo/ch7"
-	"github.com/tesujiro/OpenDataStructuresGo/ch8"
 )
 
 type element int
 
-func (e1 element) Compare(e2 ch1.Comparable) int {
+func (e1 element) Compare(e2 ch01.Comparable) int {
 	return int(e1 - e2.(element))
 }
 
@@ -41,53 +41,53 @@ func (e1 element) Compare(e2 interface{}) int {
 
 func main() {
 
-	fmt.Println("\nch2/ArrayQueue")
-	checkQueue(ch2.NewArrayQueue())
+	fmt.Println("\nch02/ArrayQueue")
+	checkQueue(ch02.NewArrayQueue())
 
-	fmt.Println("\nch3/SLList")
-	checkStack(ch3.NewSLList())
-	checkQueue(ch3.NewSLList())
+	fmt.Println("\nch03/SLList")
+	checkStack(ch03.NewSLList())
+	checkQueue(ch03.NewSLList())
 
 	//List
-	fmt.Println("\nch2/ArrayStack")
-	checkList(ch2.NewArrayStack())
+	fmt.Println("\nch02/ArrayStack")
+	checkList(ch02.NewArrayStack())
 
-	fmt.Println("\nch2/ArrayDeque")
-	checkList(ch2.NewArrayDeque())
+	fmt.Println("\nch02/ArrayDeque")
+	checkList(ch02.NewArrayDeque())
 
-	fmt.Println("\nch2/DualArrayDeque")
-	checkList(ch2.NewDualArrayDeque())
+	fmt.Println("\nch02/DualArrayDeque")
+	checkList(ch02.NewDualArrayDeque())
 
-	fmt.Println("\nch2/RootishArrayStack")
-	checkList(ch2.NewRootishArrayStack())
+	fmt.Println("\nch02/RootishArrayStack")
+	checkList(ch02.NewRootishArrayStack())
 
-	fmt.Println("\nch3/DLList")
-	checkList(ch3.NewDLList())
+	fmt.Println("\nch03/DLList")
+	checkList(ch03.NewDLList())
 
-	fmt.Println("\nch3/SEList")
-	checkList(ch3.NewSEList())
+	fmt.Println("\nch03/SEList")
+	checkList(ch03.NewSEList())
 
-	fmt.Println("\nch4/SkiplistList")
-	checkList(ch4.NewSkiplistList())
+	fmt.Println("\nch04/SkiplistList")
+	checkList(ch04.NewSkiplistList())
 
 	//SSet
-	fmt.Println("\nch4/SkiplistSSet")
-	checkSSet(ch4.NewSkiplistSSet())
+	fmt.Println("\nch04/SkiplistSSet")
+	checkSSet(ch04.NewSkiplistSSet())
 
-	fmt.Println("\nch5/ChainedHashTable")
-	checkSSet(ch5.NewChainedHashTable())
+	fmt.Println("\nch05/ChainedHashTable")
+	checkSSet(ch05.NewChainedHashTable())
 
-	fmt.Println("\nch5/LinearHashTable")
-	checkSSet(ch5.NewLinearHashTable())
+	fmt.Println("\nch05/LinearHashTable")
+	checkSSet(ch05.NewLinearHashTable())
 
-	fmt.Println("\nch6/BinaryTree")
-	checkSSet(ch6.NewBinaryTree())
+	fmt.Println("\nch06/BinaryTree")
+	checkSSet(ch06.NewBinaryTree())
 
-	fmt.Println("\nch7/Treap")
-	checkSSet(ch7.NewTreap())
+	fmt.Println("\nch07/Treap")
+	checkSSet(ch07.NewTreap())
 
-	fmt.Println("\nch8/ScapegoatTree")
-	checkSSet(ch8.NewScapegoatTree())
+	fmt.Println("\nch08/ScapegoatTree")
+	checkSSet(ch08.NewScapegoatTree())
 
 	fmt.Println("\nch13/BinaryTrie")
 	checkSSet(ch13.NewBinaryTrie())
@@ -110,7 +110,7 @@ func main() {
 
 }
 
-func checkList(s ch1.List) {
+func checkList(s ch01.List) {
 
 	s.Print()
 
@@ -149,7 +149,7 @@ func checkList(s ch1.List) {
 	s.Print()
 }
 
-func checkStack(s ch1.Stack) {
+func checkStack(s ch01.Stack) {
 	s.Push(1)
 	s.Push(2)
 	s.Push(3)
@@ -160,7 +160,7 @@ func checkStack(s ch1.Stack) {
 	s.Print()
 }
 
-func checkQueue(s ch1.Queue) {
+func checkQueue(s ch01.Queue) {
 	s.Add(1)
 	s.Add(2)
 	s.Add(3)
@@ -171,7 +171,7 @@ func checkQueue(s ch1.Queue) {
 	s.Print()
 }
 
-func checkUSet(s ch1.USet) {
+func checkUSet(s ch01.USet) {
 	s.Print()
 	s.Add(10)
 	s.Print()
@@ -192,7 +192,7 @@ func checkUSet(s ch1.USet) {
 	s.Print()
 }
 
-func checkSSet(s ch1.SSet) {
+func checkSSet(s ch01.SSet) {
 	s.Print()
 	s.Add(element(10))
 	s.Print()
@@ -214,8 +214,8 @@ func checkSSet(s ch1.SSet) {
 	s.Print()
 }
 
-func checkSort(f ch1.SortFunc) {
-	s := []ch1.Comparable{}
+func checkSort(f ch01.SortFunc) {
+	s := []ch01.Comparable{}
 	for i := 300; i > 0; i -= 10 {
 		s = append(s, element(i))
 	}
@@ -224,7 +224,7 @@ func checkSort(f ch1.SortFunc) {
 	fmt.Printf("s=%v\n", s)
 }
 
-func checkCSort(f ch1.CountingSortFunc) {
+func checkCSort(f ch01.CountingSortFunc) {
 	k := 256 * 256
 	s := []int{}
 	for i := 0; i < 100; i++ {

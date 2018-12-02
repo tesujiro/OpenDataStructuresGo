@@ -3,11 +3,11 @@ package ch13
 import (
 	"fmt"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
 type Node struct {
-	x      ch1.Comparable
+	x      ch01.Comparable
 	child  [2]*Node
 	jump   *Node
 	parent *Node
@@ -70,7 +70,7 @@ func (bt *BinaryTrie) Print() {
 	fmt.Printf("BinaryTrie(n:%v)=%v\n", bt.Size(), bt.GetAll())
 }
 
-func (bt *BinaryTrie) Find(x ch1.Comparable) ch1.Comparable {
+func (bt *BinaryTrie) Find(x ch01.Comparable) ch01.Comparable {
 	ix := x.HashCode()
 	u := bt.r
 	var c, i uint
@@ -98,7 +98,7 @@ func (bt *BinaryTrie) Find(x ch1.Comparable) ch1.Comparable {
 	}
 }
 
-func (bt *BinaryTrie) Add(x ch1.Comparable) bool {
+func (bt *BinaryTrie) Add(x ch01.Comparable) bool {
 	ix := x.HashCode()
 	u := bt.r
 	var c, i uint
@@ -150,7 +150,7 @@ func (bt *BinaryTrie) Add(x ch1.Comparable) bool {
 	return true
 }
 
-func (bt *BinaryTrie) Remove(x ch1.Comparable) bool {
+func (bt *BinaryTrie) Remove(x ch01.Comparable) bool {
 	ix := x.HashCode()
 	u := bt.r
 	var c, i uint

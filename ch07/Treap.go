@@ -1,14 +1,14 @@
-package ch7
+package ch07
 
 import (
 	"fmt"
 	"math/rand"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
 type TreapNode struct {
-	x      ch1.Comparable
+	x      ch01.Comparable
 	left   *TreapNode
 	right  *TreapNode
 	parent *TreapNode
@@ -51,7 +51,7 @@ func (bt *Treap) Print() {
 	fmt.Printf("Treap(n:%v)=%v\n", bt.Size(), bt.GetAll())
 }
 
-func (bt *Treap) Find(x ch1.Comparable) ch1.Comparable {
+func (bt *Treap) Find(x ch01.Comparable) ch01.Comparable {
 	w := bt.r
 	var z *TreapNode
 	for w != nil {
@@ -117,7 +117,7 @@ func (bt *Treap) rotateRight(u *TreapNode) {
 	}
 }
 
-func (bt *Treap) Add(x ch1.Comparable) bool {
+func (bt *Treap) Add(x ch01.Comparable) bool {
 	u := NewTreapNode()
 	u.x = x
 	u.p = rand.Int()
@@ -146,7 +146,7 @@ func (bt *Treap) AddNode(u *TreapNode) bool {
 	return bt.addChild(p, u)
 }
 
-func (bt *Treap) findLast(x ch1.Comparable) *TreapNode {
+func (bt *Treap) findLast(x ch01.Comparable) *TreapNode {
 	w := bt.r
 	var prev *TreapNode
 	for w != nil {
@@ -184,7 +184,7 @@ func (bt *Treap) addChild(p, u *TreapNode) bool {
 	return true
 }
 
-func (bt *Treap) Remove(x ch1.Comparable) bool {
+func (bt *Treap) Remove(x ch01.Comparable) bool {
 	u := bt.findLast(x)
 	if u != nil && u.x.Compare(x) == 0 {
 		bt.trickleDown(u)

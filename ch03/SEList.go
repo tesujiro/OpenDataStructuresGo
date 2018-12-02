@@ -1,22 +1,22 @@
-package ch3
+package ch03
 
 // A Space-Efficient Linked List
 
 import (
 	"fmt"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch2"
+	"github.com/tesujiro/OpenDataStructuresGo/ch02"
 )
 
 const b = 8 // Block size
 
 type BDeque struct {
-	ch2.ArrayDeque
+	ch02.ArrayDeque
 }
 
 func NewBDeque(b int) *BDeque {
 	a := make([]interface{}, b+1)
-	d := &BDeque{*ch2.NewArrayDeque()}
+	d := &BDeque{*ch02.NewArrayDeque()}
 	d.A = a
 	d.Override = d
 	return d

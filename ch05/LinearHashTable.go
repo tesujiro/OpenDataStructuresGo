@@ -1,4 +1,4 @@
-package ch5
+package ch05
 
 import (
 	"fmt"
@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
 type LinearHashTable struct {
-	t   []ch1.Comparable
+	t   []ch01.Comparable
 	del []bool // delete flag for values in T
 	n   int    // number of values in T
 	q   int    // number of non-null entries in T
@@ -22,7 +22,7 @@ type LinearHashTable struct {
 func NewLinearHashTable() *LinearHashTable {
 	rand.Seed(time.Now().UnixNano())
 	return &LinearHashTable{
-		t:   make([]ch1.Comparable, 1),
+		t:   make([]ch01.Comparable, 1),
 		del: make([]bool, 1),
 		n:   0,
 		q:   0,
@@ -57,12 +57,12 @@ func (ht *LinearHashTable) Print() {
 	fmt.Printf("LinearHashTable(n:%v,cap:%v)=%v\n", ht.Size(), ht.cap(), ht.GetAll())
 }
 
-func (ht *LinearHashTable) hash(x ch1.Comparable) int {
+func (ht *LinearHashTable) hash(x ch01.Comparable) int {
 	h := (ht.z * x.HashCode()) >> (ht.w - ht.d)
 	return int(h)
 }
 
-func (ht *LinearHashTable) Find(x ch1.Comparable) ch1.Comparable {
+func (ht *LinearHashTable) Find(x ch01.Comparable) ch01.Comparable {
 	i := ht.hash(x)
 	//ht.Print()
 	//fmt.Printf("x=%v hash(x)=%v cap=%v ht.d=%v\n", x, i, ht.cap(), ht.d)
@@ -79,7 +79,7 @@ func (ht *LinearHashTable) Find(x ch1.Comparable) ch1.Comparable {
 	return nil
 }
 
-func (ht *LinearHashTable) Add(x ch1.Comparable) bool {
+func (ht *LinearHashTable) Add(x ch01.Comparable) bool {
 	if ht.Find(x) != nil {
 		//fmt.Printf("Add Find(%v)!=nil\n", x)
 		return false
@@ -100,7 +100,7 @@ func (ht *LinearHashTable) Add(x ch1.Comparable) bool {
 	return true
 }
 
-func (ht *LinearHashTable) Remove(x ch1.Comparable) bool {
+func (ht *LinearHashTable) Remove(x ch01.Comparable) bool {
 	i := ht.hash(x)
 	for ht.t[i] != nil {
 		y := ht.t[i]
@@ -123,7 +123,7 @@ func (ht *LinearHashTable) resize() {
 	for 1<<d < 3*ht.n {
 		d++
 	}
-	tnew := make([]ch1.Comparable, 1<<d)
+	tnew := make([]ch01.Comparable, 1<<d)
 	ht.d = d
 	ht.q = ht.n
 	for k := 0; k < ht.cap(); k++ {

@@ -1,13 +1,13 @@
-package ch6
+package ch06
 
 import (
 	"fmt"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
 type Node struct {
-	x      ch1.Comparable
+	x      ch01.Comparable
 	left   *Node
 	right  *Node
 	parent *Node
@@ -58,7 +58,7 @@ func (bt *BinaryTree) Print() {
 	fmt.Printf("BinaryTree(n:%v)=%v\n", bt.Size(), bt.GetAll())
 }
 
-func (bt *BinaryTree) findNode(x ch1.Comparable) *Node {
+func (bt *BinaryTree) findNode(x ch01.Comparable) *Node {
 	w := bt.r
 	for w != nil {
 		comp := x.Compare(w.x)
@@ -74,7 +74,7 @@ func (bt *BinaryTree) findNode(x ch1.Comparable) *Node {
 	return nil
 }
 
-func (bt *BinaryTree) Find(x ch1.Comparable) ch1.Comparable {
+func (bt *BinaryTree) Find(x ch01.Comparable) ch01.Comparable {
 	w := bt.r
 	var z *Node
 	for w != nil {
@@ -96,14 +96,14 @@ func (bt *BinaryTree) Find(x ch1.Comparable) ch1.Comparable {
 	}
 }
 
-func (bt *BinaryTree) Add(x ch1.Comparable) bool {
+func (bt *BinaryTree) Add(x ch01.Comparable) bool {
 	p := bt.findLast(x)
 	u := NewNode()
 	u.x = x
 	return bt.addChild(p, u)
 }
 
-func (bt *BinaryTree) findLast(x ch1.Comparable) *Node {
+func (bt *BinaryTree) findLast(x ch01.Comparable) *Node {
 	w := bt.r
 	var prev *Node
 	for w != nil {
@@ -178,7 +178,7 @@ func (bt *BinaryTree) removeNode(u *Node) {
 	}
 }
 
-func (bt *BinaryTree) Remove(x ch1.Comparable) bool {
+func (bt *BinaryTree) Remove(x ch01.Comparable) bool {
 	u := bt.findNode(x)
 	if u == nil {
 		return false

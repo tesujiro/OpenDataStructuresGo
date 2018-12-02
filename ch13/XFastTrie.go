@@ -3,20 +3,20 @@ package ch13
 import (
 	"fmt"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
-	"github.com/tesujiro/OpenDataStructuresGo/ch5"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
+	"github.com/tesujiro/OpenDataStructuresGo/ch05"
 )
 
 type XFastTrie struct {
 	BinaryTrie
-	t []*ch5.LinearHashTable
+	t []*ch05.LinearHashTable
 }
 
 func NewXFastTrie() *XFastTrie {
 	ft := &XFastTrie{*NewBinaryTrie(), nil}
-	ft.t = make([]*ch5.LinearHashTable, ft.w+1)
+	ft.t = make([]*ch05.LinearHashTable, ft.w+1)
 	for i := 0; i < len(ft.t); i++ {
-		ft.t[i] = ch5.NewLinearHashTable()
+		ft.t[i] = ch05.NewLinearHashTable()
 	}
 	return ft
 }
@@ -53,7 +53,7 @@ func NewXPair(x uint) *XPair {
 	return &XPair{x: x}
 }
 
-func (xp1 XPair) Compare(xp2 ch1.Comparable) int {
+func (xp1 XPair) Compare(xp2 ch01.Comparable) int {
 	return int(xp1.x - xp2.(XPair).x)
 }
 
@@ -61,7 +61,7 @@ func (xp XPair) HashCode() uint {
 	return xp.x
 }
 
-func (ft *XFastTrie) Find(x ch1.Comparable) ch1.Comparable {
+func (ft *XFastTrie) Find(x ch01.Comparable) ch01.Comparable {
 	l := uint(0)
 	h := ft.w + 1
 	ix := x.HashCode()
@@ -113,7 +113,7 @@ func (ft *XFastTrie) Find(x ch1.Comparable) ch1.Comparable {
 	}
 }
 
-func (ft *XFastTrie) Add(x ch1.Comparable) bool {
+func (ft *XFastTrie) Add(x ch01.Comparable) bool {
 	ix := x.HashCode()
 	u := ft.r
 	var c, i uint
@@ -182,7 +182,7 @@ func (ft *XFastTrie) Add(x ch1.Comparable) bool {
 	return true
 }
 
-func (ft *XFastTrie) Remove(x ch1.Comparable) bool {
+func (ft *XFastTrie) Remove(x ch01.Comparable) bool {
 	ix := x.HashCode()
 	u := ft.r
 	var c, i uint

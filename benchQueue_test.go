@@ -5,14 +5,14 @@ import (
 
 	"testing"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
+	"github.com/tesujiro/OpenDataStructuresGo/ch02"
+	"github.com/tesujiro/OpenDataStructuresGo/ch03"
 	"github.com/tesujiro/OpenDataStructuresGo/ch10"
-	"github.com/tesujiro/OpenDataStructuresGo/ch2"
-	"github.com/tesujiro/OpenDataStructuresGo/ch3"
 )
 
 func BenchmarkQueue_Ch2_ArrayQueue(b *testing.B) {
-	constructor := ch2.NewArrayQueue
+	constructor := ch02.NewArrayQueue
 	b.Run("Add", func(b *testing.B) {
 		q := constructor()
 		benchmarkQueue_Add(q, b)
@@ -24,7 +24,7 @@ func BenchmarkQueue_Ch2_ArrayQueue(b *testing.B) {
 }
 
 func BenchmarkQueue_Ch3_SLList(b *testing.B) {
-	constructor := ch3.NewSLList
+	constructor := ch03.NewSLList
 	b.Run("Add", func(b *testing.B) {
 		q := constructor()
 		benchmarkQueue_Add(q, b)
@@ -35,14 +35,14 @@ func BenchmarkQueue_Ch3_SLList(b *testing.B) {
 	})
 }
 
-func benchmarkQueue_Add(q ch1.Queue, b *testing.B) {
+func benchmarkQueue_Add(q ch01.Queue, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		q.Add(i)
 	}
 }
 
-func benchmarkQueue_Remove(q ch1.Queue, b *testing.B) {
+func benchmarkQueue_Remove(q ch01.Queue, b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		q.Add(i)
 	}
@@ -75,14 +75,14 @@ func BenchmarkPriorityQueue_Ch10_MeldableHeap(b *testing.B) {
 	})
 }
 
-func benchmarkPriorityQueue_Add(q ch1.PriorityQueue, b *testing.B) {
+func benchmarkPriorityQueue_Add(q ch01.PriorityQueue, b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		q.Add(element(i))
 	}
 }
 
-func benchmarkPriorityQueue_Remove(q ch1.PriorityQueue, b *testing.B) {
+func benchmarkPriorityQueue_Remove(q ch01.PriorityQueue, b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		q.Add(element(i))
 	}

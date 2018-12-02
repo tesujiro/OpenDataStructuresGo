@@ -7,91 +7,91 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
+	"github.com/tesujiro/OpenDataStructuresGo/ch02"
+	"github.com/tesujiro/OpenDataStructuresGo/ch03"
+	"github.com/tesujiro/OpenDataStructuresGo/ch04"
+	"github.com/tesujiro/OpenDataStructuresGo/ch05"
+	"github.com/tesujiro/OpenDataStructuresGo/ch06"
+	"github.com/tesujiro/OpenDataStructuresGo/ch07"
+	"github.com/tesujiro/OpenDataStructuresGo/ch08"
 	"github.com/tesujiro/OpenDataStructuresGo/ch10"
 	"github.com/tesujiro/OpenDataStructuresGo/ch11"
 	"github.com/tesujiro/OpenDataStructuresGo/ch13"
-	"github.com/tesujiro/OpenDataStructuresGo/ch2"
-	"github.com/tesujiro/OpenDataStructuresGo/ch3"
-	"github.com/tesujiro/OpenDataStructuresGo/ch4"
-	"github.com/tesujiro/OpenDataStructuresGo/ch5"
-	"github.com/tesujiro/OpenDataStructuresGo/ch6"
-	"github.com/tesujiro/OpenDataStructuresGo/ch7"
-	"github.com/tesujiro/OpenDataStructuresGo/ch8"
 )
 
 func TestArrayStack(t *testing.T) {
-	s := ch2.NewArrayStack()
+	s := ch02.NewArrayStack()
 	testList(s, t)
 }
 
 func TestArrayQueue(t *testing.T) {
-	s := ch2.NewArrayQueue()
+	s := ch02.NewArrayQueue()
 	testQueue(s, t)
 }
 
 func TestArrayDeque(t *testing.T) {
-	s := ch2.NewArrayDeque()
+	s := ch02.NewArrayDeque()
 	testList(s, t)
 }
 
 func TestDualArrayDeque(t *testing.T) {
-	s := ch2.NewDualArrayDeque()
+	s := ch02.NewDualArrayDeque()
 	testList(s, t)
 }
 
 func TestRootishArrayStack(t *testing.T) {
-	s := ch2.NewRootishArrayStack()
+	s := ch02.NewRootishArrayStack()
 	testList(s, t)
 }
 
 func TestSLList(t *testing.T) {
-	s := ch3.NewSLList()
+	s := ch03.NewSLList()
 	testQueue(s, t)
 }
 
 func TestDLList(t *testing.T) {
-	s := ch3.NewDLList()
+	s := ch03.NewDLList()
 	testList(s, t)
 }
 
 func TestSEList(t *testing.T) {
-	s := ch3.NewSEList()
+	s := ch03.NewSEList()
 	testList(s, t)
 }
 
 func TestSkiplistSSet(t *testing.T) {
-	s := ch4.NewSkiplistSSet()
+	s := ch04.NewSkiplistSSet()
 	testSSet(s, t)
 }
 
 func TestSkiplistList(t *testing.T) {
-	s := ch4.NewSkiplistList()
+	s := ch04.NewSkiplistList()
 	testList(s, t)
 }
 
 func TestChainedHashTable(t *testing.T) {
-	s := ch5.NewChainedHashTable()
+	s := ch05.NewChainedHashTable()
 	testSSet(s, t)
 }
 
 func TestLinearHashTable(t *testing.T) {
-	s := ch5.NewLinearHashTable()
+	s := ch05.NewLinearHashTable()
 	testSSet(s, t)
 }
 
 func TestBinaryTree(t *testing.T) {
-	s := ch6.NewBinaryTree()
+	s := ch06.NewBinaryTree()
 	testSSet(s, t)
 }
 
 func TestTreap(t *testing.T) {
-	s := ch7.NewTreap()
+	s := ch07.NewTreap()
 	testSSet(s, t)
 }
 
 func TestScapegoatTree(t *testing.T) {
-	s := ch8.NewScapegoatTree()
+	s := ch08.NewScapegoatTree()
 	testSSet(s, t)
 }
 
@@ -131,7 +131,7 @@ func TestXFastTrie(t *testing.T) {
 	testSSet(s, t)
 }
 
-func testList(s ch1.List, t *testing.T) {
+func testList(s ch01.List, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s.GetAll())
 	}
@@ -156,7 +156,7 @@ func testList(s ch1.List, t *testing.T) {
 	}
 }
 
-func testQueue(q ch1.Queue, t *testing.T) {
+func testQueue(q ch01.Queue, t *testing.T) {
 	MAX := 100
 	result := []interface{}{}
 	for i := 0; i < MAX; i += 10 {
@@ -190,7 +190,7 @@ func testQueue(q ch1.Queue, t *testing.T) {
 	*/
 }
 
-func testPriorityQueue(q ch1.PriorityQueue, t *testing.T) {
+func testPriorityQueue(q ch01.PriorityQueue, t *testing.T) {
 	MAX := 100
 	if !reflect.DeepEqual(q.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", q.GetAll())
@@ -215,7 +215,7 @@ func testPriorityQueue(q ch1.PriorityQueue, t *testing.T) {
 	}
 }
 
-func testSSet2(s ch1.SSet, t *testing.T) {
+func testSSet2(s ch01.SSet, t *testing.T) {
 	num := 50000
 	for i := 0; i < num; i++ {
 		s.Add(element(i))
@@ -223,7 +223,7 @@ func testSSet2(s ch1.SSet, t *testing.T) {
 	fmt.Println(num, "add finished")
 }
 
-func testSSet(s ch1.SSet, t *testing.T) {
+func testSSet(s ch01.SSet, t *testing.T) {
 	if !reflect.DeepEqual(s.GetAll(), []interface{}{}) {
 		t.Fatalf("failed init %#v", s.GetAll())
 	}
@@ -255,21 +255,21 @@ func testSSet(s ch1.SSet, t *testing.T) {
 	}
 }
 
-func testSort(f ch1.SortFunc, t *testing.T) {
-	s := []ch1.Comparable{}
+func testSort(f ch01.SortFunc, t *testing.T) {
+	s := []ch01.Comparable{}
 	for i := 40; i > 0; i -= 10 {
 		s = append(s, element(i))
 	}
 	//fmt.Printf("s=%v\n", s)
 	f(s)
 	//fmt.Printf("s=%v\n", s)
-	if !reflect.DeepEqual(s, []ch1.Comparable{element(10), element(20), element(30), element(40)}) {
+	if !reflect.DeepEqual(s, []ch01.Comparable{element(10), element(20), element(30), element(40)}) {
 		//if !reflect.DeepEqual(slice, []interface{}{10, 20, 30, 40}) {
 		t.Fatalf("failed Sort %#v", s)
 	}
 }
 
-func testCSort(f ch1.CountingSortFunc, t *testing.T) {
+func testCSort(f ch01.CountingSortFunc, t *testing.T) {
 	k := 256 * 256
 	s := []int{}
 	rand.Seed(0)

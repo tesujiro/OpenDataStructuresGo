@@ -1,16 +1,16 @@
-package ch5
+package ch05
 
 import (
 	"fmt"
 	"math/rand"
 	"strconv"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
-	"github.com/tesujiro/OpenDataStructuresGo/ch4"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
+	"github.com/tesujiro/OpenDataStructuresGo/ch04"
 )
 
 type ChainedHashTable struct {
-	t []ch1.List
+	t []ch01.List
 	n int    // number of element
 	d uint32 // bit size of Hashtable
 	w uint32 // bit size of int
@@ -19,13 +19,13 @@ type ChainedHashTable struct {
 
 const initWidth = 20
 
-func newList() ch1.List {
-	return ch4.NewSkiplistList()
+func newList() ch01.List {
+	return ch04.NewSkiplistList()
 }
 
 func NewChainedHashTable() *ChainedHashTable {
 	initSize := 2 << (initWidth - 1)
-	t := make([]ch1.List, initSize)
+	t := make([]ch01.List, initSize)
 	for i := 0; i < initSize; i++ {
 		t[i] = newList()
 	}
@@ -61,12 +61,12 @@ func (ht *ChainedHashTable) Print() {
 }
 
 func (ht *ChainedHashTable) resize() {
-	var new []ch1.List
+	var new []ch01.List
 	if ht.n > 1 {
-		new = make([]ch1.List, ht.n*2)
+		new = make([]ch01.List, ht.n*2)
 		ht.d++
 	} else {
-		new = make([]ch1.List, 1)
+		new = make([]ch01.List, 1)
 		ht.d = 1
 	}
 	for i := 0; i < len(new); i++ {
@@ -74,14 +74,14 @@ func (ht *ChainedHashTable) resize() {
 	}
 	for i := 0; i < ht.n; i++ {
 		for j := 0; j < ht.t[i].Size(); j++ {
-			x := ht.t[i].Get(j).(ch1.Comparable)
+			x := ht.t[i].Get(j).(ch01.Comparable)
 			new[ht.hash(x)].Add(0, x)
 		}
 	}
 	ht.t = new
 }
 
-func (ht *ChainedHashTable) Add(x ch1.Comparable) bool {
+func (ht *ChainedHashTable) Add(x ch01.Comparable) bool {
 	if ht.Find(x) != nil {
 		return false
 	}
@@ -93,7 +93,7 @@ func (ht *ChainedHashTable) Add(x ch1.Comparable) bool {
 	return true
 }
 
-func (ht *ChainedHashTable) Remove(x ch1.Comparable) bool {
+func (ht *ChainedHashTable) Remove(x ch01.Comparable) bool {
 	j := ht.hash(x)
 	for i := 0; i < ht.t[j].Size(); i++ {
 		y := ht.t[j].Get(i)
@@ -106,17 +106,17 @@ func (ht *ChainedHashTable) Remove(x ch1.Comparable) bool {
 	return false
 }
 
-func (ht *ChainedHashTable) Find(x ch1.Comparable) ch1.Comparable {
+func (ht *ChainedHashTable) Find(x ch01.Comparable) ch01.Comparable {
 	j := ht.hash(x)
 	for i := 0; i < ht.t[j].Size(); i++ {
 		if x == ht.t[j].Get(i) {
-			return ht.t[j].Get(i).(ch1.Comparable)
+			return ht.t[j].Get(i).(ch01.Comparable)
 		}
 	}
 	return nil
 }
 
-func (ht *ChainedHashTable) hash(x ch1.Comparable) uint {
+func (ht *ChainedHashTable) hash(x ch01.Comparable) uint {
 	h := (ht.z * x.HashCode()) >> (ht.w - ht.d)
 	return h
 }

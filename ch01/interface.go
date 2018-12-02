@@ -1,4 +1,4 @@
-package ch1
+package ch01
 
 type Helper interface {
 	GetAll() []interface{}

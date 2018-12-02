@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 	"github.com/tesujiro/OpenDataStructuresGo/ch11"
 )
 
@@ -26,7 +26,7 @@ func BenchmarkCSort_Ch11_RadixSort(b *testing.B) {
 	benchmarkCSort(ch11.RadixSort, b)
 }
 
-func benchmarkSort(f ch1.SortFunc, b *testing.B) {
+func benchmarkSort(f ch01.SortFunc, b *testing.B) {
 	b.Run("NoSort", func(b *testing.B) {
 		benchmarkSort_NoSort(f, b)
 	})
@@ -39,8 +39,8 @@ func benchmarkSort(f ch1.SortFunc, b *testing.B) {
 
 }
 
-func benchmarkSort_NoSort(f ch1.SortFunc, b *testing.B) {
-	s := []ch1.Comparable{}
+func benchmarkSort_NoSort(f ch01.SortFunc, b *testing.B) {
+	s := []ch01.Comparable{}
 	for i := 0; i < b.N; i++ {
 		s = append(s, element(i))
 	}
@@ -49,8 +49,8 @@ func benchmarkSort_NoSort(f ch1.SortFunc, b *testing.B) {
 	f(s)
 }
 
-func benchmarkSort_Reverse(f ch1.SortFunc, b *testing.B) {
-	s := []ch1.Comparable{}
+func benchmarkSort_Reverse(f ch01.SortFunc, b *testing.B) {
+	s := []ch01.Comparable{}
 	for i := 0; i < b.N; i++ {
 		s = append(s, element(b.N-i))
 	}
@@ -59,9 +59,9 @@ func benchmarkSort_Reverse(f ch1.SortFunc, b *testing.B) {
 	f(s)
 }
 
-func benchmarkSort_Random(f ch1.SortFunc, b *testing.B) {
+func benchmarkSort_Random(f ch01.SortFunc, b *testing.B) {
 	rand.Seed(time.Now().UnixNano())
-	s := []ch1.Comparable{}
+	s := []ch01.Comparable{}
 	for i := 0; len(s) < b.N; i++ {
 		s = append(s, element(rand.Intn(b.N)))
 	}
@@ -70,7 +70,7 @@ func benchmarkSort_Random(f ch1.SortFunc, b *testing.B) {
 	f(s)
 }
 
-func benchmarkCSort(f ch1.CountingSortFunc, b *testing.B) {
+func benchmarkCSort(f ch01.CountingSortFunc, b *testing.B) {
 	b.Run("NoSort", func(b *testing.B) {
 		benchmarkCSort_NoSort(f, b)
 	})
@@ -83,7 +83,7 @@ func benchmarkCSort(f ch1.CountingSortFunc, b *testing.B) {
 
 }
 
-func benchmarkCSort_NoSort(f ch1.CountingSortFunc, b *testing.B) {
+func benchmarkCSort_NoSort(f ch01.CountingSortFunc, b *testing.B) {
 	//fmt.Printf("b.N=%v start\n", b.N)
 	s := []int{}
 	k := 256 * 256 * 256 * 1
@@ -96,7 +96,7 @@ func benchmarkCSort_NoSort(f ch1.CountingSortFunc, b *testing.B) {
 	//fmt.Printf("b.N=%v finish\n", b.N)
 }
 
-func benchmarkCSort_Reverse(f ch1.CountingSortFunc, b *testing.B) {
+func benchmarkCSort_Reverse(f ch01.CountingSortFunc, b *testing.B) {
 	s := []int{}
 	k := 256 * 256 * 256 * 8
 	for i := 0; i < b.N; i++ {
@@ -107,7 +107,7 @@ func benchmarkCSort_Reverse(f ch1.CountingSortFunc, b *testing.B) {
 	f(&s, k)
 }
 
-func benchmarkCSort_Random(f ch1.CountingSortFunc, b *testing.B) {
+func benchmarkCSort_Random(f ch01.CountingSortFunc, b *testing.B) {
 	s := []int{}
 	k := 256 * 256 * 256 * 8
 	rand.Seed(time.Now().UnixNano())

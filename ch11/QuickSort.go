@@ -3,14 +3,14 @@ package ch11
 import (
 	"math/rand"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
-func QuickSort(a []ch1.Comparable) {
+func QuickSort(a []ch01.Comparable) {
 	quickSort(a, 0, len(a))
 }
 
-func quickSort(a []ch1.Comparable, i, n int) {
+func quickSort(a []ch01.Comparable, i, n int) {
 	if n <= 1 {
 		return
 	}

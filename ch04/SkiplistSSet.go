@@ -1,19 +1,19 @@
-package ch4
+package ch04
 
 import (
 	"fmt"
 	"math/rand"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
 type SSSNode struct {
-	x      ch1.Comparable
+	x      ch01.Comparable
 	height int //height
 	next   []*SSSNode
 }
 
-func NewSSSNode(h int, x ch1.Comparable) *SSSNode {
+func NewSSSNode(h int, x ch01.Comparable) *SSSNode {
 	return &SSSNode{
 		x:      x,
 		height: h,
@@ -53,7 +53,7 @@ func (l *SkiplistSSet) Print() {
 	fmt.Printf("SkiplistSSet(n:%v)=%v\n", l.Size(), l.GetAll())
 }
 
-func (l *SkiplistSSet) findPredNode(x ch1.Comparable) *SSSNode {
+func (l *SkiplistSSet) findPredNode(x ch01.Comparable) *SSSNode {
 	u := l.sentinel
 	r := l.h
 	for r >= 0 {
@@ -65,7 +65,7 @@ func (l *SkiplistSSet) findPredNode(x ch1.Comparable) *SSSNode {
 	return u
 }
 
-func (l *SkiplistSSet) Find(x ch1.Comparable) ch1.Comparable {
+func (l *SkiplistSSet) Find(x ch01.Comparable) ch01.Comparable {
 	u := l.findPredNode(x)
 	if u.next[0] == nil {
 		return nil
@@ -86,7 +86,7 @@ func pickHeight() int {
 	return k
 }
 
-func (l *SkiplistSSet) Add(x ch1.Comparable) bool {
+func (l *SkiplistSSet) Add(x ch01.Comparable) bool {
 	u := l.sentinel
 	r := l.h
 	stack := make([]*SSSNode, l.h+1) //TODO
@@ -122,7 +122,7 @@ func (l *SkiplistSSet) Add(x ch1.Comparable) bool {
 	return true
 }
 
-func (l *SkiplistSSet) Remove(x ch1.Comparable) bool {
+func (l *SkiplistSSet) Remove(x ch01.Comparable) bool {
 	removed := false
 	u := l.sentinel
 	r := l.h

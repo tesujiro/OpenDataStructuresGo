@@ -1,14 +1,14 @@
-package ch8
+package ch08
 
 import (
 	"fmt"
 	"math"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
 type Node struct {
-	x      ch1.Comparable
+	x      ch01.Comparable
 	left   *Node
 	right  *Node
 	parent *Node
@@ -57,7 +57,7 @@ func (bt *ScapegoatTree) Print() {
 	fmt.Printf("ScapegoatTree(n:%v,q:%v)=%v\n", bt.Size(), bt.q, bt.GetAll())
 }
 
-func (bt *ScapegoatTree) findNode(x ch1.Comparable) *Node {
+func (bt *ScapegoatTree) findNode(x ch01.Comparable) *Node {
 	w := bt.r
 	for w != nil {
 		comp := x.Compare(w.x)
@@ -73,7 +73,7 @@ func (bt *ScapegoatTree) findNode(x ch1.Comparable) *Node {
 	return nil
 }
 
-func (bt *ScapegoatTree) Find(x ch1.Comparable) ch1.Comparable {
+func (bt *ScapegoatTree) Find(x ch01.Comparable) ch01.Comparable {
 	w := bt.r
 	var z *Node
 	for w != nil {
@@ -138,7 +138,7 @@ func (bt *ScapegoatTree) addWithDepth(u *Node) int {
 	return d
 }
 
-func (bt *ScapegoatTree) findLast(x ch1.Comparable) (*Node, int) {
+func (bt *ScapegoatTree) findLast(x ch01.Comparable) (*Node, int) {
 	w := bt.r
 	d := 0
 	//q := 1
@@ -191,7 +191,7 @@ func packIntoArray(u *Node, a []*Node, i int) int {
 	return packIntoArray(u.right, a, i)
 }
 
-func (bt *ScapegoatTree) Add(x ch1.Comparable) bool {
+func (bt *ScapegoatTree) Add(x ch01.Comparable) bool {
 	u := NewNode()
 	u.x = x
 	d := bt.addWithDepth(u)
@@ -250,7 +250,7 @@ func (bt *ScapegoatTree) removeNode(u *Node) {
 	}
 }
 
-func (bt *ScapegoatTree) Remove(x ch1.Comparable) bool {
+func (bt *ScapegoatTree) Remove(x ch01.Comparable) bool {
 	u := bt.findNode(x)
 	if u == nil {
 		return false

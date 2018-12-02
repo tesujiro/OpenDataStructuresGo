@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"math/rand"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
 type Node struct {
-	x                   ch1.Comparable
+	x                   ch01.Comparable
 	right, left, parent *Node
 }
 
@@ -74,7 +74,7 @@ func merge(h1, h2 *Node) *Node {
 	return h1
 }
 
-func (h *MeldableHeap) Add(x ch1.Comparable) bool {
+func (h *MeldableHeap) Add(x ch01.Comparable) bool {
 	u := NewNode()
 	u.x = x
 	h.r = merge(u, h.r)
@@ -83,7 +83,7 @@ func (h *MeldableHeap) Add(x ch1.Comparable) bool {
 	return true
 }
 
-func (h *MeldableHeap) Remove() ch1.Comparable {
+func (h *MeldableHeap) Remove() ch01.Comparable {
 	x := h.r.x
 	//tmp := h.r
 	h.r = merge(h.r.left, h.r.right)

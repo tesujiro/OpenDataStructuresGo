@@ -3,7 +3,7 @@ package ch10
 import (
 	"fmt"
 
-	"github.com/tesujiro/OpenDataStructuresGo/ch1"
+	"github.com/tesujiro/OpenDataStructuresGo/ch01"
 )
 
 func left(i int) int {
@@ -19,7 +19,7 @@ func parent(i int) int {
 }
 
 type BinaryHeap struct {
-	a []ch1.Comparable
+	a []ch01.Comparable
 	n int
 }
 
@@ -27,7 +27,7 @@ const initSize = 1
 
 func NewBinaryHeap() *BinaryHeap {
 	return &BinaryHeap{
-		a: make([]ch1.Comparable, initSize),
+		a: make([]ch01.Comparable, initSize),
 		n: 0,
 	}
 }
@@ -52,7 +52,7 @@ func (h *BinaryHeap) Print() {
 	fmt.Printf("BinaryHeap(n:%v,cap:%v)=%v\n", h.Size(), h.cap(), h.GetAll())
 }
 
-func (h *BinaryHeap) Add(x ch1.Comparable) bool {
+func (h *BinaryHeap) Add(x ch01.Comparable) bool {
 	if h.n+1 > cap(h.a) {
 		h.resize()
 	}
@@ -71,7 +71,7 @@ func (h *BinaryHeap) bubbleUp(i int) {
 	}
 }
 
-func (h *BinaryHeap) Remove() ch1.Comparable {
+func (h *BinaryHeap) Remove() ch01.Comparable {
 	x := h.a[0]
 	h.n--
 	h.a[0] = h.a[h.n]
@@ -107,8 +107,8 @@ func (h *BinaryHeap) trickleDown(i int) {
 }
 
 func (h *BinaryHeap) resize() {
-	var new []ch1.Comparable
-	new = make([]ch1.Comparable, h.n*2)
+	var new []ch01.Comparable
+	new = make([]ch01.Comparable, h.n*2)
 	for i := 0; i < h.n; i++ {
 		new[i] = h.a[i]
 	}
