@@ -11,6 +11,7 @@ before_install:
   - go get -u github.com/tesujiro/OpenDataStructuresGo
 
 script:
+  - go vet ./...
   - go test -v -coverprofile=coverage.txt -covermode=count .
 
 after_success:

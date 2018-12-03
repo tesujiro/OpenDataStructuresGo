@@ -1,4 +1,5 @@
 test:
+	go vet
 	go test -v . -coverpkg ./...
 
 cover:
