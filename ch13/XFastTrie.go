@@ -24,19 +24,10 @@ func NewXFastTrie() *XFastTrie {
 /*
 //import from BinaryTrie
 func (ft *XFastTrie) Size() int {
-	return ft.n
 }
 
 //import from BinaryTrie
 func (ft *XFastTrie) GetAll() []interface{} {
-	s := []interface{}{}
-	w := ft.dummy.child[1]
-	// get x till end
-	for w != nil && w != ft.dummy {
-		s = append(s, w.x)
-		w = w.right()
-	}
-	return s
 }
 */
 
@@ -69,13 +60,10 @@ func (ft *XFastTrie) Find(x ch01.Comparable) ch01.Comparable {
 	for h-l > 1 {
 		i := (l + h) / 2
 		p := NewXPair(ix >> (ft.w - i))
-		//fmt.Printf("Find XPair ix=%v, i=%v, p=%v, len(ft.t[i])=%v,ft.t[i]=%v\n", ix, i, p.x, ft.t[i].Size(), ft.t[i].GetAll())
 		xp := ft.t[i].Find(p)
 		if xp == nil {
 			h = i
 		} else {
-			//fmt.Println(" ==> FOUND!")
-			//u = xp.(XPair).u
 			u = xp.(*XPair).u
 			l = i
 		}
@@ -84,31 +72,16 @@ func (ft *XFastTrie) Find(x ch01.Comparable) ch01.Comparable {
 	if l == ft.w {
 		return u.x
 	}
-	// search for next value
 
+	// search for next value
 	c := ix >> (ft.w - l - 1) & 1
-	if c == 0 {
-		u = u.jump
-	} else {
-		u = u.jump.right()
-	}
 	var pred *Node
-	/*
-		//TODO???
-		if u == nil {
-			return nil
-		}
-	*/
-	//if c == 1 {
 	if c == 1 {
 		pred = u.jump
 	} else {
-		//fmt.Printf("u=%#v\n", u)
 		pred = u.jump.left()
-		//pred = u.jump.child[0]
 	}
-	//if pred.right() == ft.dummy {
-	if pred.right() == ft.dummy || pred.right() == nil {
+	if pred.right() == ft.dummy {
 		return nil
 	} else {
 		return pred.right().x
@@ -122,14 +95,12 @@ func (ft *XFastTrie) Add(x ch01.Comparable) bool {
 	// 1 - search for ix until falling out of the trie
 	for i = 0; i < ft.w; i++ {
 		c = ix >> (ft.w - i - 1) & 1
-		//if u == nil || u.child[c] == nil {
 		if u.child[c] == nil {
 			break
 		}
 		u = u.child[c]
 	}
 	if i == ft.w {
-		//fmt.Printf("Add failed x=%v\n", x)
 		return false
 	}
 	var pred *Node
@@ -149,30 +120,20 @@ func (ft *XFastTrie) Add(x ch01.Comparable) bool {
 		u.child[c].parent = u
 
 		p := NewXPair(ix >> (ft.w - i - 1))
-		//p.u = u.child[c]
 		p.u = u.child[c]
-		//fmt.Printf("Add NewXPair ix=%v,i=%v,x=%v\n", ix, i, p.x)
 		if !ft.t[i+1].Add(p) {
-			//fmt.Printf("XFastTrie Add XPair failed. ix=%v,i=%v\n", ix, i)
+			return false
 		}
-		//fmt.Printf(" XPair ix=%v, i=%v, p=%v, len(ft.t[i])=%v\n", ix, i, p.x, ft.t[i].Size())
-		//ft.t[i].Print()
 		u = u.child[c]
 	}
 	u.x = x
+
 	// 3 - add u to linked list
 	u.child[0] = pred         //set pred
 	u.child[1] = pred.right() //set next
 	u.child[0].child[1] = u   //u.pred.next=u
 	u.child[1].child[0] = u   //u.next.pred=u
-	/*
-		p := NewXPair(ix >> (ft.w - i))
-		p.u = u
-		//fmt.Printf("Add NewXPair ix=%v,i=%v,x=%v\n", ix, i, p.x)
-		if !ft.t[i].Add(p) {
-			fmt.Printf("XFastTrie Add XPair failed. ix=%v,i=%v\n", ix, i)
-		}
-	*/
+
 	// 4 - walk back up, updating jump pointers
 	v := u.parent
 	for v != nil {
@@ -206,7 +167,6 @@ func (ft *XFastTrie) Remove(x ch01.Comparable) bool {
 	for i = ft.w - 1; int(i) >= 0; i-- {
 		c = ix >> (ft.w - i - 1) & 1
 		v = v.parent
-		//fmt.Println("Remove i=", i, " c=", c)
 		v.child[c] = nil
 		if v.child[1-c] != nil {
 			break
