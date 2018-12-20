@@ -93,10 +93,12 @@ func (ft *XFastTrie) Find(x ch01.Comparable) ch01.Comparable {
 		u = u.jump.right()
 	}
 	var pred *Node
-	//TODO???
-	if u == nil {
-		return nil
-	}
+	/*
+		//TODO???
+		if u == nil {
+			return nil
+		}
+	*/
 	//if c == 1 {
 	if c == 1 {
 		pred = u.jump
@@ -146,11 +148,11 @@ func (ft *XFastTrie) Add(x ch01.Comparable) bool {
 		u.child[c] = NewNode()
 		u.child[c].parent = u
 
-		p := NewXPair(ix >> (ft.w - i))
+		p := NewXPair(ix >> (ft.w - i - 1))
 		//p.u = u.child[c]
-		p.u = u
+		p.u = u.child[c]
 		//fmt.Printf("Add NewXPair ix=%v,i=%v,x=%v\n", ix, i, p.x)
-		if !ft.t[i].Add(p) {
+		if !ft.t[i+1].Add(p) {
 			//fmt.Printf("XFastTrie Add XPair failed. ix=%v,i=%v\n", ix, i)
 		}
 		//fmt.Printf(" XPair ix=%v, i=%v, p=%v, len(ft.t[i])=%v\n", ix, i, p.x, ft.t[i].Size())
@@ -163,12 +165,14 @@ func (ft *XFastTrie) Add(x ch01.Comparable) bool {
 	u.child[1] = pred.right() //set next
 	u.child[0].child[1] = u   //u.pred.next=u
 	u.child[1].child[0] = u   //u.next.pred=u
-	p := NewXPair(ix >> (ft.w - i))
-	p.u = u
-	//fmt.Printf("Add NewXPair ix=%v,i=%v,x=%v\n", ix, i, p.x)
-	if !ft.t[i].Add(p) {
-		fmt.Printf("XFastTrie Add XPair failed. ix=%v,i=%v\n", ix, i)
-	}
+	/*
+		p := NewXPair(ix >> (ft.w - i))
+		p.u = u
+		//fmt.Printf("Add NewXPair ix=%v,i=%v,x=%v\n", ix, i, p.x)
+		if !ft.t[i].Add(p) {
+			fmt.Printf("XFastTrie Add XPair failed. ix=%v,i=%v\n", ix, i)
+		}
+	*/
 	// 4 - walk back up, updating jump pointers
 	v := u.parent
 	for v != nil {

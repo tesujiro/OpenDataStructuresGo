@@ -63,6 +63,7 @@ func (bt *BinaryTrie) GetAll() []interface{} {
 		s = append(s, w.x)
 		w = w.right()
 	}
+	//fmt.Printf("BinaryTrie(n:%v)=%v\n", bt.Size(), bt.GetAll())
 	return s
 }
 
