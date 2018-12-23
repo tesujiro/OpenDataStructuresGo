@@ -81,7 +81,7 @@ func (ft *XFastTrie) Find(x ch01.Comparable) ch01.Comparable {
 	} else {
 		pred = u.jump.left()
 	}
-	if pred.right() == ft.dummy {
+	if pred.right() == ft.dummy || pred.right() == nil {
 		return nil
 	} else {
 		return pred.right().x
