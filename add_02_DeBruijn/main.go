@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+)
 
 type D struct {
 	k int // number of characters
@@ -87,9 +90,16 @@ func (d *D) seq() ([]rune, bool) {
 }
 
 func main() {
-	d := newD(3, 3)
-	fmt.Printf("A: %v\n", string(d.A))
-	fmt.Printf("V: ")
+	var (
+		k = flag.Int("k", 2, "alphabets")
+		n = flag.Int("n", 3, "word length")
+	)
+	flag.Parse()
+	d := newD(*k, *n)
+	fmt.Printf("k: %v\n", d.k)
+	fmt.Printf("n: %v\n", d.n)
+	fmt.Printf("alphabets: %v\n", string(d.A))
+	fmt.Printf("combination: ")
 	for _, r := range d.V {
 		fmt.Printf("%v ", string(r))
 	}
@@ -97,5 +107,5 @@ func main() {
 	//fmt.Println("len(V)=", len(d.V))
 	seq, ok := d.seq()
 	fmt.Println("ok:", ok)
-	fmt.Println("seq:", string(seq))
+	fmt.Println("De Bruijn sequence:", string(seq))
 }
