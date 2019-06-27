@@ -41,10 +41,10 @@ func (d *D) _combi(cur []rune, n int, ret [][]rune) [][]rune {
 	return ret
 }
 
-func (d *D) check(cur []rune, checklist map[string]bool) (bool, map[string]bool) {
+func (d *D) check(cur []rune, checklist map[string]bool) (bool, string) {
 	//fmt.Println("cur=", string(cur))
 	if len(cur) < d.n {
-		return true, checklist
+		return true, ""
 	}
 
 	var str string
@@ -53,20 +53,14 @@ func (d *D) check(cur []rune, checklist map[string]bool) (bool, map[string]bool)
 		//fmt.Printf("str=%v ", str)
 		if _, ok := checklist[str]; ok {
 			//fmt.Printf("->false checklist=%v\n", checklist)
-			return false, checklist
+			return false, ""
 		}
 		//fmt.Printf("->true checklist=%v\n", checklist)
 		if len(cur) != len(d.V) {
 			break
 		}
 	}
-	newChecklist := make(map[string]bool)
-	for k, v := range checklist {
-		newChecklist[k] = v
-	}
-	newChecklist[str] = true
-
-	return true, newChecklist
+	return true, str
 }
 
 func (d *D) _seq(cur []rune, checklist map[string]bool) ([]rune, bool) {
@@ -75,9 +69,12 @@ func (d *D) _seq(cur []rune, checklist map[string]bool) ([]rune, bool) {
 	}
 	for _, r := range d.A {
 		newCur := append(cur, r)
-		if ok, newChecklist := d.check(newCur, checklist); ok {
-			if ret, ok := d._seq(newCur, newChecklist); ok {
+		if ok, key := d.check(newCur, checklist); ok {
+			checklist[key] = true
+			if ret, ok := d._seq(newCur, checklist); ok {
 				return ret, true
+			} else {
+				delete(checklist, key)
 			}
 		}
 	}
