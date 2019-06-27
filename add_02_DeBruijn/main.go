@@ -98,12 +98,14 @@ func main() {
 	d := newD(*k, *n)
 	fmt.Printf("k: %v\n", d.k)
 	fmt.Printf("n: %v\n", d.n)
-	fmt.Printf("alphabets: %v\n", string(d.A))
-	fmt.Printf("combination: ")
-	for _, r := range d.V {
-		fmt.Printf("%v ", string(r))
-	}
-	fmt.Printf("\n")
+	//fmt.Printf("alphabets: %v\n", string(d.A))
+	/*
+		fmt.Printf("combination: ")
+		for _, r := range d.V {
+			fmt.Printf("%v ", string(r))
+		}
+		fmt.Printf("\n")
+	*/
 	//fmt.Println("len(V)=", len(d.V))
 	seq, ok := d.seq()
 	fmt.Println("ok:", ok)
