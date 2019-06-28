@@ -33,7 +33,9 @@ func (d *D) combi() [][]rune {
 
 func (d *D) _combi(cur []rune, n int, ret [][]rune) [][]rune {
 	if n == 0 {
-		return append(ret, cur)
+		word := make([]rune, len(cur))
+		copy(word, cur)
+		return append(ret, word)
 	}
 	for _, r := range d.A {
 		ret = d._combi(append(cur, r), n-1, ret)
@@ -95,15 +97,7 @@ func main() {
 	d := newD(*k, *n)
 	fmt.Printf("k: %v\n", d.k)
 	fmt.Printf("n: %v\n", d.n)
-	//fmt.Printf("alphabets: %v\n", string(d.A))
-	/*
-		fmt.Printf("combination: ")
-		for _, r := range d.V {
-			fmt.Printf("%v ", string(r))
-		}
-		fmt.Printf("\n")
-	*/
-	//fmt.Println("len(V)=", len(d.V))
+	fmt.Printf("alphabets: %v\n", string(d.A))
 	seq, ok := d.seq()
 	fmt.Println("ok:", ok)
 	fmt.Println("De Bruijn sequence:", string(seq))
