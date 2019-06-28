@@ -52,38 +52,32 @@ func (d *D) _combi(cur []rune, n int, ret [][]rune) [][]rune {
 	return ret
 }
 
-func (d *D) check(cur []rune, checklist map[string]bool) (bool, string) {
-	//fmt.Println("cur=", string(cur))
-	if len(cur) < d.n {
-		return true, ""
-	}
-
-	var str string
-	for i := len(cur) - d.n; i < len(cur); i++ {
-		str = (string(cur) + string(cur))[i : i+d.n]
-		//fmt.Printf("str=%v ", str)
-		if _, ok := checklist[str]; ok {
-			//fmt.Printf("->false checklist=%v\n", checklist)
-			return false, ""
-		}
-		//fmt.Printf("->true checklist=%v\n", checklist)
-		if len(cur) != len(d.V) {
-			break
-		}
-	}
-	return true, str
-}
-
 // De Bruijn sequences built using brute force
-func (d *D) _seq(cur []rune, checklist map[string]bool) ([]rune, bool) {
-	if len(cur) == len(d.V) {
+func (d *D) _seq(cur []rune, p int, checklist map[string]bool) ([]rune, bool) {
+	if p == len(d.V) {
 		return cur, true
+	}
+	if p > len(d.V)-d.n {
+		key := (string(cur) + string(cur))[p : p+d.n]
+		if _, ok := checklist[key]; !ok {
+			checklist[key] = true
+			if ret, ok := d._seq(cur, p+1, checklist); ok {
+				return ret, true
+			} else {
+				delete(checklist, key)
+			}
+		}
+		return nil, false
 	}
 	for _, r := range d.A {
 		newCur := append(cur, r)
-		if ok, key := d.check(newCur, checklist); ok {
+		if len(newCur) < d.n {
+			return d._seq(newCur, 0, checklist)
+		}
+		key := string(newCur)[p:]
+		if _, ok := checklist[key]; !ok {
 			checklist[key] = true
-			if ret, ok := d._seq(newCur, checklist); ok {
+			if ret, ok := d._seq(newCur, p+1, checklist); ok {
 				return ret, true
 			} else {
 				delete(checklist, key)
@@ -95,7 +89,7 @@ func (d *D) _seq(cur []rune, checklist map[string]bool) ([]rune, bool) {
 
 func (d *D) seq() ([]rune, bool) {
 	checklist := make(map[string]bool)
-	return d._seq([]rune{}, checklist)
+	return d._seq([]rune{}, 0, checklist)
 }
 
 func dump(a []rune) string {
@@ -120,6 +114,7 @@ func main() {
 	fmt.Printf("k: %v\n", d.k)
 	fmt.Printf("n: %v\n", d.n)
 	fmt.Printf("alphabets: %v\n", dump(d.A))
+	fmt.Printf("combi: %v\n", len(d.V))
 	seq, ok := d.seq()
 	if !ok {
 		fmt.Println("Result is not OK!")
