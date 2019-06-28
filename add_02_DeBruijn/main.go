@@ -6,23 +6,31 @@ import (
 )
 
 type D struct {
-	k int // number of characters
-	n int // length of characters
-	A []rune
-	V [][]rune
+	k         int // number of characters
+	n         int // length of characters
+	startWith rune
+	A         []rune
+	V         [][]rune
 }
 
-func newD(k, n int) *D {
+func newD(k, n int, zero bool) *D {
 	d := D{k: k, n: n}
+	if zero {
+		d.startWith = '0'
+	} else {
+		d.startWith = 'a'
+	}
 	d.A = d.alph()
 	d.V = d.combi()
+	fmt.Printf("d.startWith=%v\n", string(d.startWith))
 	return &d
 }
 
 func (d *D) alph() []rune {
 	a := []rune{}
+	fmt.Println("startWith=", string(d.startWith))
 	for i := 0; i < d.k; i++ {
-		a = append(a, rune('a'+i))
+		a = append(a, d.startWith+rune(i))
 	}
 	return a
 }
@@ -90,11 +98,12 @@ func (d *D) seq() ([]rune, bool) {
 
 func main() {
 	var (
-		k = flag.Int("k", 2, "alphabets")
-		n = flag.Int("n", 3, "word length")
+		k    = flag.Int("k", 2, "alphabets")
+		n    = flag.Int("n", 3, "word length")
+		zero = flag.Bool("z", false, "alphabets start with zero")
 	)
 	flag.Parse()
-	d := newD(*k, *n)
+	d := newD(*k, *n, *zero)
 	fmt.Printf("k: %v\n", d.k)
 	fmt.Printf("n: %v\n", d.n)
 	fmt.Printf("alphabets: %v\n", string(d.A))
