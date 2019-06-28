@@ -74,6 +74,7 @@ func (d *D) check(cur []rune, checklist map[string]bool) (bool, string) {
 	return true, str
 }
 
+// De Bruijn sequences built using brute force
 func (d *D) _seq(cur []rune, checklist map[string]bool) ([]rune, bool) {
 	if len(cur) == len(d.V) {
 		return cur, true
@@ -97,6 +98,17 @@ func (d *D) seq() ([]rune, bool) {
 	return d._seq([]rune{}, checklist)
 }
 
+func dump(a []rune) string {
+	var ret string
+	for i, r := range a {
+		if i%8 == 0 {
+			ret = fmt.Sprintf("%s ", ret)
+		}
+		ret = fmt.Sprintf("%s%s", ret, string(r))
+	}
+	return ret
+}
+
 func main() {
 	var (
 		k    = flag.Int("k", 2, "alphabets")
@@ -107,8 +119,11 @@ func main() {
 	d := newD(*k, *n, *zero)
 	fmt.Printf("k: %v\n", d.k)
 	fmt.Printf("n: %v\n", d.n)
-	fmt.Printf("alphabets: %v\n", string(d.A))
+	fmt.Printf("alphabets: %v\n", dump(d.A))
 	seq, ok := d.seq()
-	fmt.Println("ok:", ok)
-	fmt.Println("De Bruijn sequence:", string(seq))
+	if !ok {
+		fmt.Println("Result is not OK!")
+	}
+	fmt.Println("De Bruijn sequence:", dump(seq))
+	fmt.Println("De Bruijn sequence length:", len(string(seq)))
 }
