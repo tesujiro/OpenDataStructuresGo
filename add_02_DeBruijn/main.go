@@ -22,14 +22,15 @@ func newD(k, n int, zero bool) *D {
 	}
 	d.A = d.alph()
 	d.V = d.combi()
-	fmt.Printf("d.startWith=%v\n", string(d.startWith))
 	return &d
 }
 
 func (d *D) alph() []rune {
 	a := []rune{}
-	fmt.Println("startWith=", string(d.startWith))
 	for i := 0; i < d.k; i++ {
+		if d.startWith == '0' && i == 10 {
+			d.startWith = 'A' - 10
+		}
 		a = append(a, d.startWith+rune(i))
 	}
 	return a
