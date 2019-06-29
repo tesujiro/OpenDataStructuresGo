@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+
+	"github.com/pkg/profile"
 )
 
 type D struct {
@@ -67,20 +69,20 @@ func (d *D) _seq(cur []rune, p int, checklist map[string]bool) ([]rune, bool) {
 				delete(checklist, key)
 			}
 		}
-		return nil, false
-	}
-	for _, r := range d.A {
-		newCur := append(cur, r)
-		if len(newCur) < d.n {
-			return d._seq(newCur, 0, checklist)
-		}
-		key := string(newCur)[p:]
-		if _, ok := checklist[key]; !ok {
-			checklist[key] = true
-			if ret, ok := d._seq(newCur, p+1, checklist); ok {
-				return ret, true
-			} else {
-				delete(checklist, key)
+	} else {
+		for _, r := range d.A {
+			newCur := append(cur, r)
+			if len(newCur) < d.n {
+				return d._seq(newCur, 0, checklist)
+			}
+			key := string(newCur)[p:]
+			if _, ok := checklist[key]; !ok {
+				checklist[key] = true
+				if ret, ok := d._seq(newCur, p+1, checklist); ok {
+					return ret, true
+				} else {
+					delete(checklist, key)
+				}
 			}
 		}
 	}
@@ -115,6 +117,7 @@ func main() {
 	fmt.Printf("n: %v\n", d.n)
 	fmt.Printf("alphabets: %v\n", dump(d.A))
 	fmt.Printf("combi: %v\n", len(d.V))
+	defer profile.Start(profile.ProfilePath(".")).Stop()
 	seq, ok := d.seq()
 	if !ok {
 		fmt.Println("Result is not OK!")
