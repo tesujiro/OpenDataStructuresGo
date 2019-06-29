@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"math"
 
 	"github.com/pkg/profile"
 )
@@ -94,6 +95,61 @@ func (d *D) seq() (string, bool) {
 	return d._seq("", 0, checklist)
 }
 
+func (d *D) seq2hex(seq string) string {
+	bits := int(math.Log2(float64(d.k)))
+	if float64(d.k) != math.Exp2(float64(bits)) {
+		return "k is not 2^x"
+	}
+
+	hex := "0x"
+	index := make(map[rune]int, d.k)
+	for i, r := range d.A {
+		index[r] = i
+	}
+	var tmp uint32
+	for i, r := range seq {
+		tmp = tmp*uint32(d.k) + uint32(index[r])
+		if (i+1)*bits%32 == 0 {
+			hex = fmt.Sprintf("%s%8.8x", hex, tmp)
+			tmp = 0
+		}
+	}
+	if bits*len(seq)%32 != 0 {
+		var width string
+		l := int(math.Ceil(float64(bits*len(seq)) / 4.0))
+		if l != 0 {
+			width = fmt.Sprintf("%d", l)
+		} else {
+			width = fmt.Sprintf("%d", 4)
+		}
+		hex = fmt.Sprintf("%s%"+width+"."+width+"x", hex, tmp)
+	}
+	return hex
+}
+
+func (d *D) bitPosition(s string) []int {
+	tape := s + s
+	var pos2value []int
+	index := make(map[rune]int, d.k)
+	for i, r := range d.A {
+		index[r] = i
+	}
+	//fmt.Println("index:", index)
+	for i := 0; i < len(s); i++ {
+		pos := 0
+		for j := 0; j < d.n; j++ {
+			pos = pos*d.k + index[rune(tape[i+j])]
+		}
+		//fmt.Println("pos:", pos)
+		pos2value = append(pos2value, pos)
+	}
+	value2pos := make([]int, len(pos2value))
+	for pos, value := range pos2value {
+		value2pos[value] = pos
+	}
+	return value2pos
+}
+
 func dump(a []rune) string {
 	var ret string
 	for i, r := range a {
@@ -123,5 +179,12 @@ func main() {
 		fmt.Println("Result is not OK!")
 	}
 	fmt.Println("De Bruijn sequence:", dump([]rune(seq)))
+	fmt.Println("De Bruijn sequence(HEX):", d.seq2hex(seq))
 	fmt.Println("De Bruijn sequence length:", len(string(seq)))
+	pos := d.bitPosition(seq)
+	fmt.Printf("De Bruijn bit position:")
+	for _, v := range pos {
+		fmt.Printf("%v, ", v)
+	}
+	fmt.Printf("\n")
 }
