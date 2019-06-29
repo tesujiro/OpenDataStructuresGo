@@ -55,12 +55,12 @@ func (d *D) _combi(cur []rune, n int, ret [][]rune) [][]rune {
 }
 
 // De Bruijn sequences built using brute force
-func (d *D) _seq(cur []rune, p int, checklist map[string]bool) ([]rune, bool) {
+func (d *D) _seq(cur string, p int, checklist map[string]bool) (string, bool) {
 	if p == len(d.V) {
 		return cur, true
 	}
 	if p > len(d.V)-d.n {
-		key := (string(cur) + string(cur))[p : p+d.n]
+		key := (cur + cur)[p : p+d.n]
 		if _, ok := checklist[key]; !ok {
 			checklist[key] = true
 			if ret, ok := d._seq(cur, p+1, checklist); ok {
@@ -71,7 +71,7 @@ func (d *D) _seq(cur []rune, p int, checklist map[string]bool) ([]rune, bool) {
 		}
 	} else {
 		for _, r := range d.A {
-			newCur := append(cur, r)
+			newCur := cur + string(r)
 			if len(newCur) < d.n {
 				return d._seq(newCur, 0, checklist)
 			}
@@ -86,12 +86,12 @@ func (d *D) _seq(cur []rune, p int, checklist map[string]bool) ([]rune, bool) {
 			}
 		}
 	}
-	return nil, false
+	return "", false
 }
 
-func (d *D) seq() ([]rune, bool) {
+func (d *D) seq() (string, bool) {
 	checklist := make(map[string]bool)
-	return d._seq([]rune{}, 0, checklist)
+	return d._seq("", 0, checklist)
 }
 
 func dump(a []rune) string {
@@ -122,6 +122,6 @@ func main() {
 	if !ok {
 		fmt.Println("Result is not OK!")
 	}
-	fmt.Println("De Bruijn sequence:", dump(seq))
+	fmt.Println("De Bruijn sequence:", dump([]rune(seq)))
 	fmt.Println("De Bruijn sequence length:", len(string(seq)))
 }
