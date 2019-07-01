@@ -14,6 +14,7 @@ type D struct {
 	startWith rune
 	A         []rune
 	V         [][]rune
+	G         map[string][]string
 }
 
 func newD(k, n int, zero bool) *D {
@@ -25,6 +26,7 @@ func newD(k, n int, zero bool) *D {
 	}
 	d.A = d.alph()
 	d.V = d.combi()
+	d.G = d.makeGraph()
 	return &d
 }
 
@@ -187,4 +189,5 @@ func main() {
 		fmt.Printf("%v, ", v)
 	}
 	fmt.Printf("\n")
+	fmt.Printf("Graph:%v\n", d.G)
 }

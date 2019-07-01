@@ -1,5 +1,5 @@
 all:
-	go build main.go
+	go build .
 
 test:
 	go test -v .
