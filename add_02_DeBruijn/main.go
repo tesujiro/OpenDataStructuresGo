@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"math"
+	"os"
 
 	"github.com/pkg/profile"
 )
@@ -163,11 +164,27 @@ func dump(a []rune) string {
 	return ret
 }
 
+func dumpPath(p []string) string {
+	ret := p[0]
+	length := len(p[0])
+	for i := 1; i < len(p)-1; i++ {
+		ret += p[i][len(p[i])-1:]
+		length += 1
+		if length%8 == 0 {
+			ret += " "
+		}
+		//fmt.Println("ret:", ret)
+		//ret += p[i]
+	}
+	return ret
+}
+
 func main() {
 	var (
-		k    = flag.Int("k", 2, "alphabets")
-		n    = flag.Int("n", 3, "word length")
-		zero = flag.Bool("z", false, "alphabets start with zero")
+		k     = flag.Int("k", 2, "alphabets")
+		n     = flag.Int("n", 3, "word length")
+		zero  = flag.Bool("z", false, "alphabets start with zero")
+		blute = flag.Bool("b", false, "make sequence with blute force")
 	)
 	flag.Parse()
 	d := newD(*k, *n, *zero)
@@ -176,18 +193,32 @@ func main() {
 	fmt.Printf("alphabets: %v\n", dump(d.A))
 	fmt.Printf("combi: %v\n", len(d.V))
 	defer profile.Start(profile.ProfilePath(".")).Stop()
-	seq, ok := d.seq()
-	if !ok {
-		fmt.Println("Result is not OK!")
+	if *blute {
+		fmt.Println("[Blute Force]")
+		seq, ok := d.seq()
+		if !ok {
+			fmt.Println("Result is not OK!")
+		}
+		fmt.Println("De Bruijn sequence:", dump([]rune(seq)))
+		fmt.Println("De Bruijn sequence(HEX):", d.seq2hex(seq))
+		fmt.Println("De Bruijn sequence length:", len(string(seq)))
+		pos := d.bitPosition(seq)
+		fmt.Printf("De Bruijn bit position:")
+		for _, v := range pos {
+			fmt.Printf("%v, ", v)
+		}
+		fmt.Printf("\n")
+	} else {
+
+		fmt.Println("[De Bruijn Graph]")
+		fmt.Printf("Graph:%v\n", d.G)
+		path, ok := d.SeqGraph()
+		if !ok {
+			fmt.Println("Result is not OK!")
+			os.Exit(1)
+		}
+		fmt.Println("De Bruijn sequence:", dumpPath(path))
+		//fmt.Println("De Bruijn sequence(HEX):", d.seq2hex(seq))
+		fmt.Println("De Bruijn sequence length:", len(path))
 	}
-	fmt.Println("De Bruijn sequence:", dump([]rune(seq)))
-	fmt.Println("De Bruijn sequence(HEX):", d.seq2hex(seq))
-	fmt.Println("De Bruijn sequence length:", len(string(seq)))
-	pos := d.bitPosition(seq)
-	fmt.Printf("De Bruijn bit position:")
-	for _, v := range pos {
-		fmt.Printf("%v, ", v)
-	}
-	fmt.Printf("\n")
-	fmt.Printf("Graph:%v\n", d.G)
 }
