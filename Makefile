@@ -9,7 +9,7 @@ cover:
 run:
 	go run main.go
 bench:
-	go test -bench . -benchmem
+	go test -bench . -benchmem -test.timeout 60m
 
 profile:
 	go test -bench . -benchmem -cpuprofile cpu.out
